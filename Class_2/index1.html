@@ -1,0 +1,225 @@
+<!-- 
+doc엔터
+html : Hyper Text Markup Language 웹페이지를 작성하는 문서이며, 구조적으로 이루어져있음. 논리가 필요치 않음.
+Tag, Tag 이름 : html, head, meta, body, div, ...
+<****> 여는태그 </****> 닫는태그, 여는태그가 있으면 닫는 태그가 있어야함
+Element << 자바스크립트할때 자세히 설명해준다고 하심
+여는 태그와 닫는 태그 사이에 자식 태그들이 있다.
+자식태그가 있으면 부모태그도 있다
+tag중에 바로닫기 : <**** /> 자식이 없을 때 : meta, img, input 등
+-->
+<html lang="en">
+  <!-- html 태그란 : html 파일의 시작. lnag 처럼 태그 옆에 붙는걸 속성이라고 한다. 속성은 Tag에 대한 설정을 해준다. lang은 무슨언어냐 설정을 해준다. en 영어 ko 한글 등등-->
+  <head>
+    <!-- 
+        head태그 : 브라우저에 여러가지 정보들을 전달, 보통은 페이지상에서 안보임
+     -->
+    <meta charset="UTF-8" />
+    <!-- 
+        메타데이터 : 간단히 말해서 기본정보를 전달한다.
+        charset : 언어가 어떤 포멧이냐? 형식이냐? UTF-8은 유니코드중에 하나인데, 자바스크립트할때 자세히 다룰 예정
+     -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 
+        http-equiv : 웹사이트가 어떤 호환성을 가지고 있느냐? 자바스크립트를 어디까지 사용할수 있냐?
+        content : 어떤 정보인지에 대한 내용, IE=edge : 인터넷 익스플로러의 버전이 edge에 맞춰져 있다.
+     -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 
+        name : 어떤 설정이냐, viewport라는 이름을 갖고있다. << 화면에 대한 내용 (카메라 라고 생각하면됨)
+        viewport : 카메라, 어느정도의 너비를 갖는지, 줌(확대)이 어케 되어있는지
+        width=device-width << 웹페이지의 가로 너비를 브라우저 or 스마트폰의 너비에 맞추겠다.
+        initial-scale=1.0 : 기본 확대 배율이 1.0이다.
+        maximum-scale, minimum-scale << 최대 최소 스케일
+     -->
+    <title>테스터</title>
+    <!-- 
+        title : 웹페이지 이름, 사이트 이름 (맨위에 뜨는거)
+        비슷한 link, script, style 등의 태그가 있음
+     -->
+  </head>
+  <body>
+    <!-- 
+        div : 영역
+     -->
+    <div>
+      <p>
+        단락, paragraph 단어의 약자, 블록화되어있다. <br />br은 줄바꿈(엔터)
+        내용이 너비를 넘으면 알아서 줄바꿈을 한다
+        <span> 이렇게 p안에 적기도 함 </span>
+      </p>
+      <p>
+        단락, paragraph 단어의 약자, 블록화되어있다. 단락, paragraph 단어의
+        약자, 블록화되어있다.단락, paragraph 단어의 약자, 블록화되어있다. 단락,
+        paragraph 단어의 약자, 블록화되어있다.단락, paragraph 단어의 약자,
+        블록화되어있다.단락, paragraph 단어의 약자, 블록화되어있다. 단락,
+        paragraph 단어의 약자, 블록화되어있다.단락, paragraph 단어의 약자,
+        블록화되어있다.단락, paragraph 단어의 약자, 블록화되어있다.
+      </p>
+      <span>
+        p랑 거의 유사해. 인라인 속성을 가지고 있다. 블록화와 대비되는 느낌임
+        나중에 다시 설명 p가있고 span이 있다라는걸 알면 된다
+      </span>
+      <pre>
+        p나 span이나 같은데, 얘는 결정적인 차이가 있다. 얘는 친대로 그대로
+        나온다
+      </pre>
+      <h1>대제목</h1>
+      <!-- h1이 제일 큰 제목이다, 이후 숫자가 늘어다며 6번째 제목까지 있을수 있다. -->
+      <h2>제목</h2>
+      <h3>제목</h3>
+      <h4>제목</h4>
+      <h5>제목</h5>
+      <h6>제목</h6>
+    </div>
+    <!-- 여기까지 글 적는것에 대한 내용 -->
+    <div>
+      <img src="./key_visual_2_1.jpg" alt="이미지테스팅" />
+      <img
+        src="https://ssl.pstatic.net/melona/libs/1398/1398872/afc94c1dcea79460e8c3_20220816112810069.jpg"
+        alt="이미지테스팅"
+      />
+      <!-- 
+            image : 
+            src : 소스, 이미지의 주소, 파일명
+            alt : 정삭적으로 이미지를 받지 못했을때 엑박에 붙는 텍스트
+            ./ : 현재위치
+            ./ << 같은폴더에있으면 안써도 되긴 함
+            이미지포멧 : jpg, bmp, png 등등
+            포멧중에 base64를 쓰는게 있는데, 텍스트로 이미지를 볼수 있음?
+         -->
+    </div>
+    <div>
+      <p>
+        <strong>굵은 글씨 강조, 긴급한 내용, 알람 같은데 쓸수 있다</strong>
+        채팅을 쳤는데, 그사람이 공지를 올렸어 : 긴급사항이 될수 있다. 그거에대해
+        strong 속성을 쓸수 있다
+        <b>그냥 굵은 글씨, 나중에 css에서 알수있다</b>
+        <del>
+          삭제한내용, 게시판엣거 글을 삭제했어 그 글을 관리자는 확인 가능해야함.
+        </del>
+        <ins>
+          insert 입력한내용, 늘어난 내용 게시판에 글을 적었어, 신규 작성글
+          수정했어.
+        </ins>
+        3<sub>4</sub>
+        <!-- 윗첨자 -->
+        2<sup>3</sup>
+        <!-- 아랫첨자 -->
+        영어<sub>English</sub>
+        <i>둘다 기울었어 이름이나 제목같은거, 가져온말들, 인용</i>
+        <em>둘다 기울었다고 강조(strong) </em>
+        <!-- 
+            스트롱과 b의 관계와 비슷하다 b는 그냥굵은거고 스트롱은 강조하고싶을때 쓴다
+            i는 이름이나 제목같은거, 가져온 말들, 인용할때
+            em은 그냥 강조할때
+        -->
+      </p>
+    </div>
+    <div>
+      style : 속성, 그 태그의 크기, 외곽선, 위치, 배경 등등을 설정 가능하다.
+      기초적인 방법 처음 웹페이지가 나왔을때 html파일 하나로 주고 받았음
+      그러다보니 페이지들이 간단간단했는 점점 발달하다보니 html파일이 점점커지고
+      보기가 어려워졌어 그래서 나온게 css파일, (Cascading Style Sheets)로
+      html파일을 외부로 뺏다. 이 방식은 나중에 더 알아본다.
+      <div style="width: 1000px">
+        <p>
+          너비나 늘어난 숫자를 이용한 수치들에 대한 단위 : px, %, em, rem, vw,
+          vh
+        </p>
+        <p>
+          px : 픽셀 그냥 한칸 한칸 % : 부모를 기준으로한 퍼센테이지, 100% =
+          부모의 너비와 같다
+        </p>
+        <p>
+          em : 글씨크기 기준으로 한다, 부모의 글씨 크기<br />rem : 글씨크기
+          기준으로 한다 생각보다 많이 씀 어디서? 모바일, pc 한번에
+          만들때(반응형)
+        </p>
+        <p>
+          ex) 글씨크기가 16px이면 1em, 1rem은 16픽셀이다. 마찬가지로 글씨크기가
+          32px이면 1em, 1rem은 32픽셀이다. 0.5면 반이고
+        </p>
+        <p>
+          vw, vh : viewport, 브라우저의 크기나 스마트폰의 크기를 기준으로 %,
+          100vw = 화면의 너비, 100vh = 화면의 높이
+        </p>
+      </div>
+    </div>
+    <div>
+      <div style="width: 1000px"></div>
+      <div style="max-width: 1000px; min-width: 100px">
+        width : 영역의 너비 max-width : 영역의 최대 너비 min-width : 영역의 최소
+        너비 %, vw, vh는 기준이 있고 그 기준의 비율로 너비를 설정하지 어떤
+        내용을 넣었는데, 최소 100px은 있어야 제대로 뜬다? min-width 어떤 내용을
+        넣었는데, 너무 크면 안돼, 1000px 이상 넘어가면 안된다, 그러면 max-width
+      </div>
+      <div style="height: 100px">
+        height : 높이 max-height : 영역의 최대 높이 min-height : 영역의 최소
+        높이 보통 이미지 조절할때 아니면 쓸일이 많이 없다
+      </div>
+      <div
+        style="
+          width: 100px;
+          height: 100px;
+          background-color: rgb(255, 200, 200);
+          padding: 10px;
+          box-sizing: border-box;
+        "
+      >
+        <!-- 패딩 : 내부여백, 내부에 얼마나 빈 공간을 줄것인지 설정 -->
+        <!-- margin : 외부여백 -->
+        <div style="height: 100%; background-color: red"></div>
+      </div>
+
+      <div
+        style="
+          width: 100px;
+          height: 100px;
+          background-color: rgb(100, 200, 200);
+          /* RGB는 255까지 가능하다 */
+        "
+      >
+        <!-- 패딩 : 내부여백, 내부에 얼마나 빈 공간을 줄것인지 설정 -->
+        <!-- margin : 외부여백 -->
+        <div style="height: 100%; background-color: red; margin: 10px"></div>
+        <!-- 
+            너비는 설정하지않으면 무조건 부모를 따라간다, 즉 부모의 너비가 자식의 너비다
+            높이는 설정하지 않으면 자식의 높이를 따라간다, 즉 자식이 없으면 0px이다
+            자식의 너비가 없어 그리고 margin(외부여백)이 있으면, 부모의 너비에서 외부 여백을 제외한 너비를 갖게됨
+            즉, 설정한 스타일이 있으면 그걸 우선시 해서 적용한다.
+         -->
+      </div>
+      <div style="box-sizing: border-box"></div>
+      <!-- 
+        기본적으로 크기에 대한 기준은 html이 알아서 컨텐츠 박스를 기준으로 잡는다
+        그래서 박스사이징을 보더박스 기준으로 바꿔주면 패딩 10을 넣었을때 결과값이 다르게 나온다
+       -->
+      <div
+        style="
+          width: 100px;
+          height: 150px;
+          background-color: rgb(255, 100, 200);
+          padding-top: 25px;
+          margin-top: 20px;
+        "
+      >
+        <div
+          style="
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            margin-left: 50px;
+          "
+        ></div>
+      </div>
+    </div>
+  </body>
+  <!-- 
+    body는 웹페이지의 내용물을 넣는 부분임
+    마진 외부영역
+    보더는 외곽선
+    패딩 
+    정중앙 콘텐츠박스
+   -->
+</html>
