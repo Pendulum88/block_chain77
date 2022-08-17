@@ -5,5 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <!-- 
+        ol 과 ul 은 리스트를 작성한다
+        리스트의 부모 태그다
+        li : 자식태그이다
+        ol과 ul은 리스트를 나타내는 방법이 다르다
+        li : 리스트
+     -->
+    <ol>
+      <!--ordered list-->
+      <!--숫자가 있어-->
+      <li>첫번째</li>
+      <li>두번째</li>
+    </ol>
+    <ul>
+      <!--unordered list-->
+      <!--숫자가 없어-->
+      <li>첫번째</li>
+      <li>두번째</li>
+    </ul>
+
+    <ol type="" start="4">
+      <!--i I 1 a A 속성을 설정하면 표시되는게 달라진다-->
+      <!-- 그런데 내가 4번부터 카운트하고싶으면 4를 입력하면 된다 -->
+      <!-- 리버스 속성도 있다고 한다 -->
+      <li>첫번째</li>
+      <li>두번째</li>
+      <li>두번째</li>
+      <li>두번째</li>
+      <li>두번째</li>
+      <li>두번째</li>
+    </ol>
+    <ul type="dics">
+      <!--circle, square, dics 등 넣을수 있다-->
+      <li>첫번째</li>
+      <li>두번째</li>
+    </ul>
+
+    <div>
+      <!-- 
+        display : 영역을 어떻게 출력할지 설정하는 명령어
+        block, inline, inline-block, flex, none 등등 있다
+        인라인, 블록이란
+        블록 : 너비를 전부 갖는애, 욕심쟁이 옆을 모두 차지함
+        p처럼 옆에 너비를 다 갖기때문에 p를 두번쓰면 줄을 내려버린다 이게 블록임
+        -->
+      <div style="width: 100px; height: 100px; background-color: skyblue"></div>
+      <div
+        style="width: 100px; height: 100px; background-color: saddlebrown"
+      ></div>
+      <!-- 
+        인라인은 자기 옆을 허락하는애
+        즉, 연속적이다
+        자식(영역내의 컨텐츠박스에 들어갈 무언가가)이 없으면 안보일수 있음
+        인라인은 필요한 만큼만 가진다. 그래서 옆을 차지하지 않고, 같은 인라인이면 연속적으로 출력된다
+
+        inline-block : 두 설정을 모두 갖고있다 (인라인-블록)
+        그래서 연속적이면서도 설정된 크기를 가질수 있다
+     -->
+      <div
+        style="
+          display: inline-block;
+          width: 100px;
+          height: 100px;
+          background-color: red;
+        "
+      ></div>
+      <div
+        style="
+          display: inline-block;
+          width: 100px;
+          height: 100px;
+          background-color: rebeccapurple;
+        "
+      ></div>
+      <div
+        style="
+          display: none;
+          width: 100px;
+          height: 100px;
+          background-color: seagreen;
+        "
+      ></div>
+      <!-- none : 출력하지 않겠다 -->
+      <!-- float : 텍스트화 (글을 적을때 왼쪽정렬, 오른쪽정렬 등 쓰는데, 그런역할을 하는애다) -->
+      <!-- 플롯을 이용하면, 이미지와 글을 같이 배치시킬수 있다 -->
+      <!-- 정렬을 위해 사용한다, 이후 배율 css스타일들과 충돌하는 경우가 있다. 그래서 위치잡기가 힘들때가 있다 -->
+      <div
+        style="
+          float: left;
+          width: 100px;
+          height: 100px;
+          background-color: black;
+        "
+      ></div>
+      <div
+        style="
+          float: left;
+          width: 100px;
+          height: 100px;
+          background-color: darkkhaki;
+        "
+      ></div>
+    </div>
+  </body>
 </html>
+<!-- 꿀팁 : 휠클릭드래그하면 여러줄 드래그 가능 -->
+<!-- 속성 : 타입 스타일 등 -->
