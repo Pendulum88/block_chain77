@@ -11,7 +11,6 @@
       }
       .table_full {
         width: 100%;
-
         border-collapse: collapse;
       }
     </style>
@@ -21,56 +20,53 @@
       style="
         width: 1000px;
         height: 100%;
-        background-color: aqua;
         margin: 0 auto;
       "
     >
       <h1 style="text-align: center; letter-spacing: 53px">이력서</h1>
       <!-- margin: 0 auto; : 가운데정렬 -->
-      <div>
-        <div
-          style="background-color: red; width: 24%; height: 24%; float: left"
-        >
+      <div style="height: 20%">
+        <div style="width: 20%; height: 100%; float: left">
           <img
             src="./3kingdoms_map.png"
             style="
               height: 100%;
               width: 100%;
               box-sizing: border-box;
-              padding: 5px;
+              padding: 15px;
             "
           />
           <!-- 사진 -->
         </div>
-        <div style="height: 24%; width: 76%; float: right">
-          <table class="table_full" style="height: 100%">
+        <div style="height: 100%; width: 80%; float: right">
+          <table class="table_full" style="height: 100%;">
             <tr>
-              <th class="table_slim">성명</th>
+              <th class="table_slim" style="border-left: none;">성명</th>
               <th class="table_slim">김재일</th>
               <th class="table_slim">영문</th>
               <th class="table_slim">Kim Jae Yil</th>
               <th class="table_slim">한문</th>
-              <th class="table_slim">金財佚</th>
+              <th class="table_slim" style="border-right: none;">金財佚</th>
             </tr>
             <tr>
-              <th class="table_slim">생년월일</th>
+                <th class="table_slim" style="border-left: none;">생년월일</th>
               <th class="table_slim" colspan="3">1994년 06월 21일</th>
               <th class="table_slim">나이</th>
-              <th class="table_slim">만 28세</th>
+              <th class="table_slim" style="border-right: none;">만 28세</th>
             </tr>
             <tr>
-              <th class="table_slim">휴대폰</th>
+                <th class="table_slim" style="border-left: none;">휴대폰</th>
               <th class="table_slim">010-6564-3140</th>
               <th class="table_slim">전화번호</th>
-              <th class="table_slim" colspan="3">02-0101-0101</th>
+              <th class="table_slim" colspan="3" style="border-right: none;">02-0101-0101</th>
             </tr>
             <tr>
-              <th class="table_slim">이메일</th>
-              <th class="table_slim" colspan="5">zladudrjs@naver.com</th>
+                <th class="table_slim" style="border-left: none;">이메일</th>
+              <th class="table_slim" colspan="5" style="border-right: none;">zladudrjs@naver.com</th>
             </tr>
             <tr>
-              <th class="table_slim">주소</th>
-              <th class="table_slim" colspan="5">
+                <th class="table_slim" style="border-left: none;">주소</th>
+              <th class="table_slim" colspan="5" style="border-right: none;">
                 경기 화성시 동탄순환대로 10길 30-23, 3507동 1604호
               </th>
             </tr>
@@ -78,7 +74,7 @@
           <!-- 우상단 -->
         </div>
       </div>
-      <div>
+      <div style="padding-top: 10px">
         <table class="table_full">
           <tr>
             <th class="table_slim">보훈대상자</th>
@@ -89,22 +85,160 @@
         </table>
         <!-- 보훈대상자 -->
       </div>
-      <div>
+      <div style="padding-top: 10px">
+        <table class="table_full">
+          <tr>
+            <th class="table_slim" colspan="5">학력사항</th>
+          </tr>
+          <tr>
+            <th class="table_slim">재학기간</th>
+            <th class="table_slim">학교명 및 전공</th>
+            <th class="table_slim">학점</th>
+            <th class="table_slim">구분</th>
+            <th class="table_slim">소재지</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+        </table>
         <!-- 학력사항 -->
       </div>
-      <div>
+      <div style="padding-top: 10px">
+        <table class="table_full">
+          <tr>
+            <th class="table_slim" colspan="4">자격증</th>
+          </tr>
+          <tr>
+            <th class="table_slim">취득일</th>
+            <th class="table_slim">자격증/면허증</th>
+            <th class="table_slim">등급</th>
+            <th class="table_slim">발행처</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+        </table>
         <!-- 자격증 -->
       </div>
-      <div>
+      <div style="padding-top: 10px">
+        <table class="table_full">
+          <tr>
+            <th class="table_slim" colspan="4">주요활동 및 경력</th>
+          </tr>
+          <tr>
+            <th class="table_slim">기간</th>
+            <th class="table_slim">활동내용</th>
+            <th class="table_slim">활동구분</th>
+            <th class="table_slim">기관명/업체명</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+        </table>
         <!-- 주요활동 및 경력 -->
       </div>
-      <div>
+      <div style="padding-top: 10px">
+        <table class="table_full">
+          <tr>
+            <th class="table_slim" colspan="6">능력사항</th>
+          </tr>
+          <tr>
+            <th class="table_slim" rowspan="3">OA능력</th>
+            <th class="table_slim">워드/한글</th>
+            <th class="table_slim">상 □ 중 ■ 하 □</th>
+            <th class="table_slim" rowspan="3">어학능력</th>
+            <th class="table_slim">영어</th>
+            <th class="table_slim">상 □ 중 ■ 하 □</th>
+          </tr>
+          <tr>
+            <th class="table_slim">엑셀</th>
+            <th class="table_slim">상 □ 중 ■ 하 □</th>
+            <th class="table_slim">일본어</th>
+            <th class="table_slim">상 □ 중 ■ 하 □</th>
+          </tr>
+          <tr>
+            <th class="table_slim">파워포인트</th>
+            <th class="table_slim">상 □ 중 ■ 하 □</th>
+            <th class="table_slim">기타( )</th>
+            <th class="table_slim">상 □ 중 ■ 하 □</th>
+          </tr>
+        </table>
         <!-- 능력사항 -->
       </div>
-      <div>
+      <div style="padding-top: 10px">
+        <table class="table_full">
+          <tr>
+            <th class="table_slim" colspan="5">병역사항</th>
+          </tr>
+          <tr>
+            <th class="table_slim">복무기간</th>
+            <th class="table_slim">군별</th>
+            <th class="table_slim">계급</th>
+            <th class="table_slim">병과</th>
+            <th class="table_slim">전역사유</th>
+          </tr>
+          <tr>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+            <th class="table_slim">-</th>
+          </tr>
+        </table>
         <!-- 병역사항 -->
       </div>
-      <div>
+      <div style="padding-top: 10px">
+        <table style="float: right; border: none;">
+          <tr>
+            <th class="table_slim; border: none; ">위에 기재한 사항은 사실과 틀림이 없습니다.</th>
+          </tr>
+          <tr>
+            <th class="table_slim; border: none;">1234년 99월 99일</th>
+          </tr>
+          <tr>
+            <th class="table_slim; border: none;">성 명 : 김 재 일 (인)</th>
+          </tr>
         <!-- 틀림이 없습니다 -->
       </div>
     </div>
