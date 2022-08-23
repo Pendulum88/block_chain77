@@ -1,0 +1,308 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이력서</title>
+    <style>
+      table {
+        width: 100%;
+        border-top: 1px solid black;
+        border-collapse: collapse;
+      }
+      td,
+      tr,
+      th {
+        border: 1px solid black;
+      }
+      .Tcenter {
+        text-align: center;
+      }
+      .Tright {
+        text-align: right;
+      }
+      .SolidB {
+        text-align: left;
+        padding-left: 15px;
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+      }
+      .Tleft {
+        text-align: left;
+        padding-left: 7px;
+      }
+      div > div {
+        padding-top: 10px;
+      }
+      div.clearfixed::after {
+        display: block;
+        content: "";
+        clear: both;
+      }
+      .Bhidden {
+        border: hidden;
+      }
+      .l_div table * {
+        border: hidden;
+        text-align: right;
+      }
+      div div table {
+        border-left: hidden;
+        border-right: hidden;
+      }
+      div table tr th {
+        background-color: rgb(226, 226, 226);
+      }
+      tr {
+        font-weight: normal;
+        text-align: center;
+      }
+      .tblod {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body style="margin: 0">
+    <div style="width: 800px; margin: 0 auto">
+      <!-- margin: 0 auto; : 가운데정렬 -->
+      <h1 style="text-align: center; letter-spacing: 1cm; margin: 0">이력서</h1>
+      <div class="clearfixed">
+        <div style="width: 19%; float: left">
+          <img
+            src="./caocao.jpg"
+            style="
+              width: 100%;
+              box-sizing: border-box; 
+              padding-top: 5px;
+              padding-bottom: 5px;
+              padding-left: 10px;
+              padding-right: 10px;
+              border: 2px solid black;
+            "
+          />
+          <!-- 사진 -->
+        </div>
+        <div style="width: 78%; float: right; height: 142px">
+          <table style="border-top: 2px solid black; height: inherit">
+            <tr>
+              <th>성명</th>
+              <td class="Tleft">김재일</td>
+              <th>영문</th>
+              <td class="Tcenter">Kim Jae Yil</td>
+              <th>한문</th>
+              <td class="Tcenter">金財佚</td>
+            </tr>
+            <tr>
+              <th>생년월일</th>
+              <td colspan="3" class="Tleft">1994년 06월 21일</td>
+              <th>나이(만)</th>
+              <td class="Tcenter">28세</td>
+            </tr>
+            <tr>
+              <th>휴대폰</th>
+              <td class="Tleft">010-6564-3140</td>
+              <th>전화번호</th>
+              <td colspan="3" class="Tleft">02-0101-0101</td>
+            </tr>
+            <tr>
+              <th>이메일</th>
+              <td colspan="5" class="Tleft">zladudrjs@naver.com</td>
+            </tr>
+            <tr>
+              <th>주소</th>
+              <td colspan="5" class="Tleft">
+                경기 화성시 동탄순환대로 10길 30-23, 3507동 1604호
+              </td>
+            </tr>
+          </table>
+          <!-- 우상단 -->
+        </div>
+      </div>
+      <div>
+        <table
+          style="border-top: 2px solid black; border-bottom: 2px solid black"
+          class=""
+        >
+          <tr>
+            <th style="border: none; width: 20%">보훈대상자</th>
+            <td style="border: none; width: 23%"">
+              <span>해당 □ </span>
+              <span style="padding-left: 15px">해당없음 ■</span>
+            </td>
+            <th style="border: none; width: 20%">장애여부</th>
+            <td style="border: none; width: 23%">
+              <span>해당 □ </span>
+              <span style="padding-left: 15px">해당없음 ■</span>
+            </td>
+          </tr>
+        </table>
+        <!-- 보훈대상자 -->
+      </div>
+      <div>
+        <table>
+          <tr>
+            <th colspan="5" class="solidB">
+              학력사항
+              <span style="font-weight: lighter; font-size: smaller"
+                >(최종학력: 우송정보대학 졸업예정)</span
+              >
+            </th>
+          </tr>
+          <tr class="tblod">
+            <td>재학기간</td>
+            <td>학교명 및 전공</td>
+            <td>학점</td>
+            <td>구분</td>
+            <td>소재지</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </table>
+        <!-- 학력사항 -->
+      </div>
+      <div>
+        <table>
+          <tr>
+            <th colspan="4" class="solidB">자격증</th>
+          </tr>
+          <tr class="tblod">
+            <td>취득일</td>
+            <td>자격증/면허증</td>
+            <td>등급</td>
+            <td>발행처</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </table>
+        <!-- 자격증 -->
+      </div>
+      <div>
+        <table>
+          <tr>
+            <th colspan="4" class="solidB">주요활동 및 경력</th>
+          </tr>
+          <tr class="tblod">
+            <td>기간</td>
+            <td>활동내용</td>
+            <td>활동구분</td>
+            <td>기관명/업체명</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </table>
+        <!-- 주요활동 및 경력 -->
+      </div>
+      <div>
+        <table>
+          <tr>
+            <th colspan="6" class="solidB">능력사항</th>
+          </tr>
+          <tr class="tblod">
+            <td rowspan="3">OA능력</td>
+            <td>워드/한글</td>
+            <td>상 □ 중 ■ 하 □</td>
+            <td rowspan="3">어학능력</td>
+            <td>영어</td>
+            <td>상 □ 중 ■ 하 □</td>
+          </tr>
+          <tr>
+            <td>엑셀</td>
+            <td class="tblod">상 □ 중 ■ 하 □</td>
+            <td>일본어</td>
+            <td class="tblod">상 □ 중 ■ 하 □</td>
+          </tr>
+          <tr>
+            <td>파워포인트</td>
+            <td class="tblod">상 □ 중 ■ 하 □</td>
+            <td>
+              기타
+              <span style="letter-spacing: 23px">( )</span>
+            </td>
+            <td class="tblod"></tr>>상 □ 중 ■ 하 □</td>
+          </tr>
+        </table>
+        <!-- 능력사항 -->
+      </div>
+      <div>
+        <table>
+          <tr>
+            <th colspan="5" class="solidB">병역사항</th>
+          </tr>
+          <tr class="tblod">
+            <td>복무기간</td>
+            <td>군별</td>
+            <td>계급</td>
+            <td>병과</td>
+            <td>전역사유</td>
+          </tr>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </table>
+        <!-- 병역사항 -->
+      </div>
+      <div class="l_div">
+        <table>
+          <tr>
+            <td>위에 기재한 사항은 사실과 틀림이 없습니다.</td>
+          </tr>
+          <tr class="tblod">
+            <td>1234년 99월 99일</td>
+          </tr>
+          <tr class="tblod">
+            <td>성 명 : 김 재 일 (인)</td>
+          </tr>
+          <!-- 틀림이 없습니다 -->
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>style</title>
+    <style>
+      /* 
+        스타일은 보통 헤드 태그 안에서 쓴다
+        태그들의 스타일 속상을 모아서 미리 설정한다
+        style태그 내에서 쓰는 문법은 CSS 작성 방식과 같게 사용한다
+        div, body, h1 등등의 태그에 스타일을 한번에 적용할수 있다
+      */
+      div {
+        background-color: blue;
+        min-height: 50px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        /* 
+            *별은 모든 태그에 적용하겠단 뜻이다
+            별은 여러 곳에서 별이 사용 될수 있으며 CSS문법에서는
+            모든태그에 설정할때 쓴다
+         */
+      }
+
+      #test_id {
+        height: 555px;
+        /* #은 태그의 id 속성을 찾아 style을 적용한다 */
+      }
+
+      .test_dot {
+        height: 1111px;
+        /* .은 태그의 class속성을 찾아 style을 적용한다 */
+      }
+
+      p.test_dot {
+        /* p태그이면서 test_dot 클래스를 가지고있을경우 적용 */
+        background-color: aqua;
+      }
+
+      p#test_id {
+        /* p태그이면서 test_id id를 가지고있을경우 적용 */
+        background-color: aqua;
+      }
+
+      p.test_dot#test_id {
+        /* p태그이면서 test_dot class를 가지고 있으면서 test_id id를 가지고 있는 녀석을 찾는다 */
+        background-color: aqua;
+      }
+
+      .parent {
+        width: 300px;
+        height: 300px;
+        background-color: beige;
+      }
+
+      .child1,
+      .parent > .child2 {
+        /* 
+        , : 여러 클래스를 한번에 적용 가능
+        > : 오직 자식만을 찾는다 (손자 등등 안찾음)
+         */
+        width: 200px;
+        height: 100px;
+        margin: auto;
+        background-color: black;
+      }
+
+      .child2 {
+        width: 100px;
+        height: 50px;
+        margin: auto;
+        background-color: green;
+      }
+
+      .parent .child3 {
+        background-color: aqua;
+        /* 
+        페어런트 클래스를 가진 태그의 자식들중 차일드1클래스를 가진 태그를 찾는다
+        자식을 포함한 증손자, 손자 등등 모든 태그를 찾는다
+        띄어쓰기는 자식을 찾는다 정도로 알고있으면 된다
+        차일드3으로 수정
+         */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="test_id"></div>
+    <div class="test_dot" style="background-color: gray"></div>
+    <p class="test_dot">11</p> -->
+    <div class="parent">
+      <div class="child1">
+        <div class="child2"></div>
+      </div>
+      <div class="child1">
+        <div class="child2 child3">차일드1/차일드23</div>
+      </div>
+      <div class="child2">
+        <div class="child2">차일드2</div>
+      </div>
+    </div>
+    <div style="width: calc(100% - 125px)">
+      <!-- 계산식을 넣을수도 있다 -->
+    </div>
+  </body>
+</html>
+
+<!-- # << id는 아이덴티티, 즉
+하나만 설정 가능한 이름이다 (중복되면안된다) html상에서는 중복 체크를 안하지만,
+자바스크립트를 쓸때 문제가 생긴다 -->
+
+<!-- . << Class는 이름 그대로 반이다 여러 태그들에게 공통된 속성이나 공통된 태그라면
+Class속성을 설정하여 한번에 처리할수 있다 구조에서 하나의 태그로 묶어서 자식으로
+처리해도 되지만 클래스로 처리하면 더 깔끔하게 볼수 있다 -->
+
+<!-- 스타일이 적용되는 순서
+태그의 기본값 -> 스타일태그에서 태그명으로 설정된 스타일 -> 클래스로 설정된 스타일
+-> id로 설정된 스타일 -> 태그의 자식 스타일 속성으로 설정된 스타일
+
+CSS 문법 .test #test 순서
+* -> 계산식 돌려봐
+계산식
+div h1 body 등의 태그명 = 1
+.test 등의 클래스명 = 2
+#test 등의 클래스명 = 3
+p.test = 3 p#test1.test1 = 6
+.parent > .child2 = 4
+일반적으로 제일 큰게 살아남는다
+ -->
