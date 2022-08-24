@@ -1,0 +1,285 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create a New Account</title>
+    <style>
+      body {
+        margin: 0 auto;
+        background-color: black;
+        color: white;
+      }
+      .maindiv {
+        width: 1200px;
+        height: 1500px;
+        margin: auto;
+        border: 2px solid yellow;
+        display: flex;
+        box-sizing: border-box;
+        flex-direction: column;
+      }
+      .container {
+        border: 1px solid white;
+        display: flex;
+        box-sizing: border-box;
+      }
+      .item {
+        margin: 10px;
+      }
+      .box_left {
+        flex: 1;
+      }
+      .box_center {
+        flex: 3;
+        text-align: center;
+      }
+      .box_right {
+        flex: 2;
+        text-align: right;
+        margin-right: 20px;
+      }
+      .subtitle_div {
+        background-color: lightslategrey;
+        width: 200px;
+        text-align: center;
+        border: 2px solid white;
+        display: grid;
+        align-items: center;
+      }
+      input {
+        border: 2px solid white;
+        background-color: lightslategray;
+      }
+    </style>
+  </head>
+  <body>
+    <form class="maindiv">
+      <fieldset class="container" style="flex-direction: column">
+        <!-- Main div -->
+        <div class="container" style="border: none">
+          <!-- information -->
+          <p class="box_left">기본정보</p>
+          <p class="box_center"></p>
+          <p class="box_right">
+            <img
+              src="./checkmark.png"
+              height="inherit"
+              width="20px"
+              style="padding-right: 15px"
+            />표시 항목은 필수 입력항목입니다.
+          </p>
+        </div>
+        <div class="container">
+          <!-- name -->
+          <div class="subtitle_div item">
+            <!-- name_box -->
+            성명
+          </div>
+          <div class="item">
+            <!-- name_input -->
+            <label for="user_name"></label>
+            <input type="text" id="user_name" />
+          </div>
+        </div>
+        <div class="container">
+          <!-- id -->
+          <div class="subtitle_div">
+            <!-- id_box -->
+            아이디
+          </div>
+          <div class="container" style="border: none">
+            <div>
+              <!-- id_input -->
+              <label for="user_id"></label>
+              <input type="text" id="user_id" />
+            </div>
+            <div>
+              <!-- advice -->
+              6~16자까지 영문자(소문자), 숫자 사용 가능합니다.
+            </div>
+            <div>
+              <!-- id_confirm -->
+              <button>아이디 중복확인</button>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- pw -->
+          <div class="subtitle_div">
+            <!-- pw_box -->
+            비밀번호
+          </div>
+          <div class="container" style="border: none">
+            <div>
+              <!-- pw_input -->
+              <label for="user_pw"></label>
+              <input type="password" id="user_pw" />
+            </div>
+            <div>
+              <!-- advice -->
+              6~16자까지 영문자(대소문자), 숫자 및 특수문자 사용 가능합니다.<br />
+              3자리 연속 또는 같은 문자, 아이디는 사용하실 수 없습니다.
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- pw_confirm -->
+          <div class="subtitle_div">
+            <!-- pw_confirm_box -->
+            비밀번호 확인
+          </div>
+          <div>
+            <!-- pw_confirm_input -->
+            <label for="user_pw_c"></label>
+            <input type="password" id="user_pw_c" />
+          </div>
+        </div>
+        <div class="container">
+          <!-- email -->
+          <div class="subtitle_div">
+            <!-- email_box -->
+            이메일
+          </div>
+          <div class="container" style="border: none">
+            <div>
+              <!-- email_input1 -->
+              <label for="user_em_1"></label>
+              <input type="email" id="user_em_1" />
+            </div>
+            <div>@</div>
+            <div>
+              <!-- email_input2 -->
+              <label for="user_em_2"></label>
+              <input type="email" id="user_em_2" />
+            </div>
+            <select style="font-size: 18px; text-align: center">
+              <!-- email_select -->
+              <option value="select_mail">메일주소 선택</option>
+              <option value="korea">korea@co.kr</option>
+              <option value="naver">naver.com</option>
+              <option value="daum">daum.net</option>
+              <option value="google">google.com</option>
+              <option value="self">직접입력</option>
+            </select>
+          </div>
+        </div>
+        <div class="container">
+          <!-- phone_number -->
+          <div>
+            <!-- phone_number_box -->
+            <div class="subtitle_div">연락처</div>
+          </div>
+          <div>
+            <!-- phone_number_input -->
+            <div>
+              휴대전화
+              <select style="font-size: 18px; text-align: center">
+                <!-- number_select -->
+                <option value="select_number">선택</option>
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="self">직접입력</option>
+              </select>
+              <label for="user_number_1"></label>
+              <input type="tel" id="user_number_1" />
+              <b style="font-size: 28px; padding: 5px">-</b>
+              <label for="user_number_1"></label>
+              <input type="tel" id="user_number_1" />
+              <b style="font-size: 28px; padding: 5px">-</b>
+              <label for="user_number_1"></label>
+              <input type="tel" id="user_number_1" />
+            </div>
+            <div>
+              일반전화
+              <select style="font-size: 18px; text-align: center">
+                <!-- number_select -->
+                <option value="select_number">선택</option>
+                <option value="02">02</option>
+                <option value="031">031</option>
+                <option value="self">직접입력</option>
+              </select>
+              <label for="user_number_1"></label>
+              <input type="tel" id="user_number_1" />
+              <b style="font-size: 28px; padding: 5px">-</b>
+              <label for="user_number_1"></label>
+              <input type="tel" id="user_number_1" />
+              <b style="font-size: 28px; padding: 5px">-</b>
+              <label for="user_number_1"></label>
+              <input type="tel" id="user_number_1" />
+              <div>
+                <b style="font-size: 20px"
+                  >연락처는 둘 중 하나만 입력해도 됩니다.</b
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- post_code -->
+          <div class="subtitle_div">
+            <!-- post_code_box -->
+            우편번호
+          </div>
+          <div class="container" style="border: none">
+            <div>
+              <!-- post_code_input -->
+              <label for="user_pc"></label>
+              <input type="text" id="user_pc" />
+            </div>
+            <div>
+              <!-- post_code_search -->
+              <button style="font-size: 18px">주소검색</button>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- adress -->
+          <div class="subtitle_div">
+            <!-- adress_box -->
+            주소
+          </div>
+          <div
+            class="container"
+            style="
+              border: none;
+              flex-direction: column;
+              margin: 0;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <!-- adress_1_input -->
+              <label for="user_ad_1"></label>
+              <input type="text" id="user_ad_1" />
+            </div>
+            <div>
+              <!-- adress_2_input -->
+              <label for="user_ad_2"></label>
+              <input type="text" id="user_ad_2" />
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <!-- send -->
+          <div class="subtitle_div">
+            <!-- send_box -->
+            정보수신 여부
+          </div>
+          <div class="container" style="border: none">
+            <div>서비스 및 이벤트 소식을</div>
+            <div>
+              <label for="checkbox">Email로 수신하겠습니다.</label>
+              <input type="checkbox" id="checkbox" />
+            </div>
+            <div>
+              <label for="checkbox">SMS로수신하겠습니다.</label>
+              <input type="checkbox" id="checkbox" />
+            </div>
+          </div>
+        </div>
+        <div><!-- create_cancel_reset --></div>
+      </fieldset>
+    </form>
+  </body>
+</html>

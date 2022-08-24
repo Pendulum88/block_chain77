@@ -1,0 +1,189 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form</title>
+  </head>
+  <body>
+    <form action="#" method="get">
+      <!-- 
+            사용자가 입력하는 데이터를 서버에 보내주는 태그
+            자세하게는 자바스크립트 들어가서 한다
+            지금은 모양과 입력만 볼것이다
+            POST, GET 등등 있는데 이거는 서버 들어가서
+            지금은 그냥 이런게 있구나 정도만
+            table, ol, u,처럼 form도 부모로써 쓴다
+            action : 어디다가 보낼지 서버의 주소를 입력한다
+            #이란것은 권장사항? W3C에서 주소가 없을때 넣도록 권장한다
+            a href 이런것도 주소가없으면 #을 쓴다
+            method : 데이터를 어떤 방식으로 보낼것인지 설정한다
+            위에서 이야기한 GET POST 정도가 있다
+            GET은 주소에 입력한 데이터가 나온다
+            거의 쓸일은 없긴한데 target << a랑 같다
+         -->
+      <fieldset>
+        <!-- 
+                쓰고싶으면 써라
+                fieldset : form 안에 영역을 구분해준다
+                div 써도 됨
+                style이 있어서 넣기만해도 눈에 보인다
+             -->
+        <legend>필드셋의 제목</legend>
+        <input type="text" id="text" name="ersar" />
+        <label for="text">아무거나 입력해 보세요</label>
+        <!-- 
+            input : 이름 그대로 사용자가 데이터를 입력하는 영역이다
+            type이 너무 많다
+            text값은 이름 그대로 글을 적는거다
+            name : 서버에 보낼때 어떤 이름을 갖고있는지 데이터에 대한 이름을 같이 보낸다
+            id : label 태그와 연결하기 위해 사용한다
+            label 태그는 입력값에 대한 제목을 사용자에게 보여준다
+            예시 : 성명, 이름, 번호, 메일 등등
+            for : input과 연결하기위해 사용한다
+            클릭시 연결된 input에 입력할수 있도록 해준다(focus)
+         -->
+        <label for="pw">
+          비밀번호 :
+          <input type="password" name="pw" id="pw" />
+        </label>
+        <!-- type 속성이 패스워드일때는 인풋태그는 타입그대로 비밀번호를 입력할수 있게 해준다
+        입력된 데이터는 알아서 가려준다 -->
+        <label for="tel">
+          전화번호
+          <input type="tel" name="tel" id="tel" />
+        </label>
+        <!-- 텍스트랑 별다를게 없더라 >> 자바스크립트로 필터링 필요 -->
+        <div>
+          <label for="number">나이</label>
+          <input type="number" id="number" name="age" />
+          <!-- 텍스트 안쳐지고 숫자만쳐짐 e는쳐짐(지수) -->
+        </div>
+        <div>
+          <label for="url"></label>주소를 입력해주세요
+          <input type="url" id="url" name="url" />
+        </div>
+        <div>
+          <label for="search"></label>검색어를 입력해주세요
+          <input type="search" id="search" name="search" />
+        </div>
+        <div>
+          <label for="email"></label>이메일을 입력해주세요
+          <input type="email" id="email" name="email" />
+          <!-- 이메일은 필터링이 잘 되어있음 제대로 작성하지 않으면 받아주지 않음 -->
+        </div>
+        <div>
+          <label for="checkbox">동의하시겠습니까?</label>
+          <input type="checkbox" id="checkbox" checked />
+          <!-- 
+            checkbox : 이름그대로 체크박스
+            checked 속성을 설정하면 체크된 상태로 출력된다
+            name이 없어도 되기는 한다
+           -->
+        </div>
+        <div>
+          좋아하는 과일은 ?
+          <input type="radio" name="radio" id="radio1" />
+          <label for="radio1">사과</label>
+          <input type="radio" name="radio" id="radio2" />
+          <label for="radio2">바나나</label>
+          <input type="radio" name="radio" id="radio3" />
+          <label for="radio3">포도</label>
+          <!-- 한개만 선택하도록 하게 하는 체크박스-->
+          <input type="radio" name="radio4" id="radio1" />
+          <label for="radio4">중복되는과일</label>
+          <!-- 
+            name을 사용해서 중복 가능하게 만들수 있다 (네임이 다르니까)
+          -->
+        </div>
+        <div>
+          <input type="text" id="test1" />
+        </div>
+        <!-- <div style="cursor: pointer;">
+            보내기
+            버튼안쓰고 이런걸로 할수도 있다
+        </div> -->
+        <div>
+          <input type="file" />
+          <input
+            type="image"
+            src="https://ssl.pstatic.net/melona/libs/1403/1403246/08ae8ba7a66ea29d353b_20220823151929809.jpg"
+          />
+          <!-- 
+            이미지는 버튼을 이미지로 출력할때 사용한다
+            이미지를 넣어서 버튼을 대체한다
+          -->
+        </div>
+        <div>
+          <label for="birthday">생일은</label>
+          <input type="date" id="birthday" />
+        </div>
+        <div>
+          <input type="color" />
+        </div>
+        <button type="reset">초기화</button>
+        <div>
+          <textarea cols="30" rows="10"></textarea>
+          <!-- textarea는 여러줄을 입력 가능한 인풋이다 -->
+        </div>
+        <div>
+          <select>
+            <option value="seoul">서울</option>
+            <option value="2">부산</option>
+            <option value="c">경기</option>
+            <option value="four">강원</option>
+            <!-- 
+                select : 선택하는 입력값, 다만 한칸에 보여준다
+                옵션은 선택할 메뉴들
+                value : 보낼 데이터
+                옵션은 무조건 셀렉트의 자식으로 들어가있어야한다
+             -->
+          </select>
+        </div>
+        <div>
+          <input type="text" placeholder="미입력시 출력되는 텍스트" autofocus />
+          <!-- autofocus : 페이지 진입시 바로 입력할수 있게해줌 -->
+        </div>
+        <button type="submit">
+          <!-- <img
+            src="https://ssl.pstatic.net/melona/libs/1403/1403246/08ae8ba7a66ea29d353b_20220823151929809.jpg"
+            alt=""
+          /> -->
+          <!-- 이렇게 인풋에 이미지타입을 안넣고 버튼에 이미지를 넣을수도 있다 -->
+          보내기
+          <!-- 
+                button : 이름그대로 버튼
+                보통 a는 다른 웹페이지로 이동 만 할때 사용하고
+                버튼은 걍 다씀
+                기본적으로 작동하는게 없어서 자바스크립트를 넣어야 하지만
+                a처럼 무조건 작동하는게 없어서 오히려 편함
+                type : 어떠한 작동을 할것인지 기본 작동을 설정함
+                submit은 form 데이터를 보낼때 사용한다
+             -->
+        </button>
+      </fieldset>
+    </form>
+    <div>
+      <label for="test1">클릭 테스트</label>
+    </div>
+    <!-- 라벨에 있는 for속성과 인풋의 id속성이 같으면 위치와 상관없이 잘 작동한다 -->
+  </body>
+</html>
+<!-- 
+    index.html은 주소창에서 전시되지 않는다
+    index.html을 쓰는 이유
+    디자인 잘 된 웹페이지 : 애플쪽, 삼성쪽도
+ -->
+
+<!-- 
+    서버한테 정보를 줄거야, 개인정보를
+    id는 rudgns
+    pw는 ****
+    이름 정경훈
+    직업 교수
+    취미 게임
+
+    왼쪽이 네임 (사용자가 입력한 값이 어떤것에 대한 정보인데를 설명할수있는 타이틀)
+    오른쪽이 벨류 (사용자가 입력한 값)
+
+  -->
