@@ -4,61 +4,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create a New Account</title>
-    <style>
-      body {
-        margin: 0 auto;
-        background-color: black;
-        color: white;
-      }
-      .maindiv {
-        width: 1200px;
-        height: 1500px;
-        margin: auto;
-        border: 2px solid yellow;
-        display: flex;
-        box-sizing: border-box;
-        flex-direction: column;
-      }
-      .container {
-        border: 1px solid white;
-        display: flex;
-        box-sizing: border-box;
-      }
-      .item {
-        margin: 10px;
-      }
-      .box_left {
-        flex: 1;
-      }
-      .box_center {
-        flex: 3;
-        text-align: center;
-      }
-      .box_right {
-        flex: 2;
-        text-align: right;
-        margin-right: 20px;
-      }
-      .subtitle_div {
-        background-color: lightslategrey;
-        width: 200px;
-        text-align: center;
-        border: 2px solid white;
-        display: grid;
-        align-items: center;
-      }
-      input {
-        border: 2px solid white;
-        background-color: lightslategray;
-      }
-    </style>
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <form class="maindiv">
       <fieldset class="container" style="flex-direction: column">
         <!-- Main div -->
-        <div class="container" style="border: none">
-          <!-- information -->
+        <div class="container" style="border: none"><!-- information -->
           <p class="box_left">기본정보</p>
           <p class="box_center"></p>
           <p class="box_right">
@@ -70,8 +22,8 @@
             />표시 항목은 필수 입력항목입니다.
           </p>
         </div>
-        <div class="container">
-          <!-- name -->
+        <div class="container"><!-- name -->
+
           <div class="subtitle_div item">
             <!-- name_box -->
             성명
@@ -82,78 +34,75 @@
             <input type="text" id="user_name" />
           </div>
         </div>
-        <div class="container">
-          <!-- id -->
-          <div class="subtitle_div">
+        <div class="container"><!-- id -->
+          <div class="subtitle_div item">
             <!-- id_box -->
             아이디
           </div>
-          <div class="container" style="border: none">
-            <div>
+          <div class="container item" style="border: none">
+            <div class="item">
               <!-- id_input -->
               <label for="user_id"></label>
               <input type="text" id="user_id" />
             </div>
-            <div>
+            <div class="item">
               <!-- advice -->
               6~16자까지 영문자(소문자), 숫자 사용 가능합니다.
             </div>
-            <div>
+            <div class="item">
               <!-- id_confirm -->
               <button>아이디 중복확인</button>
             </div>
           </div>
         </div>
-        <div class="container">
-          <!-- pw -->
-          <div class="subtitle_div">
+        <div class="container"><!-- pw -->
+          <div class="subtitle_div item">
             <!-- pw_box -->
             비밀번호
           </div>
-          <div class="container" style="border: none">
-            <div>
+          <div class="container item" style="border: none">
+            <div class="item">
               <!-- pw_input -->
               <label for="user_pw"></label>
               <input type="password" id="user_pw" />
             </div>
-            <div>
+            <div class="item">
               <!-- advice -->
               6~16자까지 영문자(대소문자), 숫자 및 특수문자 사용 가능합니다.<br />
               3자리 연속 또는 같은 문자, 아이디는 사용하실 수 없습니다.
             </div>
           </div>
         </div>
-        <div class="container">
-          <!-- pw_confirm -->
-          <div class="subtitle_div">
+        <div class="container"><!-- pw_confirm -->
+          <div class="subtitle_div item">
             <!-- pw_confirm_box -->
             비밀번호 확인
           </div>
-          <div>
+          <div class="item">
             <!-- pw_confirm_input -->
             <label for="user_pw_c"></label>
             <input type="password" id="user_pw_c" />
           </div>
         </div>
-        <div class="container">
+        <div class="container"><!-- email -->
           <!-- email -->
-          <div class="subtitle_div">
+          <div class="subtitle_div item">
             <!-- email_box -->
             이메일
           </div>
-          <div class="container" style="border: none">
-            <div>
+          <div class="container item" style="border: none; display: flex;">
+            <div class="item">
               <!-- email_input1 -->
               <label for="user_em_1"></label>
               <input type="email" id="user_em_1" />
             </div>
-            <div>@</div>
-            <div>
+            <div class="item">@</div>
+            <div class="item">
               <!-- email_input2 -->
               <label for="user_em_2"></label>
               <input type="email" id="user_em_2" />
             </div>
-            <select style="font-size: 18px; text-align: center">
+            <select class="item" style="font-size: 18px; text-align: center;">
               <!-- email_select -->
               <option value="select_mail">메일주소 선택</option>
               <option value="korea">korea@co.kr</option>
@@ -164,15 +113,14 @@
             </select>
           </div>
         </div>
-        <div class="container">
-          <!-- phone_number -->
-          <div>
+        <div class="container"><!-- phone_number -->
+          <div class="subtitle_div item">
             <!-- phone_number_box -->
-            <div class="subtitle_div">연락처</div>
+            연락처
           </div>
-          <div>
+          <div class="container item" style="border: none; flex-direction: column; display: flex;">
             <!-- phone_number_input -->
-            <div>
+            <div class="item">
               휴대전화
               <select style="font-size: 18px; text-align: center">
                 <!-- number_select -->
@@ -190,7 +138,7 @@
               <label for="user_number_1"></label>
               <input type="tel" id="user_number_1" />
             </div>
-            <div>
+            <div class="item">
               일반전화
               <select style="font-size: 18px; text-align: center">
                 <!-- number_select -->
@@ -207,74 +155,67 @@
               <b style="font-size: 28px; padding: 5px">-</b>
               <label for="user_number_1"></label>
               <input type="tel" id="user_number_1" />
-              <div>
-                <b style="font-size: 20px"
-                  >연락처는 둘 중 하나만 입력해도 됩니다.</b
-                >
-              </div>
+            </div>
+            <div class="item">
+            <b style="font-size: 20px">연락처는 둘 중 하나만 입력해도 됩니다.</b>
             </div>
           </div>
         </div>
-        <div class="container">
-          <!-- post_code -->
-          <div class="subtitle_div">
+        <div class="container"><!-- post_code -->
+          <div class="subtitle_div item">
             <!-- post_code_box -->
             우편번호
           </div>
-          <div class="container" style="border: none">
-            <div>
+          <div class="container item" style="border: none; display: flex;">
+            <div class="item">
               <!-- post_code_input -->
               <label for="user_pc"></label>
               <input type="text" id="user_pc" />
             </div>
-            <div>
+            <div class="item">
               <!-- post_code_search -->
               <button style="font-size: 18px">주소검색</button>
             </div>
           </div>
         </div>
-        <div class="container">
-          <!-- adress -->
-          <div class="subtitle_div">
+        <div class="container"><!-- adress -->
+          <div class="subtitle_div item">
             <!-- adress_box -->
             주소
           </div>
           <div
-            class="container"
+            class="container item"
             style="
               border: none;
               flex-direction: column;
-              margin: 0;
-              justify-content: space-between;
-            "
-          >
-            <div>
+              display: flex;
+            ">
+            <div class="item" style="width: 890px;">
               <!-- adress_1_input -->
               <label for="user_ad_1"></label>
-              <input type="text" id="user_ad_1" />
+              <input type="text" style="width: 100%;" id="user_ad_1"/>
             </div>
-            <div>
+            <div class="item">
               <!-- adress_2_input -->
               <label for="user_ad_2"></label>
               <input type="text" id="user_ad_2" />
             </div>
           </div>
         </div>
-        <div class="container">
-          <!-- send -->
-          <div class="subtitle_div">
+        <div class="container"><!-- send -->
+          <div class="subtitle_div item">
             <!-- send_box -->
             정보수신 여부
           </div>
-          <div class="container" style="border: none">
-            <div>서비스 및 이벤트 소식을</div>
-            <div>
-              <label for="checkbox">Email로 수신하겠습니다.</label>
-              <input type="checkbox" id="checkbox" />
+          <div class="container item" style="border: none; ">
+            <div class="item">서비스 및 이벤트 소식을</div>
+            <div class="item">
+              <label for="checkbox_1">Email로 수신하겠습니다.</label>
+              <input type="checkbox" id="checkbox_1">
             </div>
-            <div>
-              <label for="checkbox">SMS로수신하겠습니다.</label>
-              <input type="checkbox" id="checkbox" />
+            <div class="item">
+              <label for="checkbox_2">SMS로수신하겠습니다.</label>
+              <input type="checkbox" id="checkbox_2">
             </div>
           </div>
         </div>
@@ -283,3 +224,17 @@
     </form>
   </body>
 </html>
+
+<!--1 성명부터 비밀번호 확인까지 디스플레이 테이블셀 적용됨
+    이메일부터 주소까지 플렉스 적용되어 마진이 달라서 인풋박스 간격이 다름
+    2 부연설명 (연락처는 둘중하나만...)의 폰트크기 일치화, 간격조절, 비율 달라지는지 확인
+    3 인풋박스가 자세히보면 디브의 컨텐츠박스안에 수직 가운데 정렬이 되지 않음
+    4 성명 아이디 등의 박스에 체크표시 넣어야함
+    5 제출, 취소 클릭태그 추가요망
+    6 인풋박스 안의 텍스트 크기 조절 요망
+    7 전반적 UI 테마 검토 요망
+    8 아이디, 비밀번호의 부연설명이 인풋박스 밑으로 들어가야함
+    9 정보수신여부의 부연설명 간격 조절, 체크박스 클릭하기 어려움 해소 요망
+    10 화면 최상단 환영합니다 등 문구 추가 요망
+    11 (하단부터 추가 작업 식별시 작성요망) 
+-->
