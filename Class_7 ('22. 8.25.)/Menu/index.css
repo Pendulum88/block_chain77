@@ -16,29 +16,28 @@ body {
   box-sizing: border-box;
   padding: 10px;
   padding-bottom: 20px;
+  flex-direction: column;
 }
 
 .main_container {
   display: flex;
   box-sizing: border-box;
   padding: 10px;
+  flex-direction: column;
 }
 
 .title_item {
   /*  영역표시  */
-  border: 1px solid white;
-  background-color: red;
   width: 80%;
-  height: 20%;
   /* 최소 가로세로값 */
-  min-width: 400px;
-  min-height: 80px;
+  min-width: 900px;
   /* 컨테이너 */
   display: flex;
   /* 글자 정중앙 위치, 사이즈 */
   justify-content: center;
   align-items: center;
-  font-size: 5em;
+  font-size: 10em;
+  font-weight: bolder;
   /*
   letter-spacing이 맞으나, 맨끝 여백을 없애기 위해
   word-spacing 사용, 단어 사이에 스페이스를 넣어서
@@ -48,9 +47,18 @@ body {
   /* 좌우 마진 오토 */
   margin: auto;
   /* 상하 여백 마진 설정 */
-  margin-top: 60px;
+  margin-top: 150px;
   margin-bottom: 60px;
 }
 p {
   text-align: center;
+}
+.item {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 50px;
+}
+div p {
+  font-size: 24px;
 }
