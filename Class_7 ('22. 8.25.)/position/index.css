@@ -1,0 +1,54 @@
+.position {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  position: relative;
+  /* 
+  상대적
+  이전 영역의 위치를 기준으로 한다
+  inline-block, float 처럼 연속되는 영역을 기준으로?
+  흐름에 맞춰서 한다
+  첫번째 자식이면 부모의 좌측 상단(top, left)를 기준으로
+  첫번째 자식이 아니면 이전 형제의 좌측 상단(left, top)을 기준으로
+  만약에 block이면 좌측 하단(left, bottom)에 맞춘다
+  */
+  top: 100px;
+  left: 100px;
+}
+
+.position2 {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+
+  position: absolute;
+  position: relative;
+  position: fixed;
+  position: sticky;
+  /* 
+  절대적
+  이전 영역과 같은 위치를 기준으로 한다
+  부모의 좌측 상단을 기준으로
+  절대적 위치(흐름을 맞추지 않고 위치를 정한다)
+  부모의 포지션이 있어야한다
+  없으면 자신의 부모의 부모(할아버지) 영역을 확인한다
+
+  >>>> 부모의 top bottom left right 기준으로 배치 가능(여백이라고 볼수 있다)
+  */
+  top: 100px;
+
+  left: 100px;
+
+  /* ㄴ> 좌표 */
+
+  /* 
+  absolute : 부모기준
+  fixed : 브라우저 기준 
+  sticky : 설정된 위치 밖으로 나가지 못하도록 막는다
+  */
+}
+
+/* 
+탑바텀 같이있으면 탑이 우선
+레프트 라이트 같이있으면 레프트 우선
+*/

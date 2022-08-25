@@ -1,0 +1,56 @@
+body {
+  /* 바디마진 제거 */
+  margin: 0 auto;
+  /* 백그라운드 셋팅 */
+  background-color: black;
+  /*
+  글자 흰색으로 해야 보임
+  (어쩌피 아이템에 색깔 넣어서 검정글씨 보일테지만 일단 해둠)
+  */
+  color: white;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.main_container {
+  display: flex;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.title_item {
+  /*  영역표시  */
+  border: 1px solid white;
+  background-color: red;
+  width: 80%;
+  height: 20%;
+  /* 최소 가로세로값 */
+  min-width: 400px;
+  min-height: 80px;
+  /* 컨테이너 */
+  display: flex;
+  /* 글자 정중앙 위치, 사이즈 */
+  justify-content: center;
+  align-items: center;
+  font-size: 5em;
+  /*
+  letter-spacing이 맞으나, 맨끝 여백을 없애기 위해
+  word-spacing 사용, 단어 사이에 스페이스를 넣어서
+  하나의 단어씩 인식되도록 유도함, 끝 여백 없앰
+  */
+  word-spacing: 0.5em;
+  /* 좌우 마진 오토 */
+  margin: auto;
+  /* 상하 여백 마진 설정 */
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+p {
+  text-align: center;
+}

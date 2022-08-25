@@ -10,7 +10,8 @@
     <form class="maindiv">
       <fieldset class="container" style="flex-direction: column">
         <!-- Main div -->
-        <div class="container" style="border: none"><!-- information -->
+        <div class="container" style="border: none">
+          <!-- information -->
           <p class="box_left">기본정보</p>
           <p class="box_center"></p>
           <p class="box_right">
@@ -22,26 +23,29 @@
             />표시 항목은 필수 입력항목입니다.
           </p>
         </div>
-        <div class="container"><!-- name -->
+        <div class="container">
+          <!-- name -->
 
           <div class="subtitle_div item">
             <!-- name_box -->
             성명
           </div>
-          <div class="item">
+          <div class="item" style="margin-left: 20px">
             <!-- name_input -->
             <label for="user_name"></label>
             <input type="text" id="user_name" />
           </div>
         </div>
-        <div class="container"><!-- id -->
+        <div class="container">
+          <!-- id -->
           <div class="subtitle_div item">
             <!-- id_box -->
             아이디
           </div>
           <div class="container item" style="border: none">
+            <!-- <div class="container item" style="border: none"> -->
+            <!-- id_input -->
             <div class="item">
-              <!-- id_input -->
               <label for="user_id"></label>
               <input type="text" id="user_id" />
             </div>
@@ -55,7 +59,8 @@
             </div>
           </div>
         </div>
-        <div class="container"><!-- pw -->
+        <div class="container">
+          <!-- pw -->
           <div class="subtitle_div item">
             <!-- pw_box -->
             비밀번호
@@ -73,24 +78,26 @@
             </div>
           </div>
         </div>
-        <div class="container"><!-- pw_confirm -->
+        <div class="container">
+          <!-- pw_confirm -->
           <div class="subtitle_div item">
             <!-- pw_confirm_box -->
             비밀번호 확인
           </div>
-          <div class="item">
+          <div class="item" style="margin-left: 20px">
             <!-- pw_confirm_input -->
             <label for="user_pw_c"></label>
             <input type="password" id="user_pw_c" />
           </div>
         </div>
-        <div class="container"><!-- email -->
+        <div class="container">
+          <!-- email -->
           <!-- email -->
           <div class="subtitle_div item">
             <!-- email_box -->
             이메일
           </div>
-          <div class="container item" style="border: none; display: flex;">
+          <div class="container item" style="border: none; display: flex">
             <div class="item">
               <!-- email_input1 -->
               <label for="user_em_1"></label>
@@ -102,7 +109,7 @@
               <label for="user_em_2"></label>
               <input type="email" id="user_em_2" />
             </div>
-            <select class="item" style="font-size: 18px; text-align: center;">
+            <select class="item" style="font-size: 18px; text-align: center">
               <!-- email_select -->
               <option value="select_mail">메일주소 선택</option>
               <option value="korea">korea@co.kr</option>
@@ -113,12 +120,16 @@
             </select>
           </div>
         </div>
-        <div class="container"><!-- phone_number -->
+        <div class="container">
+          <!-- phone_number -->
           <div class="subtitle_div item">
             <!-- phone_number_box -->
             연락처
           </div>
-          <div class="container item" style="border: none; flex-direction: column; display: flex;">
+          <div
+            class="container item"
+            style="border: none; flex-direction: column; display: flex"
+          >
             <!-- phone_number_input -->
             <div class="item">
               휴대전화
@@ -157,16 +168,19 @@
               <input type="tel" id="user_number_1" />
             </div>
             <div class="item">
-            <b style="font-size: 20px">연락처는 둘 중 하나만 입력해도 됩니다.</b>
+              <b style="font-size: 20px"
+                >연락처는 둘 중 하나만 입력해도 됩니다.</b
+              >
             </div>
           </div>
         </div>
-        <div class="container"><!-- post_code -->
+        <div class="container">
+          <!-- post_code -->
           <div class="subtitle_div item">
             <!-- post_code_box -->
             우편번호
           </div>
-          <div class="container item" style="border: none; display: flex;">
+          <div class="container item" style="border: none; display: flex">
             <div class="item">
               <!-- post_code_input -->
               <label for="user_pc"></label>
@@ -178,22 +192,20 @@
             </div>
           </div>
         </div>
-        <div class="container"><!-- adress -->
+        <div class="container">
+          <!-- adress -->
           <div class="subtitle_div item">
             <!-- adress_box -->
             주소
           </div>
           <div
             class="container item"
-            style="
-              border: none;
-              flex-direction: column;
-              display: flex;
-            ">
-            <div class="item" style="width: 890px;">
+            style="border: none; flex-direction: column; display: flex"
+          >
+            <div class="item" style="width: 890px">
               <!-- adress_1_input -->
               <label for="user_ad_1"></label>
-              <input type="text" style="width: 100%;" id="user_ad_1"/>
+              <input type="text" style="width: 100%" id="user_ad_1" />
             </div>
             <div class="item">
               <!-- adress_2_input -->
@@ -202,20 +214,21 @@
             </div>
           </div>
         </div>
-        <div class="container"><!-- send -->
+        <div class="container">
+          <!-- send -->
           <div class="subtitle_div item">
             <!-- send_box -->
             정보수신 여부
           </div>
-          <div class="container item" style="border: none; ">
+          <div class="container item" style="border: none">
             <div class="item">서비스 및 이벤트 소식을</div>
             <div class="item">
               <label for="checkbox_1">Email로 수신하겠습니다.</label>
-              <input type="checkbox" id="checkbox_1">
+              <input type="checkbox" id="checkbox_1" />
             </div>
             <div class="item">
               <label for="checkbox_2">SMS로수신하겠습니다.</label>
-              <input type="checkbox" id="checkbox_2">
+              <input type="checkbox" id="checkbox_2" />
             </div>
           </div>
         </div>

@@ -1,0 +1,26 @@
+.background {
+  width: 200px;
+  height: 200px;
+
+  background-color: aqua;
+  /* 배경색넣기 */
+  background-image: url(https://search.pstatic.net/common/?src=https%3A%2F%2Fmblogthumb-phinf.pstatic.net%2FMjAyMjA4MTRfMTg2%2FMDAxNjYwNDUxMzQ4OTg4.nvWG6ujN6pJEC4IzSZDzdJL6rIAvlZ9Ks1MNg1xi6JIg.pC1289aFUZzXtorzwVdPzLg09BCVMl6BWdU-3im69g4g.JPEG.soso7869%2FIMG_5386.JPG%3Ftype%3Dw800&type=o372_180);
+  /* 배경이미지 넣기 */
+
+  background-size: contain;
+  /* 배경이미지의 크기 지정, 일단 그림이 다 보이게하고 공백이생김 */
+  background-size: cover;
+  /* 배경이미지의 크기 지정, 일단 공간을 다 채우는데 이미지가 확대됨 */
+  background-size: 100px 100px;
+  /* 배경 이미지 사이즈 너비 높이 */
+  background-position: 10px 10px;
+  /* 배경이미지 위치, x축 y축 */
+  background-position: center;
+  /* 배경이미지 위치 가운데 맞춤 */
+  background-repeat: no-repeat;
+  /* 반복 안하겠다 */
+  background-repeat: repeat-x;
+  /* x축으로 반복 */
+  background-repeat: repeat-y;
+  /* y축으로 반복 */
+}
