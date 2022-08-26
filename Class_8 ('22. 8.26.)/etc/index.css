@@ -1,0 +1,49 @@
+.etc {
+  background-color: black;
+  color: white;
+  width: 1000px;
+  min-height: 100px;
+  font-size: 32px;
+
+  opacity: 0.5;
+  /* 투명도 조절; */
+  z-index: 1;
+  /* z축기준으로 어떤게 앞에 있는가 설정 클수록 눈에보임 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.zi {
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 100;
+}
+
+@media only screen and (max-width: 1000px) {
+  /* 
+    미디어쿼리 : 환경에 따라 CSS를 적용
+    @미디어 온리 : 이거에만
+    스크린 : 화면일때 and (조건)
+
+    위에서 적은것은 화면일 때만 너비 1000픽셀까지 적용한다
+    */
+  .etc {
+    width: 700px;
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  /* 화면일 때만 그리고 너비가 500px 이상일 때 */
+  .etc {
+    width: 300px;
+    background-color: lightgreen;
+    color: black;
+  }
+}

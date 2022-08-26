@@ -1,0 +1,130 @@
+.grid {
+  display: grid;
+  /* 디스플레이그리드 그리드박스를 만든다 부모역할 */
+  /*
+  grid-template-rows: 300px 200px;
+  그리드박스의 세로 높이를 결정한다
+  row(행)의 수만큼 입력한다
+  */
+  /* 
+  grid-template-columns: 33% 11% 50%;
+  그리드박스의 가로너비를 결정한다
+  콜룸(열)의 수만큼 입력한다
+  */
+  /* 입력을 반복해준다(코드압축) 
+  grid-template-rows: repeat(2, 200px);
+  grid-template-columns: repeat(3, 100px);*/
+
+  grid-template-rows: repeat(3, 200px);
+  grid-template-columns: repeat(5, minmax(100px, 300px));
+  /* 민맥스는 이름그대로 최소 최대 결정, 그 사이에서 알아서 조절 */
+
+  row-gap: 20px;
+  column-gap: 2px;
+  /* 간격조절 */
+
+  /* grid-auto-flow: column; */
+  /* 그리드 아이템의 진행방향을 설정 */
+
+  grid-template-areas:
+    "sidebar header header headerB headerB"
+    "sidebar content content content content"
+    "footer footer footer footer footer";
+
+  /* 
+    그리드 템플릿 에리어즈 : 그리드 박스에서 설정한다
+    하나의 로우는 ""로 설정하고 (콜룸)
+    여러 로우일경우 줄바꿈으로 처리한다 (로우)
+    .을 설정할 경우 빈칸이 된다
+    무조건 사각형이여야 한다
+    아이템의 스타일에 그리드에리어와 매칭한다
+    */
+  /* align-items: stretch;
+  align-items: start;
+  align-items: center;
+  align-items: end; */
+  /* 가로 기준 위치정렬 */
+  /* 
+  justify-items: stretch;
+  justify-items: start;
+  justify-items: center;
+  justify-items: end; */
+  /* 세로 기준 위치정렬 */
+}
+
+.grid-item {
+  border: 1px solid black;
+  background-color: blanchedalmond;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  /* 그리드 에리어 : 부모 그리드 박스의
+  그리드 템플릿 에어리어와 매칭한다
+  주의 : 에어리어와 같이쓰면안됨 (충돌)
+  */
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.header {
+  grid-area: header;
+  background-color: yellowgreen;
+}
+
+.headerB {
+  grid-area: headerB;
+  background-color: black;
+}
+.content {
+  grid-area: content;
+  background-color: lightpink;
+}
+.footer {
+  grid-area: footer;
+  background-color: darkred;
+}
+
+.sidebar > div {
+  height: 20px;
+  color: lightblue;
+  margin: auto;
+}
+
+/* 플렉스처럼 크기조정한다고 넘어가고 그러진 않고
+얘는 갯수로 그냥 정해져있음
+근데 갯수가 늘어나거나 했을때 자기가 알아서 영역 찾아서 들어간다 */
+
+.mosaic {
+  display: grid;
+  /* 그리드박스설정 */
+
+  /* 기본적으로 보여질 형식 설정함 */
+  grid-template-columns: repeat(2, 100px);
+  grid-template-rows: repeat(2, 100px);
+  /* 100픽셀의 정사각형 4개를 2줄로 출력 */
+}
+
+.mosaic > div {
+  /* 그리드박스의 아이템을 눈에 보여주기위해 */
+  background-color: white;
+  border: 1px solid black;
+}
+/* 마우스 오버 감지 */
+.mosaic:hover {
+  grid-template-columns: repeat(3, 66px);
+  grid-template-rows: repeat(3, 66px);
+}
+
+.mosaic-item {
+  /* 기본적으로 보여지면 안될 아이템을 디스플레이 논을 사용 */
+  display: none;
+}
+
+.mosaic:hover .mosaic-item {
+  /* 모자이크 클래스 위에 마우스가 있을때
+    자식중 모자이크아이템 클래스를 가진 영역에 스타일적용 */
+  display: block;
+  /* 디스플레이블락해서 눈에보이게 한다 */
+}

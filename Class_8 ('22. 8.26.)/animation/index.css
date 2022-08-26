@@ -1,0 +1,90 @@
+div {
+  border: 1px solid black;
+  width: 110px;
+  height: 110px;
+
+  overflow: hidden;
+}
+
+.transform-translate img {
+  transform: translate(100px, 20px);
+  /* 
+  트랜스폼 : 모양 이동 ? 수정 ? 정도
+  트랜스레이트 : 이동
+  트랜스레이트x : x축 이동
+  트랜스레이트y : y축 이동
+  */
+}
+.transform-scale img {
+  transform: scale(1, 1);
+  /*
+  스케일 확대 1이 기본크기
+  배율임 0.5 = 50퍼센트
+  트렌스레이트처럼 x y 있음
+  */
+}
+
+.transform-skew img {
+  transform: skew(150deg, 30deg);
+  /* 
+  회전
+  트랜스레이트처럼 x y 잇음
+  
+  */
+}
+.transform-rotate {
+  transform: rotate(45deg);
+  /*
+  Z축 회전
+  우리가 보기엔 축이 점이다
+  */
+}
+.transform-origin img {
+  transform: rotate(45deg);
+  transform-origin: 0 0;
+  /* 
+  오리진은 기준이되는 축이다 xy순으로 설정한다
+  */
+}
+.transition img {
+  transition: transform 3s ease, border 1s ease-in-out,
+    border-radius 1s ease-in-out;
+  /*
+    트렌시젼은 애니매이션 효과를 주긴 하는데
+    CSS스타일이 변화하는것으로 움직인다
+    ease : 시작 끝 속도 변화 스무스
+    liner : 속도일정
+  */
+}
+
+.transition:hover img {
+  transform: rotate(720deg);
+  border: dashed red;
+  border-radius: 100%;
+  /*
+    트렌시젼은 애니매이션 효과를 주긴 하는데
+    CSS스타일이 변화하는것으로 움직인다
+    */
+}
+@keyframes myanimation {
+  /* 애니메이션 설정 */
+  0% {
+    transform: rotate(0);
+    /* 전체 시간의 0%일때 */
+    /* from */
+  }
+  50% {
+    transform: rotate(720deg);
+    /* 전체 시간의 100%일때 */
+    /* to */
+    /* from to로 대체가능 */
+  }
+  100% {
+    transform: rotate(0);
+    /* 전체 시간의 100%일때 */
+  }
+}
+
+.animation img {
+  animation: myanimation 3s ease;
+}
