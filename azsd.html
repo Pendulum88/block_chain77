@@ -1,248 +1,270 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
     <title>Document</title>
     <!-- 아래 link태그는 랭킹 스타일 시트 적용 예시 -->
-    <link rel="stylesheet" href="css경로">
+    <link rel="stylesheet" href="css경로" />
     <style>
-        /* 아래 .starter클래스는 내부 스타일 시트 적용 예시 */
-        .starter + li {
-            font-weight: bolder;
-        }
+      /* 아래 .starter클래스는 내부 스타일 시트 적용 예시 */
+      .starter + li {
+        font-weight: bolder;
+      }
+      html {
+        margin: 0;
+      }
+      body {
+        margin: 0;
+      }
     </style>
-</head>
-<body>
-    span 인라인속성 (너비높이 무시하고 컨텐츠만큼만 차지함)
-    strong em a b 등
-    div 블록속성 (가로 다차지함)
-    h1~6 p ul 등
+  </head>
+  <body>
+    span 인라인속성 (너비높이 무시하고 컨텐츠만큼만 차지함) strong em a b 등 div
+    블록속성 (가로 다차지함) h1~6 p ul 등
 
     <!-- 아래 img태그는 인라인스타일 적용 예시 -->
     <img
-    src="이미지주소" 
-    alt="이미지안나올때뜨는거, 본질은 이미지를 대체할 수단이다 (시각장애인 등을 위함)"
-    title="부연설명 (마우스오버)"
-    width="300">
+      src="이미지주소"
+      alt="이미지안나올때뜨는거, 본질은 이미지를 대체할 수단이다 (시각장애인 등을 위함)"
+      title="부연설명 (마우스오버)"
+      width="300"
+    />
     <!-- 
         위드나 헤이트 중 한개만 지정하면 이미지 원본 비율을 유지한다
         그런데 헤이트랑 위드 둘다 줘버리면 원본 비율을 무시하고 지정된 값으로 출력한다
         어떤값에 0을 줄때는 단위를 붙일 필요가 없다 어쩌피 0이니깐
      -->
 
-     사용자입력
-     autocomplete on off 가능
-     placeholder 회색글씨
-     minlength 최소글자
-     maxlength 최대글자
-     
-     <!-- 아래로 갈수록 우선순위 높음 -->
-     모든 선택자 <!-- [*] 기호 사용 -->
-     * {      }
+    사용자입력 autocomplete on off 가능 placeholder 회색글씨 minlength 최소글자
+    maxlength 최대글자
 
-     태그선택자 <!-- 태그이름 그냥 입력 -->
-     p {     }
-     
-     클래스 선택자 <!-- [.] 기호 사용 -->
-     .blue {    }
-     
-     태그선택자 + 클래스 선택자 <!-- 붙여서 태그와 클래스 나열 -->
-     p.blue {p면서 블루클래스인것}
+    <!-- 아래로 갈수록 우선순위 높음 -->
+    모든 선택자
+    <!-- [*] 기호 사용 -->
+    * { } 태그선택자
+    <!-- 태그이름 그냥 입력 -->
+    p { } 클래스 선택자
+    <!-- [.] 기호 사용 -->
+    .blue { } 태그선택자 + 클래스 선택자
+    <!-- 붙여서 태그와 클래스 나열 -->
+    p.blue {p면서 블루클래스인것} 클래스선택자 + 클래스선택자
+    <!-- 붙여서 클래스 나열 -->
+    .blue.dark {블루클래스이면서 다크클래스인것} 태그선택자 + 클래스선택자 +
+    클래스선택자
+    <!-- 붙여서 클래스와 태그 나열 -->
+    p.blue.dark {p면서 블루클래스이면서 다크클래스인것} id 선택자
+    <!-- [#] 기호 사용 -->
+    #red {해당아이디 적용} 그룹 선택자
+    <!-- [,] 기호 사용 -->
+    span, .dark, #red {각각이 하나이상 해당된 경우 다적용}
+    <!-- 아래로 갈수록 우선순위 높음 : 끝 -->
 
-     클래스선택자 + 클래스선택자 <!-- 붙여서 클래스 나열 -->
-     .blue.dark {블루클래스이면서 다크클래스인것}
+    자손결합자
+    <!-- 띄고 쓰기 -->
+    .outer li {아우터클래스 하위의 모든 li태그에 적용} 자식(1촌 자손)결합자
+    <!-- [>] 기호 사용 -->
+    .outer > li {아우터클래스 하위 li 태그에 적용되나, li의 자손은 영향받지
+    않음} 자식(1촌 자손)결합자
+    <!-- 자손결합자, 자식결합자 응용 -->
+    .outer > li li {아우터클래스의 1촌 li의 모든 li자손에게 적용} 뒤따르는 모든
+    동생들 결합자
+    <!-- [~] 기호 이용 (군대에서 내밑으로 다집합) -->
+    .starter ~ li { starter클래스의 형제 li태그 중 starter보다 하위요소 (이
+    과정에서 자손도 포함됨 li의 자손은 li가 아니더라도 적용되더라) 적용 }
+    <ul>
+      <li>1</li>
+      <li class="starter">2</li>
+      <li>
+        3
+        <ul>
+          <li>a</li>
+          <li>b</li>
+          <li>c</li>
+        </ul>
+      </li>
+      <li>
+        4
+        <p>ㅎㅇㅎㅇ</p>
+      </li>
+    </ul>
 
-     태그선택자 + 클래스선택자 + 클래스선택자 <!-- 붙여서 클래스와 태그 나열 -->
-     p.blue.dark {p면서 블루클래스이면서 다크클래스인것}
+    뒤따르는 바로 다음 동생 결합자
+    <!-- [+] 기호 이용 -->
+    .starter + li {마찬가지로 li의 자손이 li가 아니더라도 적용되더라}
+    <!-- 결합자 특성상 태그선택자를 호출한것처럼 적용되는것으로 보임 -->
 
-     id 선택자 <!-- [#] 기호 사용 -->
-     #red {해당아이디 적용}
+    가상클래스 (pseudo : 가상[슈도])
+    <!-- [:] 기호 이용 / 의사요소, 의사클래스 등으로도 표현함 -->
+    ol li:first-child, ol li:last-child {ol의 모든 li자손의 첫번째 자손과 마지막
+    자손에게 적용} 가상클래스 응용
+    <!-- [:not(:last-child)] 이용 -->
+    .outer > li:not(:last-child) {아우터클래스의 직속 li의 자손중에 막내 빼고
+    전부 다적용} 가상클래스 응용2
+    <!-- [:not(.outer)] 이용 -->
+    ul:not(.outer) li {ul의 자손 li에게 적용하지만, 아우터클래스 제외} n번째
+    요소 가상클래스
+    <!-- [:nth-child(n)] 이용 -->
+    ol li:nth-child(5) {ol 자손 li중 5번째만 적용 (5번째 li에게 하위자손 있다면
+    적용될듯)} ol li:nth-child(3n) {ol 자손 li중 3의배수의 자손에게 적용} ol
+    li:nth-child(3n+2) {ol 자손 li중 3의배수+2한 번째의 자손에게 적용} ol
+    li:nth-child(odd) {ol 자손 li중 홀수배수의 자손에게 적용} ol
+    li:nth-child(even) {ol 자손 li중 짝수배수의 자손에게 적용}
 
-     그룹 선택자 <!-- [,] 기호 사용 -->
-     span, .dark, #red {각각이 하나이상 해당된 경우 다적용}
-     <!-- 아래로 갈수록 우선순위 높음 : 끝 -->
+    <!-- -------CSS 시작------- -->
+    font-style : 글자 기울일때 font-weight : 글자 굵기 조절 font-size : 글자
+    크기조절
+    <!-- 변하지않는 크기 -->
+    절대값 = 픽셀
+    <!-- 같은값을써도 경우에 따라 계속 달라질수있다 -->
+    상대값 = em (100% = 1em / 90% = 0.9em) (부모로부터 물려받은 크기에 적용시킴)
+    rem = html요소로부터 상속받음 (쉽게말해 최상위 부모에 대한 상대값을 가진다)
+    pt = 별로 쓸일이 없다 (프린트 출력물에 대한 사이즈)+ text-decoration : 밑줄,
+    취소선, 물결선 등 표현 dashed = 점선 text-transform : 한글적용x 영어
+    대소문자 바꿔줌 text-shadow : 텍스트에 그림자 적용
+    <!-- 폰트 관련 끝 -->
 
-     자손결합자 <!-- 띄고 쓰기 -->
-     .outer li {아우터클래스 하위의 모든 li태그에 적용}
+    text-align : 텍스트 배치 left = 좌로정렬 right = 우로정렬 center =
+    가운데정렬 justify = 여백채움 letter-spacing : 자간 (하나의 글자로 구분)
+    word-spacing : 자간 (단어로 구분) line-height : 줄 높이 text-indent :
+    들여쓰기 내여쓰기
+    <!-- 텍스트 간격에 대한것은 절대값보단 상대값을 권장한다 -->
+    list-style : li의 스타일을 조정 색상
+    <!-- 별로 안중요함 그냥 이런게 있다 -->
+    keyword : red blue coral 등 rga(a) rgb(255, 255, 255) rgb(255, 255, 255,
+    0.1) 맨끝은 투명도 hex #FFFFFF #000000(=#000) hsl(a) hls(0, 50%, 50%)색상
+    채도 명도 공간
+    <!-- 매우중요 -->
+    margin : 바깥여백 (주황) padding : 안쪽여백 (연두) display : inline 블록같은
+    다른형식을 인라인으로 바꿔준다 width height 단위 여러개 있지만 vh = 뷰포트
+    헤이트 (사용자가 보는 창 기준 (밑에 개발자도구 같은 창도 먹어버림)) vw =
+    뷰포트 위드 (사용자가 보는 창 기준 (옆에 개발자도구 같은 창도 먹어버림))
+    vmax = 20vmax 등으로 사용, width나 height 안에 넣으면 됨 vmin = 20vmin
+    등으로 사용, width나 height 안에 넣으면 됨 헤이트와 라인헤이트를 같은크기로
+    하면 div 내의 글자가 정중앙으로 옴 (텍스트가 한줄일때만!) 인라인속성
+    (너비높이 무시하고 컨텐츠만큼만 차지함) span 블록속성 (가로 다차지함) div
+    인라인은 위드헤이트 못줌, 블락과 인라인블락은 위드헤이트 적용됨 마진은
+    겹칠수 있음 마진0 패딩0 해도 간격이 생기는경우가 있는데, div 안에 다른속성이
+    뚫고 나오는 경우가 있음(인라인 같은거) margin을 10px줬는데 그것보다 더
+    떨어지는 경우도 있다. 그건 브라우저가 기본적으로 떨어트린건데 그런경우 마진
+    0 0 24px 0 이런식으로 하면 해결되는경우 있음 마진 0 오토는 넓이에 대해서
+    중앙을 맞춘다 (블락 요소에 대해서) 그런데 인라인블록 속성을 가진애들은 마진
+    0 오토를 해도 가운데로 오지 않는데, 이럴때는 부모요소에 텍스트얼라인 센터를
+    하면된다 레프트 라이트도 가능 position : 되물림되지 않음 (폰트의경우 부모껄
+    따라가는데 포지션은 그렇지않음) static = 디폴트, 따로 지정하지않음, 흐름에
+    맡김 탑바텀레프트라이트 제트인덱스 속성 영향 안받음 relative =
+    탑바텀레프트라이트를 통해 움직일수 있는데, 원래 차지하던 자리를 유지함,
+    보이는것만 움직임 absolute = static이 아닌 첫 부모 요소를 기준으로
+    탑~라이트를 사용해 위치조정 가능, 붕 떠서 이동하기때문에 원래자리를 다른
+    무언가가 채움 fixed = 뷰포트 기준, !!스크롤의 영향을 받지 않음!! sticky =
+    !!스크롤로 이동할수 있는 공간을 뷰포트 기준 탑~라이트 속성으로 제한한다!!
+    z-index = static이 아닌 요소들간에 적용, 높을수록 위로 올라감,
+    디폴트=0=오토, 오토끼리는 나중에 배치된게 위로옴 커서 cursor : 커서를 어떻게
+    표시할지 결정한다 auto = 디폴트, 어떤거 위에 올려놨는지에 따라 브라우저가
+    자동으로 결정함 default = 그냥 화살표 모양으로 나옴 none = 마우스가 없어짐
+    pointer = 손가락모양, 클릭할수 있는 요소에 보통 쓰임 zoom-in = 돋보기모양
+    not-allowed = 클릭금지모양으로 바뀜 요소룰 숨기는 방법 opacity : 투명도,
+    0설정시 안보임, 형체가 없어지는것은 아님, 0일때 스크린리더에 따라 읽지
+    않을수도 있음 visiblity : 다양한 속성 적용, 히든으로하면 마우스오버효과나
+    포커스, 클릭 등도 무효하게 됨, 스크린리더에 읽히지 않음 hidden = 사라짐
+    visible = 디폴트, 보임 display : 공간(배치)에 대한 설정임 none = 비저블리티
+    히든에다가 자리도 차지하지 않는 상태가됨 그냥 없어짐, 자리도 차지 안함
 
-     자식(1촌 자손)결합자 <!-- [>] 기호 사용 -->
-     .outer > li {아우터클래스 하위 li 태그에 적용되나, li의 자손은 영향받지 않음}
+    <!-- 구조작성 매우중요!! -->
+    플렉스 display : flex = 컨테이너설정 (자식들이 기본적으로 인라인속성으로
+    배치된다) display : inline-flex = 그냥플렉스랑 다른점은, 빈 공간을 채우는
+    블록이 없음 flex-direction : 컨테이너 안에 자식들을 어떤 방향으로 것인지를
+    결정한다 row = 왼쪽에서 오른쪽으로 column = 위에서 아래로 row-reverse =
+    오른쪽에서 왼쪽으로 column-reverse = 아래에서 위로 justify-content :
+    컨테이너 안의 자식들을 어떻게 배치할것인지 결정한다 flex-start = 시작부터
+    배치 flex-end = 끝부터 배치 space-between = 양쪽 요소를 끝으로 보내준다음
+    가운데에 스페이스를 넣어준다 space-around = 가운데정렬, 양옆에 여백이 있다
+    space-evenly = 가운데정렬, 모든여백이 동일해진다 center = 중앙에 몰림 start
+    = 시작, 플렉스 쓸경우 권장안함 end = 끝, 플렉스 쓸경우 권장안함 align-items
+    : 자식들이 얼만큼 영역을 채울지를 결정 stretch = 디폴트값, 쭉 채움
+    flex-start = 시작점을 먹음 flex-end = 끝을 먹음 center = 중앙 flex-wrap :
+    wrap을 설정하면 랩핑을한다 align-content : wrap을 사용할경우, 배치에 대한
+    설정을 한다 저스티파이컨텐츠와 같은 속성값을 넣어줄수 있다
 
-     자식(1촌 자손)결합자 <!-- 자손결합자, 자식결합자 응용 -->
-     .outer > li li {아우터클래스의 1촌 li의 모든 li자손에게 적용}
-
-     뒤따르는 모든 동생들 결합자 <!-- [~] 기호 이용 (군대에서 내밑으로 다집합) -->
-     .starter ~ li {
-      starter클래스의 형제 li태그 중 starter보다 하위요소
-      (이 과정에서 자손도 포함됨 li의 자손은 li가 아니더라도 적용되더라) 적용
-    }
-     <ul>
-        <li>1</li>
-        <li class="starter">2</li>
-        <li>3
-            <ul>
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
-            </ul>
-        </li>
-        <li>4
-            <p>ㅎㅇㅎㅇ</p>
-        </li>
-     </ul>
-
-     뒤따르는 바로 다음 동생 결합자 <!-- [+] 기호 이용 -->
-     .starter + li {마찬가지로 li의 자손이 li가 아니더라도 적용되더라}
-     <!-- 결합자 특성상 태그선택자를 호출한것처럼 적용되는것으로 보임 -->
-
-     가상클래스 (pseudo : 가상[슈도]) <!-- [:] 기호 이용 / 의사요소, 의사클래스 등으로도 표현함 -->
-     ol li:first-child,
-     ol li:last-child {ol의 모든 li자손의 첫번째 자손과 마지막 자손에게 적용}
-
-     가상클래스 응용 <!-- [:not(:last-child)] 이용 -->
-     .outer > li:not(:last-child) {아우터클래스의 직속 li의 자손중에 막내 빼고 전부 다적용}
-
-     가상클래스 응용2 <!-- [:not(.outer)] 이용 -->
-     ul:not(.outer) li {ul의 자손 li에게 적용하지만, 아우터클래스 제외}
-
-     n번째 요소 가상클래스 <!-- [:nth-child(n)] 이용 -->
-     ol li:nth-child(5) {ol 자손 li중 5번째만 적용 (5번째 li에게 하위자손 있다면 적용될듯)}
-     ol li:nth-child(3n) {ol 자손 li중 3의배수의 자손에게 적용}
-     ol li:nth-child(3n+2) {ol 자손 li중 3의배수+2한 번째의 자손에게 적용}
-     ol li:nth-child(odd) {ol 자손 li중 홀수배수의 자손에게 적용}
-     ol li:nth-child(even) {ol 자손 li중 짝수배수의 자손에게 적용}
-
-     <!-- -------CSS 시작------- -->
-     font-style : 글자 기울일때
-     font-weight : 글자 굵기 조절
-     font-size : 글자 크기조절
-     <!-- 변하지않는 크기 -->
-     절대값 = 픽셀
-     <!-- 같은값을써도 경우에 따라 계속 달라질수있다 -->
-     상대값 = em (100% = 1em / 90% = 0.9em) (부모로부터 물려받은 크기에 적용시킴)
-     rem = html요소로부터 상속받음 (쉽게말해 최상위 부모에 대한 상대값을 가진다)
-     pt = 별로 쓸일이 없다 (프린트 출력물에 대한 사이즈)+
-
-     text-decoration : 밑줄, 취소선, 물결선 등 표현
-     dashed = 점선
-     text-transform : 한글적용x 영어 대소문자 바꿔줌
-     text-shadow : 텍스트에 그림자 적용
-     <!-- 폰트 관련 끝 -->
-
-     text-align : 텍스트 배치
-     left = 좌로정렬
-     right = 우로정렬
-     center = 가운데정렬
-     justify = 여백채움
-
-     letter-spacing : 자간 (하나의 글자로 구분)
-     word-spacing : 자간 (단어로 구분)
-     line-height : 줄 높이
-     text-indent : 들여쓰기 내여쓰기
-     <!-- 텍스트 간격에 대한것은 절대값보단 상대값을 권장한다 -->
-     list-style : li의 스타일을 조정
-
-     색상 <!-- 별로 안중요함 그냥 이런게 있다 -->
-     keyword : red blue coral 등
-     rga(a) rgb(255, 255, 255) rgb(255, 255, 255, 0.1) 맨끝은 투명도
-     hex #FFFFFF #000000(=#000)
-     hsl(a) hls(0, 50%, 50%)색상 채도 명도
-
-     공간 <!-- 매우중요 -->
-     margin : 바깥여백 (주황)
-     padding : 안쪽여백 (연두)
-     display : inline 블록같은 다른형식을 인라인으로 바꿔준다
-     width height 단위 여러개 있지만
-     vh = 뷰포트 헤이트 (사용자가 보는 창 기준 (밑에 개발자도구 같은 창도 먹어버림))
-     vw = 뷰포트 위드 (사용자가 보는 창 기준 (옆에 개발자도구 같은 창도 먹어버림))
-     vmax = 20vmax 등으로 사용, width나 height 안에 넣으면 됨
-     vmin = 20vmin 등으로 사용, width나 height 안에 넣으면 됨
-     헤이트와 라인헤이트를 같은크기로 하면 div 내의 글자가 정중앙으로 옴 (텍스트가 한줄일때만!)
-
-     인라인속성 (너비높이 무시하고 컨텐츠만큼만 차지함) span
-     블록속성 (가로 다차지함) div
-     인라인은 위드헤이트 못줌, 블락과 인라인블락은 위드헤이트 적용됨
-     마진은 겹칠수 있음
-     마진0 패딩0 해도 간격이 생기는경우가 있는데, div 안에 다른속성이 뚫고 나오는 경우가 있음(인라인 같은거)
-     margin을 10px줬는데 그것보다 더 떨어지는 경우도 있다. 그건 브라우저가 기본적으로 떨어트린건데
-     그런경우 마진 0 0 24px 0 이런식으로 하면 해결되는경우 있음
-     마진 0 오토는 넓이에 대해서 중앙을 맞춘다 (블락 요소에 대해서)
-     그런데 인라인블록 속성을 가진애들은 마진 0 오토를 해도 가운데로 오지 않는데, 이럴때는
-     부모요소에 텍스트얼라인 센터를 하면된다 레프트 라이트도 가능
-
-     position : 되물림되지 않음 (폰트의경우 부모껄 따라가는데 포지션은 그렇지않음)
-     static = 디폴트, 따로 지정하지않음, 흐름에 맡김 탑바텀레프트라이트 제트인덱스 속성 영향 안받음
-     relative = 탑바텀레프트라이트를 통해 움직일수 있는데, 원래 차지하던 자리를 유지함, 보이는것만 움직임
-     absolute = static이 아닌 첫 부모 요소를 기준으로 탑~라이트를 사용해 위치조정 가능, 붕 떠서 이동하기때문에
-     원래자리를 다른 무언가가 채움
-     fixed = 뷰포트 기준, !!스크롤의 영향을 받지 않음!!
-     sticky =  !!스크롤로 이동할수 있는 공간을 뷰포트 기준 탑~라이트 속성으로 제한한다!!
-     z-index = static이 아닌 요소들간에 적용, 높을수록 위로 올라감, 디폴트=0=오토, 오토끼리는
-     나중에 배치된게 위로옴
-
-
-     커서
-     cursor : 커서를 어떻게 표시할지 결정한다
-     auto = 디폴트, 어떤거 위에 올려놨는지에 따라 브라우저가 자동으로 결정함
-     default = 그냥 화살표 모양으로 나옴
-     none = 마우스가 없어짐
-     pointer = 손가락모양, 클릭할수 있는 요소에 보통 쓰임
-     zoom-in = 돋보기모양
-     not-allowed = 클릭금지모양으로 바뀜
-
-
-     요소룰 숨기는 방법
-     opacity : 투명도, 0설정시 안보임, 형체가 없어지는것은 아님, 0일때 스크린리더에 따라 읽지 않을수도 있음
-     visiblity : 다양한 속성 적용, 히든으로하면 마우스오버효과나 포커스, 클릭 등도 무효하게 됨, 스크린리더에 읽히지 않음
-     hidden = 사라짐
-     visible = 디폴트, 보임
-     display : 공간(배치)에 대한 설정임
-     none = 비저블리티 히든에다가 자리도 차지하지 않는 상태가됨 그냥 없어짐, 자리도 차지 안함
-
-     <!-- 구조작성 매우중요!! -->
-     플렉스
-     display : flex = 컨테이너설정 (자식들이 기본적으로 인라인속성으로 배치된다)
-     display : inline-flex = 그냥플렉스랑 다른점은, 빈 공간을 채우는 블록이 없음
-
-     flex-direction : 컨테이너 안에 자식들을 어떤 방향으로 것인지를 결정한다
-     row = 왼쪽에서 오른쪽으로
-     column = 위에서 아래로
-     row-reverse = 오른쪽에서 왼쪽으로
-     column-reverse = 아래에서 위로
-
-     justify-content : 컨테이너 안의 자식들을 어떻게 배치할것인지 결정한다
-     flex-start = 시작부터 배치
-     flex-end = 끝부터 배치
-     space-between = 양쪽 요소를 끝으로 보내준다음 가운데에 스페이스를 넣어준다
-     space-around = 가운데정렬, 양옆에 여백이 있다
-     space-evenly = 가운데정렬, 모든여백이 동일해진다
-     center = 중앙에 몰림
-     start = 시작, 플렉스 쓸경우 권장안함
-     end = 끝, 플렉스 쓸경우 권장안함
-
-     align-items : 자식들이 얼만큼 영역을 채울지를 결정
-     stretch = 디폴트값, 쭉 채움
-     flex-start = 시작점을 먹음
-     flex-end = 끝을 먹음
-     center = 중앙
-
-     flex-wrap : wrap을 설정하면 랩핑을한다
-
-     align-content : wrap을 사용할경우, 배치에 대한 설정을 한다
-     저스티파이컨텐츠와 같은 속성값을 넣어줄수 있다
-     
-     <!-- 플렉스 컨테이너 안에있는 요소들에 적용하는 속성 -->
-     flex-basis : (로우기준) 가로 너비 조절 (메인축 길이), 보통 설정 안하면 내용물 만큼만 차지하지만, 수동으로 넓혀줄수 있다
-     flex-grow : 디폴트 0, 1로 하면 남은공간을 채워버림, 각 요소들에게 비율을 할당해서 영역을 정할수 있다
-     비율은 컨텐츠 박스 안의 내용물이 차지하는 영역 기준으로 함
-     flex-shink : 컨테이너 안에 공간이 부족할때, 특정 아이템을 어떻게 줄일지 결정
-     1 = 기본값
-     0 = 다른애들이 커져도 영역이 줄어들지 않음, 얘는 건들지마라, 컨테이너를 뚫게 만들기도 한다
-     2 이상 = 숫자가 높아지면 공간을 더 많이 내어주게 된다
-
-
-
-
-</body>
+    <!-- 플렉스 컨테이너 안에있는 요소들에 적용하는 속성 -->
+    flex-basis : (로우기준) 가로 너비 조절 (메인축 길이), 보통 설정 안하면
+    내용물 만큼만 차지하지만, 수동으로 넓혀줄수 있다 flex-grow : 디폴트 0, 1로
+    하면 남은공간을 채워버림, 각 요소들에게 비율을 할당해서 영역을 정할수 있다
+    비율은 컨텐츠 박스 안의 내용물이 차지하는 영역 기준으로 함 flex-shink :
+    컨테이너 안에 공간이 부족할때, 특정 아이템을 어떻게 줄일지 결정 1 = 기본값 0
+    = 다른애들이 커져도 영역이 줄어들지 않음, 얘는 건들지마라, 컨테이너를 뚫게
+    만들기도 한다 2 이상 = 숫자가 높아지면 공간을 더 많이 내어주게 된다
+    <div><br /><br /><br /><br /><br /></div>
+    <div
+      style="
+        background-color: black;
+        width: calc(100% / 4);
+        height: 200;
+        float: left;
+      "
+    ></div>
+    <div
+      style="
+        background-color: blue;
+        width: calc(100% / 4);
+        height: 200;
+        float: left;
+      "
+    ></div>
+    <div
+      style="
+        background-color: green;
+        width: calc(100% / 4);
+        height: 200;
+        float: left;
+      "
+    ></div>
+    <div
+      style="
+        background-color: red;
+        width: calc(100% / 4);
+        height: 200;
+        float: left;
+      "
+    ></div>
+    <div><br /><br /><br /><br /><br /><br /></div>
+    <div style="display: table; width: 100%; table-layout: fixed">
+      <div
+        style="
+          display: table-cell;
+          vertical-align: middle;
+          background-color: aqua;
+        "
+      >
+        ㅎㅇ
+      </div>
+      <div
+        style="
+          display: table-cell;
+          vertical-align: middle;
+          background-color: azure;
+        "
+      >
+        ㅎㅇㅎㅇ
+      </div>
+      <div
+        style="
+          display: table-cell;
+          vertical-align: middle;
+          background-color: yellow;
+        "
+      >
+        ㅎㅇㅎㅇㅎㅇ
+      </div>
+      <div
+        style="
+          display: table-cell;
+          vertical-align: middle;
+          background-color: violet;
+        "
+      >
+        ㅎㅇㅎㅇㅎㅇㅎㅇ
+      </div>
+    </div>
+  </body>
 </html>
