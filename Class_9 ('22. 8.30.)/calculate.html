@@ -1,0 +1,85 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>calc</title>
+  </head>
+  <body>
+    <script>
+      //형 변환 : 자료형을 바꿔준다, ex) string -> number 나중에
+
+      /*
+      연산자
+      이름 그대로 연산을 한다
+      + - * / % ** ++ -- - ! && || = += -= *= /= %= **= == === != !== > < >= <=
+      + : 더하기 숫자는 더하기 자체, 글자는 붙인다
+      */
+      let plus1 = "자료";
+      let plus2 = "구조";
+      console.log(plus1 + plus2); //자료구조
+      /*
+      숫자랑 글자랑 더하면 ?? 그냥 글자로 취급을해서 붙인다
+      - : 빼기 * : 더하기 / : 나누기 [숫자에서만 사용한다]
+      % : 퍼센트 숫자에서 사용 나눈뒤에 나머지를 찾는다
+      ** : 제곱, 숫자에서 사용, a ** b a의 b제곱
+      ++ -- : 카운터용으로 사용, 숫자를 하나 늘리거나 줄이거나 할때 사용
+      앞에쓰냐 뒤에쓰냐에 따라 달라진다
+      */
+      let count = 0;
+      console.log(++count); //1 변수의 값을 하나 업 > 전시
+      console.log(--count); //0 변수의 값을 하나 다운 > 전시
+      console.log(count++); //0 전시 > 변수의 값을 하나 업
+      console.log(count--); //1 전시 > 변수의 값을 하나 다운
+      console.log(count); //0 전시
+
+      /*
+      -와 ! : 현재 상태의 부정
+      변수가 true면 false로 바꿔줌, false면 true로 바꿔줌
+      !! : 부정의 부정 > 참
+      현재 자료형이 boolean값이 아닐때, boolean값으로 간편하게 변환할때 !! 사용
+       */
+      let exclamation = 1;
+      console.log(typeof exclamation);
+      console.log(typeof !!exclamation);
+      console.log(!!exclamation);
+      console.log(!exclamation);
+
+      // = : 대입연산자, 좌측에 있는 변수에 오른쪽 수를 대입한다(같다는뜻이 아님)
+      let test = 1;
+
+      /**/
+      // += -= *= /= %= *= **=
+      test += 2; // test = test + 2 ,const 불가능 (오류)
+      const test2 = 1;
+      const test3 = 2;
+      const test4 = 1;
+      const test5 = "1";
+
+      console.log(test2 == test3);
+      console.log(!(test2 == test4)); // 느낌표로 참을 거짓으로 바꿔놓음
+      console.log(test2 == test5);
+      // == : 같다는 의미이다
+      console.log(test2 === test5); //false
+      // === : 같다는 의미이다 {자료형(타입)까지 같아야 참}
+
+      console.log(test2 != test3); //참
+      console.log(test2 != test4); //거짓
+      console.log(test2 != test5); //거짓
+
+      console.log(test2 !== test5); //참, 자료형이 달라서 참이 됨
+      // != : 다르면 참이라고 판단한다, !==은 상단 참고 (===)
+
+      /*
+       */
+      /*
+       */
+      /*
+       */
+      /*
+       */
+      /*
+       */
+    </script>
+  </body>
+</html>
