@@ -15,8 +15,8 @@
       /*
               script : html에서 자바스크립트를 입력하는 태그
               html, css, javascript는 문법이 다 다르다
-              html, css는 구조적으로 많이 봤다
-              프로그래밍적으로 봐야하는게 자바스크립트고
+              html, css는 구조적인게 중요하다
+              자바스크립트는 프로그래밍적으로 봐야한다
               변수 : 데이터를 담은 상자
               이사를 한다면 상자에다가 뭘 넣었는지 이름을 붙임 >
               상자 안에 맞는 물건을 넣음 > 차에 옮김
@@ -36,7 +36,8 @@
       // a라는 변수를 결석날짜로 사용해버림, 같은파일내에서 2가지의 의미로 사용된상황,
       // a가 정확히 뭘 뜻하는지 알수가 없게된다 그래서 var를 잘 안쓴다
       // var let const 선언 안하면 var로 들어간다
-      // 보통 let을 많이 쓰고 const를 쓰기도 한다 var는 안씀
+      // 보통 let을 이나 const를 쓴다 var는 안쓰는걸 권장함
+      // 각종 이슈가 많다 var는
 
       let let1 = 1;
 
@@ -96,7 +97,7 @@
        let string6 = "\
        gdfsgdf\
        "; 오류 x
-       딱히 쓸일은 없더라
+       근데 이걸 딱히 쓸일은 없더라
        */
 
       let number1 = 1;
@@ -136,10 +137,10 @@
       // obj.a 형식으로 쓴다
       // 많이 사용한다
 
-      let arr1 = [1, 2, "3", { a: 1, b: 2, c: 3 }, true[obj.a], obj];
-      console.log(arr1[0]);
-      console.log(arr1[1]);
-      console.log(arr1[2]);
+      let arr1 = [1, 2, "3", { a: 1, b: 2, c: 3 }, true, [obj.a], obj];
+      console.log(arr1[4]);
+      console.log(arr1[5]);
+      console.log(arr1[6]);
       //arr1[n] : n번째의 값을 가져온다, 0부터 시작
       const arr2 = [];
       // arr = array를 arr이라고 쓴다 보통
