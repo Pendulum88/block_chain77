@@ -1,0 +1,103 @@
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="homework2.css" />
+    <script src="homework2.js"></script>
+  </head>
+  <body>
+    <div class="cal_window">
+      <input value="" id="numconsol" class="cal_resultbox"></input>
+      <div class="cal_pad">
+        <button class="standardbutton disablebtn">%</button>
+        <button class="standardbutton disablebtn">CE</button>
+        <button onclick="rset()" class="standardbutton enablebtn">리셋</button>
+        <button class="standardbutton disablebtn">←</button>
+        <button class="standardbutton disablebtn">1/x</button>
+        <button class="standardbutton disablebtn">x<sup>2</sup></button>
+        <button class="standardbutton disablebtn"><sup>2</sup>√x</button>
+        <button onclick="operf(3)" class="standardbutton enablebtn">÷</button>
+        <button
+          id="numbtn"
+          onclick="btns(7)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          7
+        </button>
+        <button
+          id="numbtn"
+          onclick="btns(8)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          8
+        </button>
+        <button
+          id="numbtn"
+          onclick="btns(9)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          9
+        </button>
+        <button onclick="operf(4)" class="standardbutton enablebtn">X</button>
+        <button
+          id="numbtn"
+          onclick="btns(4)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          4
+        </button>
+        <button
+          id="numbtn"
+          onclick="btns(5)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          5
+        </button>
+        <button
+          id="numbtn"
+          onclick="btns(6)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          6
+        </button>
+        <button onclick="operf(2)" class="standardbutton enablebtn">-</button>
+        <button
+          id="numbtn"
+          onclick="btns(1)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          1
+        </button>
+        <button
+          id="numbtn"
+          onclick="btns(2)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          2
+        </button>
+        <button
+          id="numbtn"
+          onclick="btns(3)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          3
+        </button>
+        <button onclick="operf(1)" class="standardbutton enablebtn">+</button>
+        <button class="standardbutton whitebutton disablebtn">+/-</button>
+        <button
+          id="numbtn"
+          onclick="btns(0)"
+          class="standardbutton whitebutton enablebtn"
+        >
+          0
+        </button>
+        <button class="standardbutton whitebutton disablebtn">.</button>
+        <button class="standardbutton bluebutton disablebtn">=</button>
+      </div>
+      <div></div>
+      <div></div>
+    </div>
+  </body>
+</html>
