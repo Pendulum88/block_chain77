@@ -45,3 +45,5 @@ console.log(obj.func(1, 2));
 //obj 객체 안의 func1, func 메서드
 
 alert("경고 !");
+
+// 지역변수, 지역변수, 매개변수
