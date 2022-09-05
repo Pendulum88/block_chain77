@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body div.bdiv {
+  width: 80%;
+  height: 100%;
+  background-image: url(https://image.kmib.co.kr/online_image/2014/0107/140106_39_4.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  text-align: center;
+}
+
+body div button {
+  margin-top: 100px;
+  background: none;
+  border: none;
+  font-weight: bolder;
+  font-size: 34px;
+  color: red;
+  cursor: pointer;
+}
+
+div.bdiv > div.sdiv {
+  width: 600px;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+
+div.bdiv > div.sdiv div {
+  font-size: 24px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
