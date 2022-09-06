@@ -5,10 +5,10 @@ let clap = "짝";
 for (let i = 1; i <= count; i++) {
   let stringI = i.toString();
   let numThree = 0;
-  for (let ii = 0; ii < countL; ii++) {
-    if (stringI[ii] == 0) {
+  for (let j = 0; j < countL; j++) {
+    if (stringI[j] == 0) {
       continue;
-    } else if (stringI[ii] % 3 == 0) {
+    } else if (stringI[j] % 3 == 0) {
       numThree++;
     }
   }
