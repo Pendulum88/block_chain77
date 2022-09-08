@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>즉시실행함수</title>
+  </head>
+  <body>
+    <script>
+      (function test() {
+        console.log("즉시실행");
+      })();
+      // 아랫줄에 test(); 해도 실행 안된다
+      // 쓸일이 많이 없다
+      // console.log("즉시실행");
+      // 그냥 이렇게 쓰는거랑 뭔차이야?
+
+      (function test(num) {
+        console.log("즉시실행" + num);
+      })(1);
+      // 이렇게 매개변수도 가능은 하다
+    </script>
+  </body>
+</html>

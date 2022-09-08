@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- HTML5 버전 문서 -->
+<html lang="ko">
+  <!-- HTML : Hyper Text Markup Language -->
+  <head>
+    <!-- 
+      헤드 : 메타데이터 정의
+      메타데이터 : 문서에 대한 정보(data), 웹 브라우저에는 직접적으로 표현되지 않는다
+      title, style, meta, link, script, base 태그 등이 있다
+     -->
+    <meta charset="UTF-8" />
+    <!-- 
+    태그는 여는 태그와 닫는 태그로 이루어져있는데 이렇게 슬래시를 이용해서 열고닫고를 한번에 할수도 있다
+    닫는 태그가 없는 시작태그만 있는 태그도 있는데, 빈 태그(empty tag) 라고 한다
+    charset = "utf-8" : 문자 인코딩 방식을 명시
+    유니코드(Unicode)를 위한 문자셋인 UTF-8이 가장 많이 사용된다
+    -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 문서 개발단계에서 고려했던 사이트 버전을 명시 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 문서를 다양한 환경(모바일 등)에서 접근하기 때문에, 페이지의 표시 영역을 정의 -->
+    <title>HTML</title>
+    <!-- 문서의 제목을 정의한다. 브라우저 툴바에 표시, 즐겨찾기 제목, 검색엔진 결과페이지 제목 등을 명시 -->
+    <style>
+      .divc {
+        /* 클래스 선택자, 클래스 이름 앞에 .을 붙여 사용 */
+        width: 100px;
+      }
+      #div1 {
+        /* id 선택자, id 이름 앞에 #을 붙여 사용 */
+        height: 100px;
+        width: 540px;
+      }
+      div {
+        /* 태그 선택자, 모든 해당태그에 CSS 속성을 적용 */
+        color: red;
+      }
+      * {
+        /* 전체 선택자, 모든 태그에 CSS 속성을 적용 */
+        box-sizing: border-box;
+        margin: 20px;
+        padding: 20px;
+        border: 20px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1" class="divc">1</div>
+    <div id="div2" class="divc">2</div>
+    <!-- div : Division의 약자, 가상의 레이아웃을 설계하는데 쓰인다 -->
+  </body>
+</html>

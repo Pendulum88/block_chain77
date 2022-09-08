@@ -1,0 +1,176 @@
+<html lang="en">
+  <!-- html : html 파일의 시작. lnag : 속성명 en : 속성값 -->
+  <head>
+    <!-- head : CSS 디폴트 값으로 display none이므로 페이지상에서 보이지 않는다 -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tags</title>
+  </head>
+  <body>
+    <div>
+      <p>
+        p태그, paragraph(문단)의 약자, 블록속성. br은 줄바꿈(엔터)<br />
+        내용이 너비를 넘으면 줄바꿈을 한다. 브라우저가 자동으로 위쪽과 아래쪽에
+        약간의 margin을 추가한다.
+        <span> 이렇게 태그안에 다른 엘리먼트를 넣을수도 있다 </span>
+      </p>
+      <span>
+        span태그, p태그와 유사, 인라인속성. 자동으로 줄바꿈이 되지 않는다.</span
+      >
+      <pre>
+        pre태그, preformatted, 블록속성.
+      </pre>
+      <h1>
+        h1태그, 블록속성, 크기나 굵기 조절만을 위해 사용하는일이 없어야한다
+      </h1>
+      <h2>h2태그</h2>
+      <h3>h3태그</h3>
+      <h4>h4태그</h4>
+      <h5>h5태그</h5>
+      <h6>h6태그</h6>
+    </div>
+
+    <div>
+      <img src="./image1.jpg" alt="이미지 경로 잘못됨(파일을 찾을 수 없음)" />
+      <img
+        src="https://ssl.pstatic.net/melona/libs/1398/1398872/afc94c1dcea79460e8c3_20220816112810069.jpg"
+        alt="갤럭시 Z플립4 사전판매 광고"
+      />
+      <!-- 
+            img : 이미지를 정의하기 위한 태그
+            src : 소스, 이미지의 주소, 파일명
+            alt : 정삭적으로 이미지를 표시하지 못했을때 이미지를 대신한다, 접근성 차원에서 활용 가능성 있음
+            ./ : 현재 디렉토리, 같은 위치라면 쓰지 않아도 파일을 불러올수 있다
+            인라인블록 속성
+         -->
+    </div>
+
+    <div>
+      <p>
+        <strong
+          >strong태그, 굵은 글씨 강조, 긴급한 내용이나 알람등에 활용
+          가능</strong
+        >
+        <b>b태그, 단순 굵은 폰트</b>
+        <del>del태그, 삭제된내용을 표현 </del>
+        <ins> insert태그 </ins>
+        sub태그, 3<sub>4<br /></sub
+        ><!-- 아랫첨자 -->
+
+        sup태그, 2<sup>3</sup
+        ><!-- 윗첨자 -->
+
+        문자도<sup>가능하다</sup>
+        <i>i태그, 텍스트 기울임</i>
+        <em>em태그, 텍스트 기울임</em>
+        <!-- 
+            스트롱 태그와 b 태그의 관계와 비슷하다 b는 단순히 텍스트를 진하게 표시만 하는것이고
+            스트롱은 실제로 페이지에서 중요한 내용일때 쓴다
+            i = b / em = strong 개념이 비슷하다
+          -->
+      </p>
+    </div>
+
+    <div>
+      style : 속성, 태그의 크기, 외곽선, 위치, 배경 등등을 설정 가능하다.
+      <div style="width: 1000px">
+        <p>
+          너비나 늘어난 숫자를 이용한 수치들에 대한 단위 : px, %, em, rem, vw,
+          vh
+        </p>
+        <p>
+          px : 픽셀 그냥 한칸 한칸 % : 부모를 기준으로한 퍼센테이지, 100% =
+          부모의 너비와 같다
+        </p>
+        <p>em : 상위 요소 기준<br />rem : 최상위 요소(html) 기준</p>
+        <p>1rem은 (일반적으로)16픽셀이다.</p>
+        <p>
+          vw, vh : viewport, 브라우저의 크기나 스마트폰의 크기를 기준으로 %,
+          100vw = 화면의 너비, 100vh = 화면의 높이
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <div style="width: 1000px"></div>
+      <div style="max-width: 1000px; min-width: 100px">
+        width : 영역의 너비 max-width : 영역의 최대 너비 min-width : 영역의 최소
+        너비 %, vw, vh는 기준이 있고 그 기준의 비율로 너비를 설정하지 어떤
+        내용을 넣었는데, 최소 100px은 있어야 제대로 뜬다? min-width 어떤 내용을
+        넣었는데, 너무 크면 안돼, 1000px 이상 넘어가면 안된다, 그러면 max-width
+      </div>
+      <div style="height: 100px">
+        height : 높이 max-height : 영역의 최대 높이 min-height : 영역의 최소
+        높이 보통 이미지 조절할때 아니면 쓸일이 많이 없다
+      </div>
+      <div
+        style="
+          width: 100px;
+          height: 100px;
+          background-color: rgb(255, 200, 200);
+          padding: 10px;
+          box-sizing: border-box;
+        "
+      >
+        <!-- 패딩 : 내부여백, 내부에 얼마나 빈 공간을 줄것인지 설정 -->
+        <!-- margin : 외부여백 -->
+        <div style="height: 100%; background-color: red"></div>
+      </div>
+
+      <div
+        style="
+          width: 100px;
+          height: 100px;
+          background-color: rgb(100, 200, 200);
+          /* RGB는 255까지 가능하다 */
+        "
+      >
+        <!-- 패딩 : 내부여백, 내부에 얼마나 빈 공간을 줄것인지 설정 -->
+        <!-- margin : 외부여백 -->
+        <div style="height: 100%; background-color: red; margin: 10px"></div>
+        <!-- 
+            너비는 설정하지않으면 무조건 부모를 따라간다, 즉 부모의 너비가 자식의 너비다
+            높이는 설정하지 않으면 자식의 높이를 따라간다, 즉 자식이 없으면 0px(출력안됨)이다
+            자식의 너비가 없어 그리고 margin(외부여백)이 있으면, 부모의 너비에서 외부 여백을 제외한 너비를 갖게됨
+            즉, 설정한 스타일이 있으면 그걸 우선시 해서 적용한다.
+         -->
+      </div>
+      <div style="box-sizing: border-box"></div>
+      <!-- 
+        기본적으로 크기에 대한 기준은 html이 알아서 컨텐츠 박스를 기준으로 잡는다
+        그래서 박스사이징을 보더박스 기준으로 바꿔주면 패딩 10을 넣었을때 결과값이 다르게 나온다
+       -->
+      <div
+        style="
+          width: 100px;
+          height: 150px;
+          background-color: rgb(255, 100, 200);
+          padding-top: 25px;
+          margin-top: 20px;
+        "
+      >
+        <div
+          style="
+            width: 100%;
+            height: 100%;
+            background-color: red;
+            margin-left: 50px;
+          "
+        ></div>
+      </div>
+    </div>
+  </body>
+  <!-- 
+    body는 웹페이지의 내용물을 넣는 부분임
+    마진 외부영역
+    보더는 외곽선
+    패딩 내부영역
+    정중앙 콘텐츠박스
+
+    마진은 겹칠수 있다 (형제 태그 기준)
+    형제란 : 같은부모 아래 있는 상태
+    마진이 부모한테 가는 경우도 있다 (부모가 패딩도 없고 여백설정이 따로 안되어있을때 라는데 한번 내가 해보자)
+    페이지 내에서 <> 표현할때 : &lt, &gt 사용
+   -->
+</html>
