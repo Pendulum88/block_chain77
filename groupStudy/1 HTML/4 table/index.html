@@ -18,75 +18,70 @@
     </style>
   </head>
   <body>
-<table>
-  <!-- 표를 출력하는 태그 -->
-  <caption>
-    TABLE1
-  </caption>
-  <col style="width: 50px" />
-  <!-- column의 줄임말, 열, 세로줄 -->
-  <col style="width: 90px" />
-  <col style="width: 60px" />
-  <col style="width: 80px" />
-  <colgroup span="3" style="width: 100px"></colgroup>
-  <!-- 
+    <table>
+      <!-- 표를 출력하는 태그 -->
+      <caption>
+        TABLE1
+      </caption>
+      <col style="width: 50px" />
+      <!-- column의 줄임말, 열, 세로줄 -->
+      <col style="width: 90px" />
+      <col style="width: 60px" />
+      <col style="width: 80px" />
+      <colgroup span="3" style="width: 100px"></colgroup>
+      <!-- 
     col style은 테이블의 열의 스타일을 공통적으로 정의한다
     (단, 하나씩 적용됨)
     column의 스타일을 한번에 여러 열을 적용하는게 콜그룹이다
     스판 속성을 이용해 몇개의 연속된 열의 스타일을 정할지 설정한다
    -->
-  <thead>
-    <!-- 테이블헤드, 테이블의 제일 위 -->
-    <tr>
-      <!-- tr은 table row, 행, 가로줄이다 -->
-      <th>
-        <!-- 테이블의 헤드의 셀이다 -->
-        번호
-      </th>
-      <th>이름</th>
-      <th>나이</th>
-      <th>성별</th>
-      <th>국적</th>
-      <th>혈액형</th>
-      <th>최종학력</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- 테이블의 목록(내용)이다. -->
-    <tr>
-      <td>
-        <!-- 테이블의 내용을 담은 셀이다. table data -->
-        1
-      </td>
-      <td>James</td>
-      <td>30</td>
-      <td>남성</td>
-      <td rowspan="2" style="border: 1px solid black">미국</td>
-      <td>AB</td>
-      <td rowspan="2" style="border: 1px solid black">대졸</td>
-      <!-- rowspan은 한번에 여러행을 갯수만큼 출력한다 -->
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Olivia</td>
-      <td>27</td>
-      <td>여성</td>
-      <td>B</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <!-- 티풋, 안쓰는경우도 많이 있음 -->
-    <tr>
-      <td colspan="2">비고</td>
-      <td colspan="5"></td>
-      <!-- colspan은 가로줄을 합친다 -->
-    </tr>
-  </tfoot>
-</table>
-<!-- 
-  div = divide
-  class = .
-  id = #
--->
-  body>
-</ml
+      <thead>
+        <!-- 테이블헤드, 테이블의 제일 위 -->
+        <tr>
+          <!-- tr은 table row, 행, 가로줄이다 -->
+          <th>
+            <!-- 테이블 헤더 셀 -->
+            번호
+          </th>
+          <th>이름</th>
+          <th>나이</th>
+          <th>성별</th>
+          <th>국적</th>
+          <th>혈액형</th>
+          <th>최종학력</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 테이블의 목록(내용)이다. -->
+        <tr>
+          <td>
+            <!-- 테이블의 내용을 담은 셀이다. table data -->
+            1
+          </td>
+          <td>James</td>
+          <td>30</td>
+          <td>남성</td>
+          <td rowspan="2">미국</td>
+          <td>AB</td>
+          <td rowspan="2">대졸</td>
+          <!-- rowspan은 한번에 가로줄(행)을 갯수만큼 출력한다 -->
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Olivia</td>
+          <td>27</td>
+          <td>여성</td>
+          <td>B</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <!-- 티풋, 안쓰는경우도 많이 있음 -->
+        <tr>
+          <td colspan="2">비고</td>
+          <td colspan="5"></td>
+          <!-- colspan은 세로줄(열)을 합친다 -->
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>
