@@ -30,8 +30,13 @@
                 style이 있어서 넣기만해도 눈에 보인다
              -->
         <legend>필드셋의 제목</legend>
-        <input type="text" id="text" name="ersar" />
-        <label for="text">아무거나 입력해 보세요</label>
+        <div>
+          <label for="text">아이디 : </label>
+          <input type="text" id="text" name="ersar" />
+          <label for="pw">패스워드 : </label>
+          <input type="password" name="pw" id="pw" />
+        </div>
+
         <!-- 
             input : 이름 그대로 사용자가 데이터를 입력하는 영역이다
             type이 너무 많다
@@ -43,37 +48,26 @@
             for : input과 연결하기위해 사용한다
             클릭시 연결된 input에 입력할수 있도록 해준다(focus)
          -->
-        <label for="pw">
-          비밀번호 :
-          <input type="password" name="pw" id="pw" />
-        </label>
+
         <!-- type 속성이 패스워드일때는 인풋태그는 타입그대로 비밀번호를 입력할수 있게 해준다
         입력된 데이터는 알아서 가려준다 -->
-        <label for="tel">
-          전화번호
+        <div>
+          <label for="tel">전화번호 : </label>
           <input type="tel" name="tel" id="tel" />
-        </label>
+          <label for="email"></label>이메일 :
+          <input type="email" id="email" name="email" />
+          <!-- 이메일은 필터링이 잘 되어있음 제대로 작성하지 않으면 받아주지 않음 -->
+        </div>
         <!-- 텍스트랑 별다를게 없더라 >> 자바스크립트로 필터링 필요 -->
         <div>
-          <label for="number">나이</label>
+          <label for="birthday">생일 : </label>
+          <input type="date" id="birthday" />
+          <label for="number">나이 : </label>
           <input type="number" id="number" name="age" />
           <!-- 텍스트 안쳐지고 숫자만쳐짐 e는쳐짐(지수) -->
         </div>
         <div>
-          <label for="url"></label>주소를 입력해주세요
-          <input type="url" id="url" name="url" />
-        </div>
-        <div>
-          <label for="search"></label>검색어를 입력해주세요
-          <input type="search" id="search" name="search" />
-        </div>
-        <div>
-          <label for="email"></label>이메일을 입력해주세요
-          <input type="email" id="email" name="email" />
-          <!-- 이메일은 필터링이 잘 되어있음 제대로 작성하지 않으면 받아주지 않음 -->
-        </div>
-        <div>
-          <label for="checkbox">동의하시겠습니까?</label>
+          <label for="checkbox">약관에 동의하시겠습니까?</label>
           <input type="checkbox" id="checkbox" checked />
           <!-- 
             checkbox : 이름그대로 체크박스
@@ -82,22 +76,19 @@
            -->
         </div>
         <div>
-          좋아하는 과일은 ?
+          유입경로를 선택해주세요 (* 중복불가)
           <input type="radio" name="radio" id="radio1" />
-          <label for="radio1">사과</label>
+          <label for="radio1">*검색</label>
           <input type="radio" name="radio" id="radio2" />
-          <label for="radio2">바나나</label>
+          <label for="radio2">*서적</label>
           <input type="radio" name="radio" id="radio3" />
-          <label for="radio3">포도</label>
+          <label for="radio3">*광고</label>
           <!-- 한개만 선택하도록 하게 하는 체크박스-->
           <input type="radio" name="radio4" id="radio1" />
-          <label for="radio4">중복되는과일</label>
+          <label for="radio4">지인소개</label>
           <!-- 
             name을 사용해서 중복 가능하게 만들수 있다 (네임이 다르니까)
           -->
-        </div>
-        <div>
-          <input type="text" id="test1" />
         </div>
         <!-- <div style="cursor: pointer;">
             보내기
@@ -105,19 +96,18 @@
         </div> -->
         <div>
           <input type="file" />
+        </div>
+        <div>
           <input
             type="image"
             src="https://ssl.pstatic.net/melona/libs/1403/1403246/08ae8ba7a66ea29d353b_20220823151929809.jpg"
+            style="width: 300px; height: 100px"
           />
-          <!-- 
+        </div>
+        <!-- 
             이미지는 버튼을 이미지로 출력할때 사용한다
             이미지를 넣어서 버튼을 대체한다
           -->
-        </div>
-        <div>
-          <label for="birthday">생일은</label>
-          <input type="date" id="birthday" />
-        </div>
         <div>
           <input type="color" />
         </div>
@@ -164,7 +154,7 @@
       </fieldset>
     </form>
     <div>
-      <label for="test1">클릭 테스트</label>
+      <label for="tel">클릭 테스트</label>
     </div>
     <!-- 라벨에 있는 for속성과 인풋의 id속성이 같으면 위치와 상관없이 잘 작동한다 -->
   </body>
