@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.maindiv {
+  text-align: center;
+  width: 40vw;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.item {
+  border: 1px solid black;
+  margin: 10px;
+  height: 60px;
+}
+
+.userinput {
+  font-size: 20px;
+}
+
+#createList {
+  font-size: 20px;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.cfmdelbtn {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.cList {
+  background-color: rgb(255, 201, 181);
+  display: flex;
+  font-size: 20px;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+}
+
+.cList button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
