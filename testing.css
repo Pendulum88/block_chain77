@@ -1,0 +1,97 @@
+.divbar {
+  width: 55px;
+  height: 350px;
+  position: absolute;
+  display: table;
+}
+
+#biggestdiv {
+  border: 2px solid black;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+}
+#headerdiv {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  border-bottom: 2px solid black;
+}
+#bodydiv {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.odddiv {
+  background-color: lightsalmon;
+}
+
+.evendiv {
+  background-color: lightcoral;
+}
+
+#first {
+  transform: rotateZ(00deg);
+}
+#second {
+  transform: rotateZ(22.5deg);
+}
+#third {
+  transform: rotateZ(45deg);
+}
+#fourth {
+  transform: rotateZ(67.5deg);
+}
+#fifth {
+  transform: rotateZ(90deg);
+}
+#sixth {
+  transform: rotateZ(112.5deg);
+}
+#seventh {
+  transform: rotateZ(135deg);
+}
+#eighth {
+  transform: rotateZ(157.5deg);
+}
+body {
+  margin-top: 50px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+.childdiv {
+  height: 50%;
+  position: unset;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bolder;
+}
+.rad {
+  width: 250px;
+  height: 250px;
+  background-color: lightblue;
+  border-radius: 200px;
+  position: relative;
+}
+.bgrad {
+  width: 360px;
+  height: 360px;
+  background-color: lightgreen;
+  border-radius: 250px;
+  position: absolute;
+  z-index: -1;
+}
+.windrawlose {
+  height: 200px;
+  display: inline-block;
+  width: 33%;
+  line-height: 200px;
+  text-align: center;
+}
+.divbar:nth-child(2) {
+  transform: rotateZ(180deg);
+}
