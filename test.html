@@ -36,35 +36,6 @@
       <div class="squarediv" id="item14"></div>
       <div class="squarediv" id="item15"></div>
     </div>
-    <script>
-      //   const interval = setInterval(() => {
-      //     const random012 = parseInt(Math.random() * 3);
-      //     console.log(`현재값 ${random012}`);
-      //     document.getElementById(
-      //       "imgdiv"
-      //     ).innerHTML = `<img src="./${random012}.jpeg" />`;
-      //   }, 500);
-
-      let rpsRoutine = 0;
-      let squareRoutine = 0;
-      let gamestart = 0;
-
-      const rpsInterval = setInterval(() => {
-        document.getElementById("imgdiv").innerHTML = `<img src="./${
-          rpsRoutine++ % 3
-        }.jpeg" />`;
-      }, 1000);
-      const squareInterval = setInterval(() => {
-        document
-          .getElementById(`item${squareRoutine % 16}`)
-          .classList.add("squareblack");
-        setTimeout(() => {
-          document
-            .getElementById(`item${squareRoutine % 16}`)
-            .classList.remove("squareblack");
-          squareRoutine++;
-        }, 320);
-      }, 180);
-    </script>
+    <script></script>
   </body>
 </html>
