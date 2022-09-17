@@ -1,62 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Gambling</title>
   </head>
   <link rel="stylesheet" href="index.css" />
   <body>
     <div id="biggestdiv">
-      <div class="threediv">
-        <div class="threeitem">WIN</div>
-        <div class="threeitem">DRAW</div>
-        <div class="threeitem">LOSE</div>
+      <div>
+        <img style="width: 70px" src="./age15.png" alt="" /><img
+          style="width: 70px"
+          src="./warning.png"
+          alt=""
+        />
       </div>
-      <div id="bodydiv">
-        <div id="credit"></div>
-        <div class="odddiv" id="first">
-          <div id="item0" class="divbar childdiv">4</div>
-          <div id="item8" class="divbar childdiv">20</div>
+      <div class="gametable">
+        <div class="threediv">
+          <div id="pwin" class="threeitem">WIN</div>
+          <div id="pdraw" class="threeitem">DRAW</div>
+          <div id="plose" class="threeitem">LOSE</div>
         </div>
-        <div class="evendiv" id="second">
-          <div id="item1" class="divbar childdiv">1</div>
-          <div id="item9" class="divbar childdiv">2</div>
+        <div id="bodydiv">
+          <div id="credit"></div>
+          <div class="odddiv" id="first">
+            <div id="item0" class="divbar childdiv">4</div>
+            <div id="item8" class="divbar childdiv">20</div>
+          </div>
+          <div class="evendiv" id="second">
+            <div id="item1" class="divbar childdiv">1</div>
+            <div id="item9" class="divbar childdiv">2</div>
+          </div>
+          <div class="odddiv" id="third">
+            <div id="item2" class="divbar childdiv">2</div>
+            <div id="item10" class="divbar childdiv">6</div>
+          </div>
+          <div class="evendiv" id="fourth">
+            <div id="item3" class="divbar childdiv">7</div>
+            <div id="item11" class="divbar childdiv">1</div>
+          </div>
+          <div class="odddiv" id="fifth">
+            <div id="item4" class="divbar childdiv">4</div>
+            <div id="item12" class="divbar childdiv">3</div>
+          </div>
+          <div class="evendiv" id="sixth">
+            <div id="item5" class="divbar childdiv">2</div>
+            <div id="item13" class="divbar childdiv">2</div>
+          </div>
+          <div class="odddiv" id="seventh">
+            <div id="item6" class="divbar childdiv">3</div>
+            <div id="item14" class="divbar childdiv">1</div>
+          </div>
+          <div class="evendiv" id="eighth">
+            <div id="item7" class="divbar childdiv">1</div>
+            <div id="item15" class="divbar childdiv">3</div>
+          </div>
+          <div id="imgdiv" class="rad divbar"></div>
+          <div class="bgrad divbar"></div>
         </div>
-        <div class="odddiv" id="third">
-          <div id="item2" class="divbar childdiv">2</div>
-          <div id="item10" class="divbar childdiv">6</div>
+        <div class="multiplediv">
+          <div id="multi0" class="sixdivitem">X 2</div>
+          <div id="multi1" class="sixdivitem">X 5</div>
+          <div id="multi2" class="sixdivitem">X 10</div>
+          <div id="multi3" class="sixdivitem">X 15</div>
+          <div id="multi4" class="sixdivitem">X 30</div>
         </div>
-        <div class="evendiv" id="fourth">
-          <div id="item3" class="divbar childdiv">7</div>
-          <div id="item11" class="divbar childdiv">1</div>
+        <div class="threediv">
+          <button id="scissors">SCISSORS</button>
+          <button id="rock">ROCK</button>
+          <button id="paper">PAPER</button>
         </div>
-        <div class="odddiv" id="fifth">
-          <div id="item4" class="divbar childdiv">4</div>
-          <div id="item12" class="divbar childdiv">3</div>
+        <div>
+          <button id="gamestartbtn" onclick="gameStart()">
+            GAME START (-100G)
+          </button>
         </div>
-        <div class="evendiv" id="sixth">
-          <div id="item5" class="divbar childdiv">2</div>
-          <div id="item13" class="divbar childdiv">2</div>
-        </div>
-        <div class="odddiv" id="seventh">
-          <div id="item6" class="divbar childdiv">3</div>
-          <div id="item14" class="divbar childdiv">1</div>
-        </div>
-        <div class="evendiv" id="eighth">
-          <div id="item7" class="divbar childdiv">1</div>
-          <div id="item15" class="divbar childdiv">3</div>
-        </div>
-        <div id="imgdiv" class="rad divbar"></div>
-        <div class="bgrad divbar"></div>
       </div>
-      <div class="threediv">
-        <div id="rock">ROCK</div>
-        <div id="paper">PAPER</div>
-        <div id="scissors">SCISSORS</div>
+      <div class="enderup">도박중독상담 국번없이 1336 (24시간)</div>
+      <div class="enderdown">
+        어떤 아내도 도박하는 남편을 견딜 수는 없다<br />그가 끊임없이 승리하지
+        않는 한<br />- Thomas Robert Dewar -
       </div>
-      <div id="starter" onclick="gameStart()">GAME START</div>
     </div>
     <script src="index.js"></script>
   </body>
