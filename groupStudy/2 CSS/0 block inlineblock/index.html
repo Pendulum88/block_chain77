@@ -10,10 +10,23 @@
         주로 css파일이나 favicon을 가져올때 쓴다
         favicon : 크롬 탭 왼쪽에 조그만한 아이콘
     -->
+    <style>
+      .display {
+        display: block;
+        display: inline;
+        display: none;
+        display: flex;
+        display: grid;
+        display: inherit;
+        display: initial;
+        display: unset;
+      }
+    </style>
   </head>
   <body>
-    <div class="display"></div>
-    <div class="wh"></div>
+    <div style="background-color: coral">inline</div>
+    <div class="display">div class display</div>
+    <div class="wh">div class wh</div>
     <div class="fit-content">fit-content : 갖고 있는 만큼만 차지를 한다</div>
     <div class="min-content">min-content : 갖고있는 최소를 차지한다</div>
     <div class="max-content">max-content : 갖고있는 최대를 차지한다</div>

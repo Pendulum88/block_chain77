@@ -12,7 +12,7 @@
         div, body, h1 등등의 태그에 스타일을 한번에 적용할수 있다
       */
       div {
-        background-color: blue;
+        background-color: lightblue;
         min-height: 50px;
       }
       * {
@@ -66,7 +66,7 @@
         width: 200px;
         height: 100px;
         margin: auto;
-        background-color: black;
+        background-color: lightcoral;
       }
 
       .child2 {
@@ -92,17 +92,22 @@
     <div class="test_dot" style="background-color: gray"></div>
     <p class="test_dot">11</p> -->
     <div class="parent">
+      parent
       <div class="child1">
-        <div class="child2"></div>
+        child1
+        <div class="child2">child2</div>
       </div>
       <div class="child1">
-        <div class="child2 child3">차일드1/차일드23</div>
+        child1
+        <div class="child2 child3">child1<br />child2, 3</div>
       </div>
       <div class="child2">
-        <div class="child2">차일드2</div>
+        child2
+        <div class="child2">child2</div>
       </div>
     </div>
     <div style="width: calc(100% - 125px)">
+      width: calc(100% - 125px)
       <!-- 계산식을 넣을수도 있다 -->
     </div>
   </body>
