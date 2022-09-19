@@ -4,6 +4,9 @@ let multipleoutine = 0;
 let getCredit = 0;
 let credit = 0;
 let score;
+let rpsBrake = 20;
+let scoreBrake = 10;
+let multipleBrake = 15;
 let multiplyer;
 let rpsImgInterval;
 let scoreInterval;
@@ -12,6 +15,9 @@ let rpsImgIntervalFast;
 let scoreIntervalFast;
 let multipleIntervalFast;
 let pickMeUpInterval;
+let rpsImgIntervalBrake;
+let scoreIntervalBrake;
+let multipleIntervalBrake;
 let comSel = null; // 0:rock 1:scissors 2:paper
 let playerSel = null; // 1:scissors 2:rock 3:paper
 const rpsimg = document.getElementById("imgdiv");
@@ -37,6 +43,13 @@ const decision = (comnum, playernum) => {
     (comnum == 2 && playernum == 2)
   ) {
     bgGold("plose");
+    score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
+    multiplyer = document.getElementById(
+      `multi${multipleoutine % 5}`
+    ).innerHTML;
+    multiplePick();
+    console.log(`score : ${score}`);
+    console.log(`multiplyer : ${multiplyer}`);
     credit = credit - score * multiplyer;
     console.log(
       `[종료] 골드감소 : -${score * multiplyer} 현재골드 : ${credit}`
@@ -49,6 +62,13 @@ const decision = (comnum, playernum) => {
     }
   } else {
     bgGold("pwin");
+    score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
+    multiplyer = document.getElementById(
+      `multi${multipleoutine % 5}`
+    ).innerHTML;
+    multiplePick();
+    console.log(`score : ${score}`);
+    console.log(`multiplyer : ${multiplyer}`);
     credit = credit + score * multiplyer;
     console.log(
       `[종료] 골드증가 : +${score * multiplyer} 현재골드 : ${credit}`
@@ -158,7 +178,6 @@ const excuteShuffle = () => {
       document
         .getElementById(`item${scoreRoutine % 16}`)
         .classList.add("squarepick");
-      score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
     }, 10);
     document
       .getElementById(`item${scoreRoutine % 16}`)
@@ -171,16 +190,44 @@ const excuteShuffle = () => {
       document
         .getElementById(`multi${multipleoutine % 5}`)
         .classList.add("squarepick");
-      multiplyer = document.getElementById(
-        `multi${multipleoutine % 5}`
-      ).innerHTML;
-      multiplePick();
     }, 15);
     document
       .getElementById(`multi${multipleoutine % 5}`)
       .classList.remove("squarepick");
     multipleoutine++;
   }, 15);
+};
+
+const brakeShuffle = () => {
+  rpsImgIntervalBrake = setInterval(() => {
+    rpsimg.innerHTML = `<img src="./${rpsRoutine++ % 3}.png" />`;
+  }, rpsBrake);
+
+  scoreIntervalBrake = setInterval(() => {
+    setTimeout(() => {
+      document
+        .getElementById(`item${scoreRoutine % 16}`)
+        .classList.add("squarepick");
+    }, scoreBrake);
+    document
+      .getElementById(`item${scoreRoutine % 16}`)
+      .classList.remove("squarepick");
+    scoreBrake = scoreBrake * 10;
+    scoreRoutine++;
+  }, scoreBrake);
+
+  multipleIntervalBrake = setInterval(() => {
+    setTimeout(() => {
+      document
+        .getElementById(`multi${multipleoutine % 5}`)
+        .classList.add("squarepick");
+    }, multipleBrake);
+    document
+      .getElementById(`multi${multipleoutine % 5}`)
+      .classList.remove("squarepick");
+    multipleBrake = multipleBrake * 10;
+    multipleoutine++;
+  }, multipleBrake);
 };
 
 const pickMeUp = () => {
@@ -237,22 +284,27 @@ const gameStart = () => {
   scissors.style.cursor = "pointer";
 
   scissors.onclick = () => {
-    clearInterval(pickMeUpInterval);
-    clearInterval(scoreIntervalFast);
     clearInterval(rpsImgIntervalFast);
-    clearInterval(multipleIntervalFast);
-    btnDisable();
-    bgGold("scissors");
-    pointerDefault();
-    comPick();
-    playerSel = 1;
-    decision(comSel, playerSel);
+    brakeShuffle();
+    setTimeout(() => {
+      console.log("셋타임아웃 작동 !");
+      clearInterval(rpsImgIntervalFast);
+      clearInterval(pickMeUpInterval);
+      clearInterval(scoreIntervalFast);
+      clearInterval(multipleIntervalFast);
+      btnDisable();
+      bgGold("scissors");
+      pointerDefault();
+      comPick();
+      playerSel = 1;
+      decision(comSel, playerSel);
+    }, 5000);
   };
 
   rock.onclick = () => {
+    clearInterval(rpsImgIntervalFast);
     clearInterval(pickMeUpInterval);
     clearInterval(scoreIntervalFast);
-    clearInterval(rpsImgIntervalFast);
     clearInterval(multipleIntervalFast);
     btnDisable();
     bgGold("rock");
@@ -263,9 +315,9 @@ const gameStart = () => {
   };
 
   paper.onclick = () => {
+    clearInterval(rpsImgIntervalFast);
     clearInterval(pickMeUpInterval);
     clearInterval(scoreIntervalFast);
-    clearInterval(rpsImgIntervalFast);
     clearInterval(multipleIntervalFast);
     btnDisable();
     bgGold("paper");
