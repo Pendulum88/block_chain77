@@ -1,0 +1,245 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+#maindiv {
+  width: calc(100vw - (100vw - 100%));
+}
+
+#nicepage {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  background-color: rgb(242, 242, 242);
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nicepageimg {
+  width: 123px;
+  height: 40px;
+}
+
+.top-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.xbutton {
+  width: 18px;
+  height: 18px;
+}
+
+#first-top {
+  background-image: url(./2.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 775px;
+  text-align: center;
+}
+
+#reddiv {
+  padding-top: 54px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#redicon {
+  width: 113px;
+  height: 103px;
+  object-fit: cover;
+  position: relative;
+  right: 460px;
+}
+
+#beats {
+  color: rgb(241, 80, 72);
+  font-weight: bolder;
+  font-size: 6em;
+  margin-right: 15px;
+}
+
+#wireless {
+  color: white;
+  font-weight: bolder;
+  font-size: 4.7em;
+  margin-top: -20px;
+}
+
+#withup {
+  color: white;
+  font-size: 0.87em;
+  font-style: italic;
+  margin-top: 10px;
+  text-align: end;
+  line-height: 150%;
+  letter-spacing: -0.3px;
+}
+
+.pinkbutton {
+  padding: 5px 25px 10px 25px;
+  display: inline-block;
+  background-color: rgb(241, 80, 72);
+  border-radius: 50px;
+  font-size: 0.9em;
+  color: white;
+  font-weight: bolder;
+  margin-top: 25px;
+}
+
+#first-top-font {
+  width: 1140px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 150px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#second-top {
+  height: 85%;
+  width: 65%;
+  margin: 0 auto;
+  display: flex;
+}
+
+#second-top-left {
+  margin-top: 150px;
+  display: inline-block;
+  width: 44%;
+}
+
+#second-top-right {
+  position: relative;
+  top: -50px;
+  width: 56%;
+}
+
+#invasionhp {
+  width: 752px;
+  height: 732px;
+}
+
+.product {
+  font-size: 46px;
+  font-weight: bolder;
+}
+
+.overview {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+#with {
+  font-size: 0.83em;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.beatssolo {
+  font-size: 0.83em;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+#third-top {
+  height: 85%;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  min-height: 450px;
+  position: relative;
+}
+
+#third-top-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+}
+
+#opacityerdiv {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+
+#third-top-left div img {
+  width: 120%;
+  opacity: 0.1;
+}
+
+#third-top-right {
+  width: 50%;
+  overflow: hidden;
+  background-image: url(./10.jpg);
+  background-position: 80% 20%;
+}
+
+#first-mid {
+  margin-top: 50px;
+  font-size: 0;
+}
+
+#second-mid {
+  background-image: url(./11.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 535px;
+}
+
+@media (max-width: 1181px) {
+  #redicon {
+    right: 400px;
+  }
+  #first-top {
+    height: 874px;
+  }
+  #first-top-font {
+    width: 940px;
+    margin-top: 203px;
+  }
+  #invasionhp {
+    width: 527px;
+    height: 517px;
+  }
+}
+
+@media (max-width: 991px) {
+  #redicon {
+    right: 287px;
+  }
+  #reddiv {
+    padding-top: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  #redicon {
+    right: 194px;
+  }
+  #reddiv {
+    padding-top: 45px;
+  }
+}
+
+@media (max-width: 577px) {
+  #redicon {
+    right: 106px;
+  }
+}
