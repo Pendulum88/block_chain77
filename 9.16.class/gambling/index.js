@@ -1,9 +1,10 @@
 let rpsRoutine = 0;
 let scoreRoutine = 0;
-let multipleoutine = 0;
+let multipleoutline = 0;
 let getCredit = 0;
 let credit = 0;
 let score;
+let winlose;
 let rpsBrake = 20;
 let scoreBrake = 10;
 let multipleBrake = 15;
@@ -33,55 +34,48 @@ const decision = (comnum, playernum) => {
     (comnum == 2 && playernum == 3)
   ) {
     bgGold("pdraw");
-    setTimeout(() => {
-      credit = credit + 100;
-      console.log("[비김] 골드반환 : +100");
-      startbtn.disabled = false;
-      startbtn.style.cursor = "pointer";
-    }, 21500);
+    clearInterval(multipleIntervalFast);
+    clearInterval(scoreIntervalFast);
+    credit = credit + 100;
+    console.log("[비김] 골드반환 : +100");
+    startbtn.disabled = false;
+    startbtn.style.cursor = "pointer";
   } else if (
     (comnum == 0 && playernum == 1) ||
     (comnum == 1 && playernum == 3) ||
     (comnum == 2 && playernum == 2)
   ) {
     bgGold("plose");
-    setTimeout(() => {
-      score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
-      multiplyer = document.getElementById(
-        `multi${multipleoutine % 5}`
-      ).innerHTML;
-      multiplePick();
-      credit = credit - score * multiplyer;
-      console.log(
-        `[종료] 골드감소 : -${score * multiplyer} 현재골드 : ${credit}`
-      );
-      startbtn.disabled = false;
-      startbtn.style.cursor = "pointer";
-    }, 21500);
-    if (credit < 100) {
-      rpsimg.innerHTML = "GAME OVER";
-      rpsimg.classList.add("blacker");
-    }
+    winlose = -1;
+    brakescore();
   } else {
     bgGold("pwin");
-    setTimeout(() => {
-      score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
-      multiplyer = document.getElementById(
-        `multi${multipleoutine % 5}`
-      ).innerHTML;
-      multiplePick();
-      credit = credit + score * multiplyer;
-      console.log(
-        `[종료] 골드증가 : +${score * multiplyer} 현재골드 : ${credit}`
-      );
-      startbtn.disabled = false;
-      startbtn.style.cursor = "pointer";
-    }, 21500);
-    if (credit < 100) {
-      rpsimg.innerHTML = "GAME OVER";
-      rpsimg.classList.add("blacker");
-    }
+    winlose = 1;
+    brakescore();
   }
+};
+
+const decisionWinLose = () => {
+  score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
+  multiplyer = document.getElementById(`multi${multipleoutline % 5}`).innerHTML;
+  multiplePick();
+  if (winlose == -1) {
+    console.log(
+      `[종료] 골드증감 : -${score * multiplyer}, 현재골드 : ${credit}`
+    );
+    credit = credit - score * multiplyer;
+  } else if (winlose == 1) {
+    console.log(
+      `[종료] 골드증감 : +${score * multiplyer}, 현재골드 : ${credit}`
+    );
+    credit = credit + score * multiplyer;
+  }
+  if (credit < 100) {
+    rpsimg.innerHTML = "GAME OVER";
+    rpsimg.classList.add("blacker");
+  }
+  startbtn.disabled = false;
+  startbtn.style.cursor = "pointer";
   document.getElementById("credit").innerHTML = `${credit}G`;
 };
 
@@ -96,16 +90,16 @@ const comPick = () => {
 };
 
 const multiplePick = () => {
-  if (multiplyer == "X 2") {
-    multiplyer = 2;
-  } else if (multiplyer == "X 5") {
+  if (multiplyer == "X 5") {
     multiplyer = 5;
   } else if (multiplyer == "X 10") {
     multiplyer = 10;
   } else if (multiplyer == "X 15") {
     multiplyer = 15;
-  } else if (multiplyer == "X 30") {
-    multiplyer = 30;
+  } else if (multiplyer == "X 20") {
+    multiplyer = 20;
+  } else if (multiplyer == "X 40") {
+    multiplyer = 40;
   }
 };
 
@@ -160,19 +154,19 @@ const stanbyShuffle = () => {
   multipleInterval = setInterval(() => {
     setTimeout(() => {
       document
-        .getElementById(`multi${multipleoutine % 5}`)
+        .getElementById(`multi${multipleoutline % 5}`)
         .classList.add("squarepick");
     }, 100);
     document
-      .getElementById(`multi${multipleoutine % 5}`)
+      .getElementById(`multi${multipleoutline % 5}`)
       .classList.remove("squarepick");
-    multipleoutine++;
+    multipleoutline++;
   }, 100);
 };
 
 const excuteShuffle = () => {
   rpsImgIntervalFast = setInterval(() => {
-    rpsimg.innerHTML = `<img src="./${parseInt(Math.random() * 3)}.png" />`;
+    rpsimg.innerHTML = `<img src="./${rpsRoutine++ % 3}.png" />`;
   }, 20);
 
   scoreIntervalFast = setInterval(() => {
@@ -190,13 +184,13 @@ const excuteShuffle = () => {
   multipleIntervalFast = setInterval(() => {
     setTimeout(() => {
       document
-        .getElementById(`multi${multipleoutine % 5}`)
+        .getElementById(`multi${multipleoutline % 5}`)
         .classList.add("squarepick");
     }, 15);
     document
-      .getElementById(`multi${multipleoutine % 5}`)
+      .getElementById(`multi${multipleoutline % 5}`)
       .classList.remove("squarepick");
-    multipleoutine++;
+    multipleoutline++;
   }, 15);
 };
 
@@ -222,7 +216,6 @@ const brakeImg = () => {
   setTimeout(() => {
     clearInterval(rpsImgIntervalBrake);
     comPick();
-    brakescore();
     decision(comSel, playerSel);
   }, 7100);
 };
@@ -279,48 +272,46 @@ const brakescore = () => {
 };
 
 const brakeMultiple = () => {
+  multipleoutline = 0;
+  let index2 = parseInt(Math.random() * 20 + 10);
+  let index3 = parseInt(Math.random() * 2 + 3);
   multipleIntervalBrake = setInterval(() => {
-    setTimeout(() => {
-      document
-        .getElementById(`multi${multipleoutine % 5}`)
-        .classList.add("squarepick");
-    }, 15);
-    document
-      .getElementById(`multi${multipleoutine++ % 5}`)
-      .classList.remove("squarepick");
-  }, 15);
-
-  setTimeout(() => {
-    clearInterval(multipleIntervalBrake);
-    multipleIntervalBrake = setInterval(() => {
-      setTimeout(() => {
-        document
-          .getElementById(`multi${multipleoutine % 5}`)
-          .classList.add("squarepick");
+    if (multipleoutline > 80) {
+      clearInterval(multipleIntervalBrake);
+      multipleIntervalBrake = setInterval(() => {
+        if (multipleoutline > 80 + index2) {
+          clearInterval(multipleIntervalBrake);
+          multipleIntervalBrake = setInterval(() => {
+            if (multipleoutline > 80 + index2 + index3) {
+              clearInterval(multipleIntervalBrake);
+              decisionWinLose();
+            } else {
+              document
+                .getElementById(`multi${multipleoutline % 5}`)
+                .classList.remove("squarepick");
+              document
+                .getElementById(`multi${++multipleoutline % 5}`)
+                .classList.add("squarepick");
+            }
+          }, 450);
+        } else {
+          document
+            .getElementById(`multi${multipleoutline % 5}`)
+            .classList.remove("squarepick");
+          document
+            .getElementById(`multi${++multipleoutline % 5}`)
+            .classList.add("squarepick");
+        }
       }, 90);
+    } else {
       document
-        .getElementById(`multi${multipleoutine++ % 5}`)
+        .getElementById(`multi${multipleoutline % 5}`)
         .classList.remove("squarepick");
-    }, 90);
-  }, 2500);
-
-  setTimeout(() => {
-    clearInterval(multipleIntervalBrake);
-    multipleIntervalBrake = setInterval(() => {
-      setTimeout(() => {
-        document
-          .getElementById(`multi${multipleoutine % 5}`)
-          .classList.add("squarepick");
-      }, 450);
       document
-        .getElementById(`multi${multipleoutine++ % 5}`)
-        .classList.remove("squarepick");
-    }, 450);
-  }, 5000);
-
-  setTimeout(() => {
-    clearInterval(multipleIntervalBrake);
-  }, 7000);
+        .getElementById(`multi${++multipleoutline % 5}`)
+        .classList.add("squarepick");
+    }
+  }, 15);
 };
 
 const pickMeUp = () => {
@@ -387,28 +378,22 @@ const gameStart = () => {
   };
 
   rock.onclick = () => {
+    playerSel = 2;
+    btnDisable();
+    pointerDefault();
     clearInterval(rpsImgIntervalFast);
     clearInterval(pickMeUpInterval);
-    clearInterval(scoreIntervalFast);
-    clearInterval(multipleIntervalFast);
-    btnDisable();
     bgGold("rock");
-    pointerDefault();
-    comPick();
-    playerSel = 2;
-    decision(comSel, playerSel);
+    brakeImg();
   };
 
   paper.onclick = () => {
+    playerSel = 3;
+    btnDisable();
+    pointerDefault();
     clearInterval(rpsImgIntervalFast);
     clearInterval(pickMeUpInterval);
-    clearInterval(scoreIntervalFast);
-    clearInterval(multipleIntervalFast);
-    btnDisable();
     bgGold("paper");
-    pointerDefault();
-    comPick();
-    playerSel = 3;
-    decision(comSel, playerSel);
+    brakeImg();
   };
 };

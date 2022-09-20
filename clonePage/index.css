@@ -65,6 +65,7 @@ a {
   font-weight: bolder;
   font-size: 6em;
   margin-right: 15px;
+  text-align: end;
 }
 
 #wireless {
@@ -97,9 +98,13 @@ a {
 
 #first-top-font {
   width: 1140px;
-  display: flex;
   margin: 0 auto;
-  margin-top: 150px;
+}
+
+#first-top-font-inner {
+  width: 564px;
+  display: flex;
+  margin: 133px 0 80px auto;
   flex-direction: column;
   align-items: flex-end;
 }
@@ -167,16 +172,17 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: baseline;
+  position: relative;
+  margin-right: 13px;
 }
 
 #opacityerdiv {
-  width: 50%;
+  width: 100%;
   height: 100%;
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   z-index: -1;
+  left: -90px;
+  top: 60px;
 }
 
 #third-top-left div img {
@@ -203,7 +209,7 @@ a {
   height: 535px;
 }
 
-@media (max-width: 1181px) {
+@media (max-width: 1199px) {
   #redicon {
     right: 400px;
   }
@@ -213,6 +219,9 @@ a {
   #first-top-font {
     width: 940px;
     margin-top: 203px;
+  }
+  #first-top-font-inner {
+    width: 564px;
   }
   #invasionhp {
     width: 527px;
@@ -227,19 +236,81 @@ a {
   #reddiv {
     padding-top: 10px;
   }
+  #first-top {
+    height: 751px;
+  }
+  #first-top-font {
+    width: 720px;
+    margin-top: 26px;
+  }
+  #first-top-font-inner {
+    width: 428px;
+    margin-top: 60px;
+  }
+  #invasionhp {
+    width: 403px;
+    height: 401px;
+  }
+  #second-top-left {
+    margin-top: 150px;
+    display: inline-block;
+    width: 50%;
+    margin-right: 10px;
+  }
+  #second-top-right {
+    position: static;
+    width: 50%;
+    margin-top: 200px;
+    margin-left: 10px;
+  }
+  #second-top {
+    margin-bottom: 140px;
+  }
+  #first-mid {
+    margin-top: 0px;
+  }
+  #third-top {
+    width: 720px;
+  }
+  #third-top-left {
+    width: 50%;
+  }
+  #third-top-right {
+    width: 50%;
+  }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   #redicon {
     right: 194px;
   }
   #reddiv {
     padding-top: 45px;
   }
+  #first-top {
+    height: 749px;
+  }
+  #first-top-font {
+    width: 328px;
+  }
+  #first-top-font-inner {
+    width: 428px;
+    margin-top: 10px;
+    margin-right: 75px;
+  }
 }
 
-@media (max-width: 577px) {
+@media (max-width: 575px) {
   #redicon {
     right: 106px;
+  }
+  #first-top {
+    height: 759px;
+  }
+  #first-top-font {
+    margin-right: 110px;
+  }
+  #first-top-font-inner {
+    width: 335px;
   }
 }
