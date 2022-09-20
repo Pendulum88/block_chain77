@@ -33,48 +33,50 @@ const decision = (comnum, playernum) => {
     (comnum == 2 && playernum == 3)
   ) {
     bgGold("pdraw");
-    credit = credit + 100;
-    console.log("[비김] 골드반환 : +100");
-    startbtn.disabled = false;
-    startbtn.style.cursor = "pointer";
+    setTimeout(() => {
+      credit = credit + 100;
+      console.log("[비김] 골드반환 : +100");
+      startbtn.disabled = false;
+      startbtn.style.cursor = "pointer";
+    }, 21500);
   } else if (
     (comnum == 0 && playernum == 1) ||
     (comnum == 1 && playernum == 3) ||
     (comnum == 2 && playernum == 2)
   ) {
     bgGold("plose");
-    score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
-    multiplyer = document.getElementById(
-      `multi${multipleoutine % 5}`
-    ).innerHTML;
-    multiplePick();
-    console.log(`score : ${score}`);
-    console.log(`multiplyer : ${multiplyer}`);
-    credit = credit - score * multiplyer;
-    console.log(
-      `[종료] 골드감소 : -${score * multiplyer} 현재골드 : ${credit}`
-    );
-    startbtn.disabled = false;
-    startbtn.style.cursor = "pointer";
+    setTimeout(() => {
+      score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
+      multiplyer = document.getElementById(
+        `multi${multipleoutine % 5}`
+      ).innerHTML;
+      multiplePick();
+      credit = credit - score * multiplyer;
+      console.log(
+        `[종료] 골드감소 : -${score * multiplyer} 현재골드 : ${credit}`
+      );
+      startbtn.disabled = false;
+      startbtn.style.cursor = "pointer";
+    }, 21500);
     if (credit < 100) {
       rpsimg.innerHTML = "GAME OVER";
       rpsimg.classList.add("blacker");
     }
   } else {
     bgGold("pwin");
-    score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
-    multiplyer = document.getElementById(
-      `multi${multipleoutine % 5}`
-    ).innerHTML;
-    multiplePick();
-    console.log(`score : ${score}`);
-    console.log(`multiplyer : ${multiplyer}`);
-    credit = credit + score * multiplyer;
-    console.log(
-      `[종료] 골드증가 : +${score * multiplyer} 현재골드 : ${credit}`
-    );
-    startbtn.disabled = false;
-    startbtn.style.cursor = "pointer";
+    setTimeout(() => {
+      score = document.getElementById(`item${scoreRoutine % 16}`).innerHTML;
+      multiplyer = document.getElementById(
+        `multi${multipleoutine % 5}`
+      ).innerHTML;
+      multiplePick();
+      credit = credit + score * multiplyer;
+      console.log(
+        `[종료] 골드증가 : +${score * multiplyer} 현재골드 : ${credit}`
+      );
+      startbtn.disabled = false;
+      startbtn.style.cursor = "pointer";
+    }, 21500);
     if (credit < 100) {
       rpsimg.innerHTML = "GAME OVER";
       rpsimg.classList.add("blacker");
@@ -198,36 +200,127 @@ const excuteShuffle = () => {
   }, 15);
 };
 
-const brakeShuffle = () => {
+const brakeImg = () => {
   rpsImgIntervalBrake = setInterval(() => {
     rpsimg.innerHTML = `<img src="./${rpsRoutine++ % 3}.png" />`;
-  }, rpsBrake);
+  }, 200);
 
+  setTimeout(() => {
+    clearInterval(rpsImgIntervalBrake);
+    rpsImgIntervalBrake = setInterval(() => {
+      rpsimg.innerHTML = `<img src="./${rpsRoutine++ % 3}.png" />`;
+    }, 450);
+  }, 2500);
+
+  setTimeout(() => {
+    clearInterval(rpsImgIntervalBrake);
+    rpsImgIntervalBrake = setInterval(() => {
+      rpsimg.innerHTML = `<img src="./${rpsRoutine++ % 3}.png" />`;
+    }, 1000);
+  }, 5000);
+
+  setTimeout(() => {
+    clearInterval(rpsImgIntervalBrake);
+    comPick();
+    brakescore();
+    decision(comSel, playerSel);
+  }, 7100);
+};
+
+const brakescore = () => {
+  clearInterval(scoreIntervalFast);
   scoreIntervalBrake = setInterval(() => {
     setTimeout(() => {
       document
         .getElementById(`item${scoreRoutine % 16}`)
         .classList.add("squarepick");
-    }, scoreBrake);
+    }, 100);
     document
       .getElementById(`item${scoreRoutine % 16}`)
       .classList.remove("squarepick");
-    scoreBrake = scoreBrake * 10;
     scoreRoutine++;
-  }, scoreBrake);
+  }, 100);
 
+  setTimeout(() => {
+    clearInterval(scoreIntervalBrake);
+    scoreIntervalBrake = setInterval(() => {
+      setTimeout(() => {
+        document
+          .getElementById(`item${scoreRoutine % 16}`)
+          .classList.add("squarepick");
+      }, 100);
+      document
+        .getElementById(`item${scoreRoutine % 16}`)
+        .classList.remove("squarepick");
+      scoreRoutine++;
+    }, 300);
+  }, 2500);
+
+  setTimeout(() => {
+    clearInterval(scoreIntervalBrake);
+    scoreIntervalBrake = setInterval(() => {
+      setTimeout(() => {
+        document
+          .getElementById(`item${scoreRoutine % 16}`)
+          .classList.add("squarepick");
+      }, 100);
+      document
+        .getElementById(`item${scoreRoutine % 16}`)
+        .classList.remove("squarepick");
+      scoreRoutine++;
+    }, 700);
+  }, 5000);
+
+  setTimeout(() => {
+    clearInterval(scoreIntervalBrake);
+    clearInterval(multipleIntervalFast);
+    brakeMultiple();
+  }, 7000);
+};
+
+const brakeMultiple = () => {
   multipleIntervalBrake = setInterval(() => {
     setTimeout(() => {
       document
         .getElementById(`multi${multipleoutine % 5}`)
         .classList.add("squarepick");
-    }, multipleBrake);
+    }, 15);
     document
-      .getElementById(`multi${multipleoutine % 5}`)
+      .getElementById(`multi${multipleoutine++ % 5}`)
       .classList.remove("squarepick");
-    multipleBrake = multipleBrake * 10;
-    multipleoutine++;
-  }, multipleBrake);
+  }, 15);
+
+  setTimeout(() => {
+    clearInterval(multipleIntervalBrake);
+    multipleIntervalBrake = setInterval(() => {
+      setTimeout(() => {
+        document
+          .getElementById(`multi${multipleoutine % 5}`)
+          .classList.add("squarepick");
+      }, 90);
+      document
+        .getElementById(`multi${multipleoutine++ % 5}`)
+        .classList.remove("squarepick");
+    }, 90);
+  }, 2500);
+
+  setTimeout(() => {
+    clearInterval(multipleIntervalBrake);
+    multipleIntervalBrake = setInterval(() => {
+      setTimeout(() => {
+        document
+          .getElementById(`multi${multipleoutine % 5}`)
+          .classList.add("squarepick");
+      }, 450);
+      document
+        .getElementById(`multi${multipleoutine++ % 5}`)
+        .classList.remove("squarepick");
+    }, 450);
+  }, 5000);
+
+  setTimeout(() => {
+    clearInterval(multipleIntervalBrake);
+  }, 7000);
 };
 
 const pickMeUp = () => {
@@ -284,21 +377,13 @@ const gameStart = () => {
   scissors.style.cursor = "pointer";
 
   scissors.onclick = () => {
+    playerSel = 1;
+    btnDisable();
+    pointerDefault();
     clearInterval(rpsImgIntervalFast);
-    brakeShuffle();
-    setTimeout(() => {
-      console.log("셋타임아웃 작동 !");
-      clearInterval(rpsImgIntervalFast);
-      clearInterval(pickMeUpInterval);
-      clearInterval(scoreIntervalFast);
-      clearInterval(multipleIntervalFast);
-      btnDisable();
-      bgGold("scissors");
-      pointerDefault();
-      comPick();
-      playerSel = 1;
-      decision(comSel, playerSel);
-    }, 5000);
+    clearInterval(pickMeUpInterval);
+    bgGold("scissors");
+    brakeImg();
   };
 
   rock.onclick = () => {
