@@ -1,0 +1,39 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Orc {
+        constructor(name, level, hp, mp) {
+          this.name = name;
+          this.level = level;
+          this.hp = hp;
+          this.mp = mp;
+        }
+        getName() {
+          return this.name;
+        }
+        getLevel() {
+          return this.level;
+        }
+        getHp() {
+          return this.hp;
+        }
+        getMp() {
+          return this.mp;
+        }
+      }
+
+      const orc1 = new Orc("orc warrior", 3, 200, 100);
+      const orc2 = new Orc("orc spearman", 5, 500, 150);
+      const orc3 = new Orc("orc archer", 10, 300, 300);
+      console.log(orc1);
+      console.log(orc2);
+      console.log(orc3);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class</title>
+  </head>
+  <body>
+    <script>
+      // 앞에 new가 붙어있는애들이 보통 class 생성하는 메서드이다
+      console.log(new Date());
+      console.log(new Set([1, 2, 3]));
+
+      class Block7 {
+        // Block7 클래스를 선언했다
+        constructor(count) {
+          // 생성자 : 생성자를 기준으로 객체를 생성한다
+          this.count = count;
+          // 클래스의 count를 선언, 정의 즉 초기화한다
+          // 매개변수 count로
+          // this는 객체다 즉 생성되는 객체의 count 키에 count 값을 초기화 한거다
+        }
+
+        consoleLog() {
+          // 클래스의 메서드를 선언한다
+          console.log("클래스 블록 7기의" + this.count + "번째 학생입니다");
+        }
+      }
+      // 이 위는 클래스를 생성하는 방법을 정의한것이고
+
+      const block7 = new Block7(1); // 여기서 클래서를 생성한것이다
+      // Block7 클래스를 새롭게 생성한다
+      // 생성된 객체는 Block7을 기준으로 하기 때문에 개발자 도구에 이름이 붙어있다
+      // new Block7, 즉 new를 붙이고 호출시 constructor를 호출한다
+      // 매개변수는 constructor의 매개변수로 전달된다
+      // 자바스크립트에 원래 클래스는 없었으나 C++ C# Java 등을 사용하는 개발자들의 요청으로 추가되었다
+      block7.consoleLog();
+      // block7의 consoleLog 메서드를 호출한다
+      console.log(block7);
+      // block7 확인
+
+      const block7Obj = {
+        count: 1,
+        consoleLog() {
+          console.log("객체 블록 7기의" + this.count + "번째 학생입니다");
+        },
+      };
+      block7Obj.consoleLog();
+      console.log(block7Obj);
+
+      function Block7Func(count) {
+        this.count = count;
+      }
+
+      Block7Func.prototype.consoleLog = function () {
+        // 화살표 함수의 this는 root다
+        console.log("함수 블록 7기의" + this.count + "번째 학생입니다");
+      };
+
+      const block7func = new Block7Func(2);
+      block7func.consoleLog();
+      console.log(block7func);
+
+      class Student extends Block7 {
+        // extends를 사용하여 Block7을 상속받아 Student 클래스를 생성한다
+        constructor(name, count) {
+          // 생성자 : new 붙여서 생성할때 사용되는 코드
+          super(count);
+          // super : 부모의 생성자, Block7의 생성자다
+          // 부모의 constructor를 가져온다
+          // super는 부모의 생성자 함수를 호출한다
+          this.name = name;
+        }
+        consoleLog() {
+          console.log("이름은 " + this.name + "입니다");
+          super.consoleLog();
+        }
+      }
+
+      const kjk = new Student("김정규", 1);
+      kjk.consoleLog();
+      console.log(kjk);
+    </script>
+  </body>
+</html>

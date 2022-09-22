@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log((65).toString(2)); // 2진수 표기
+      console.log((65).toString(16)); // 16진수 표기
+      console.log("\uAC00");
+      // 자료 구조란 한정된 용량(메모리, 공간)에 최적화 시켜서 많은 데이터를 쓸 수 있도록 설계된 것
+      // call stack, memory heap
+      // Web API
+      // Callback Queue
+      // 여기서중요한 키워드는 stack,heap, Queue
+      // 스택(stack) : 선입후출, 먼저 들어간게 나중에 나온다 / push, pop
+      let count = 0;
+      function stackOverFlow(count) {
+        console.log(count);
+        if (++count < 10) stackOverFlow(count);
+        console.log(count + "end");
+      }
+
+      stackOverFlow(0);
+
+      // 큐(queue) : 선입선출, 먼저 들어간 것이 먼저 나온다 / push, shift
+      // 큐는 보통 사용자 입력에 대해서 관리한다
+      // 힙(heap) : 객체, 배열을 저장할때 사용한다. 데이터가 상당히 마구잡이로 위치한다
+      // 그냥 아무데나 던져놓고 걔가 어딨는지 위치만 기억해놓는다
+      // Web API :
+    </script>
+  </body>
+</html>
+
+<!-- 
+윈도우 파워쉘 실행
+cd C:\Users\KGA_09\Documents\GitHub\block_chain77\9.22.class
+Format-Hex text.txt
+우리가 친거 (abcd...)를 컴퓨터가 어떻게 기억하느냐를 나타낸다
+컴퓨터는 이 내용에 대해 이런식으로 저장을 해놓는다
+구글에서 ascii코드표 검색
+16진수에 해당하는걸로다가 하면 딱 맞음
+근데왜 10진수로 안하냐?
+컴퓨터는 16진수로 표현 한건데 이유는
+컴퓨터는 0 과 1로 이루어져 있어서
+16진수는 2를 4번씩 곱해서 16진수로 표현했다
+16진수 표현은 0 ~ 9 , A ~ F까지 쓴다
+txt에 한글테스트 해서 다시 포맷헥스 했는데 깨짐
+좌측하단블럭 : 메모리 위치(주소) (포인터라고도 한다)
+61 62 63 위에 있는 블럭 : 이것도 주소
+좌표처럼 쓸수 있다
+    <script>
+      console.log((65).toString(2)); // 2진수 표기
+      console.log((65).toString(16)); // 16진수 표기
+    </script>
+    이거 침
+dencode.com 접속
+
+
+
+
+
+ -->
