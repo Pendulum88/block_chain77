@@ -34,6 +34,46 @@
       console.log(orc1);
       console.log(orc2);
       console.log(orc3);
+
+      class ChiefOrc extends Orc {
+        constructor(orcnum) {
+          super(name, level, hp, mp, pow);
+          this.name = name;
+          this.level = level;
+          this.hp = hp;
+          this.mp = mp;
+          this.pow = (orc1.level * orc1.mp) / 3;
+        }
+
+        attack(tanker) {
+          console.log((tanker.hp = tanker.hp - this.pow));
+        }
+      }
+
+      const cOrc1 = new ChiefOrc(orc1);
+      const cOrc2 = new ChiefOrc();
+
+      console.log(cOrc1);
+
+      /*
+      console.log(cOrc1);
+
+      cOrc1.attack(cOrc2);
+
+      function ClassTest1(data) {
+        this.a = 1;
+        this.b = data;
+      }
+      const tempTest1 = new ClassTest1(3);
+
+      class ClassTest2 {
+        constructor(data) {
+          this.a = 1;
+          this.b = data;
+        }
+      }
+      const tempTest2 = new ClassTest2(3);
+      */
     </script>
   </body>
 </html>

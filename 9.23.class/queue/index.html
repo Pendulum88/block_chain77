@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queue</title>
+  </head>
+  <body>
+    <script>
+      const queueNode = {
+        arr: [],
+        enqueue(data) {
+          // 뒤에서 넣고
+          this.arr.push(data);
+        },
+        dequeue() {
+          // 앞에서 뺀다
+          return this.arr.shift();
+        },
+        get() {
+          return [...this.arr];
+          // arr에 직접적으로 접근하지 못하게 하도록, arr 자체를 가져오지 못하도록 한다
+        },
+      };
+      queueNode.enqueue(0);
+      queueNode.enqueue(2);
+      queueNode.enqueue(4);
+      queueNode.enqueue(6);
+      console.log(queueNode.dequeue());
+      console.log(queueNode.get());
+
+      class Node {
+        constructor(data) {
+          this.data = data;
+        }
+      }
+
+      class StackNode extends Node {
+        constructor(data, head) {
+          super(data);
+          this.head;
+        }
+
+        enqueue(data) {
+          if (!this.data) {
+            this.data = data;
+          } else if (this.head) {
+            this.head.push(data);
+          } else {
+            this.head = new queueNode(data);
+          }
+        }
+
+        dequeue() {
+          const temp = this.data;
+          // 첫 데이터를 저장한다. 정의한다
+          if (this.head) {
+            // 헤드가 있으면
+            this.data = this.head.data;
+            // 현재 노드의 데이터를 헤드의 데이터로 정의한다
+            if (this.head?.head) {
+              // 헤드의 헤드가 없으면 (다음 헤드가 마지막 데이터면)
+              delete this.head;
+              // 헤드를 삭제한다
+            } else {
+              // 헤드의 헤드가 있으면(현재 노드의 헤드가 마지막 노드가 아니면)
+              this.head.shift();
+              //헤드의 shift 메서드를 호출한다
+            }
+          } else {
+            // 헤드가 없으면 현재 노드가 끝이기 때문에 data를 없애준다
+            this.data = undefined;
+          }
+          return temp;
+          // 첫 데이터를 return, 반환해준다
+        }
+      }
+    </script>
+  </body>
+</html>

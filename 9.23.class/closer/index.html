@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function leeJH() {
+        let name;
+        // 함수의 스코프 내에서 지역변수로 name을 사용했다
+        class LeeJH {
+          // 클래스를 생성해서 get, set,consoleLog 메서드를 사용하기위해 만들었다
+          get() {
+            // get 메서드는 함수의 지역변수 name을 가져올 수 있다
+            return name;
+          }
+          set(data) {
+            // set 메서드는 받은 데이터를 지역변수 name에 정의한다
+            name = data;
+          }
+          consoleLog() {
+            // name 확인용
+            console.log(name);
+          }
+        }
+        return new LeeJH();
+      }
+      // 이와같이 함수에 클래스를 쓴 이유는 지역변수는 전역변수로 사용이 가능한데, class를 사용하면
+      // 지역변수는 지역변수로만 사용이 가능해서 이와 같이 쓴다고 한다
+      const tempJH = leeJH();
+      tempJH.set("이재혁");
+      console.log(tempJH.get());
+      tempJH.set("정재훈");
+      console.log(tempJH.get());
+      tempJH.name = "허재원";
+      console.log(tempJH.name); // 12번줄의 name과는 다른변수다
+      console.log(tempJH.get());
+
+      let name; // 변수
+      let temp = { name }; // 객체의 키
+      // 호이스팅 클로즈 스택 큐 면접질문
+    </script>
+  </body>
+</html>
