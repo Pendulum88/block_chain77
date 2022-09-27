@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+
+      .biggest {
+        width: 1000px;
+        height: 1000px;
+        background-color: coral;
+        margin: 0 auto;
+      }
+      p {
+        display: inline-block;
+        width: 100px;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="biggest"></div>
+    <script>
+      const createData = (divData) => {
+        const newP = document.createElement("p"); // p를 만드는 역할
+        const newText = document.createTextNode(divData); // 텍스트를 만드는 역할
+        newP.appendChild(newText); // newP에 newText 삽입
+        document.getElementsByClassName("biggest")[0].appendChild(newP); // p와 텍스트가 합쳐진걸 만든다
+        // classname 쓸때 [0] 이거 잊지말자
+        // 유사배열(컬렉션)을 반환하기때문에 해줘야함
+        // 크리에이트 엘리먼트와 어펜드차일드는 셋트다
+      };
+
+      const createTail = (divData) => {
+        const newPHead = document.createElement("p");
+        const newTextHead = document.createTextNode(divData);
+        newPHead.appendChild(newTextHead);
+        document.getElementsByClassName("biggest")[0].appendChild(newPHead);
+      };
+
+      class Node {
+        constructor(data) {
+          this.data = data;
+          this.next = undefined;
+        }
+      }
+      class SingleLinkedList {
+        constructor(data) {
+          this.head = undefined;
+          this.size = 0;
+        }
+        insert(data) {
+          if (!this.head) {
+            this.head = new Node(data);
+            this.tail = this.head;
+            createData(this.head.data);
+          } else {
+            const temp = new Node(data);
+            this.tail.next = temp;
+            this.tail = temp;
+            createTail(this.tail.data);
+          }
+        }
+      }
+
+      const testing = new SingleLinkedList();
+      testing.insert(5);
+      testing.insert(6);
+      testing.insert(7);
+      testing.insert(8);
+    </script>
+  </body>
+</html>
