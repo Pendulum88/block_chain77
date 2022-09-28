@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    문제 : https://school.programmers.co.kr/learn/courses/30/lessons/12931
+    <script>
+      function solution(n) {
+        let num = [];
+        let sum = 0;
+        while (n > 0) {
+          num.push(n % 10);
+          n = parseInt(n / 10);
+        }
+        for (let i = 0; i < num.length; i++) {
+          sum = sum + num[i];
+        }
+        return sum;
+      }
+
+      console.log(solution(122432));
+    </script>
+  </body>
+</html>
