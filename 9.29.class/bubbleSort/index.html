@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>버블 정렬</title>
+  </head>
+  <body>
+    <script>
+      console.time("bubbleSort");
+      function swap(arr, idx1, idx2) {
+        const temp = arr[idx1];
+        arr[idx1] = arr[idx2];
+        arr[idx2] = temp;
+      }
+
+      const dataArr = [
+        727, 129, 621, 333, 100, 708, 1112, 1121, 1229, 214, 1818, 500, 6, 8282,
+        119, 3838,
+      ];
+
+      function bubbleSort(arr) {
+        const tempArr = [...arr]; // 원본을 수정하지 않기 위해서 임시 배열을 사용한다
+        // ...(스프레드, 전개 연산자)는 배열 등 데이터의 모음을 풀어서 반환한다.
+        // 보통 [...***]을 사용하여 유사 배열 ***을 배열로 변환한다. << 해당 방법 사용 시 직전 코드 마지막에 ;(세미클론)이 없으면 한 줄(하나의 코드)로 인식되서 오류가 발생하는 경우가 있다.
+        for (let i = 0; i < tempArr.length; i++) {
+          for (let j = 0; j < tempArr.length - 1; j++) {
+            // -1을 - i로 해도 된다(최적화)
+            if (tempArr[j] > tempArr[j + 1]) swap(tempArr, j, j + 1);
+          }
+        }
+        return tempArr;
+      }
+
+      console.log(dataArr);
+      console.log(bubbleSort(dataArr));
+      console.timeEnd("bubbleSort");
+    </script>
+  </body>
+</html>
