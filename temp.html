@@ -51,7 +51,10 @@
       <div>div5</div>
     </div>
     <script>
-      console.log(add(2, 3));
+      let Arr = new Array(123, "string", false);
+      console.log(Arr); // [123, 'string', false]
+      console.log(Arr.splice(1, 1, 456, 789));
+      console.log(Arr); // ['value', 123, 'string', false]
     </script>
   </body>
 </html>
