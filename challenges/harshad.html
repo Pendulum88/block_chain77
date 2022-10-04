@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    문제 : https://school.programmers.co.kr/learn/courses/30/lessons/12947
+    <script>
+      function solution(num) {
+        let i = 0;
+        const Arr = [];
+        let sum = 0;
+        while (num.toString()[i]) {
+          Arr.push(num.toString()[i++]);
+        }
+
+        for (let i = 0; i < Arr.length; i++) {
+          sum = sum + parseInt(Arr[i]);
+        }
+
+        return num % sum == 0 ? true : false;
+      }
+
+      console.log(solution(999));
+    </script>
+  </body>
+</html>
