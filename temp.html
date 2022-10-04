@@ -6,49 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-    body {
-      padding: 50px;
-    }
-    body > div {
-      background-color: coral;
-      width: 700px;
-      display: flex;
-      flex-direction: column;
-    }
-    div div {
-      border: 1px solid black;
-    }
-
-    div div:nth-child(1) {
-      flex-basis: 100px;
-    }
-    div div:nth-child(2) {
-      flex-basis: 100px;
-    }
-    div div:nth-child(3) {
-      width: 50px;
-      flex-basis: 50px;
-    }
-    div div:nth-child(4) {
-      width: 100px;
-    }
-    div div:nth-child(5) {
-      width: 100px;
-    }
-  </style>
   <body>
-    <div>
-      <div>div1</div>
-      <div>div2</div>
-      <div>div3</div>
-      <div>div4</div>
-      <div>div5</div>
-    </div>
+    <script>
+      for (let i = 0; i < 10; i++) {
+        if (i == 5) continue;
+        console.log(i); // 0~4 출력
+      }
+    </script>
   </body>
 </html>
