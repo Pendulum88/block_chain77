@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
+.main {
+  width: 55vw;
+  min-width: 800px;
+  min-height: 600px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.bgup {
+  background-color: blanchedalmond;
+  position: absolute;
+  width: 55vw;
+  height: 75vh;
+}
+
+.bgdown {
+  background-color: burlywood;
+  position: absolute;
+  top: 75%;
+  width: 55vw;
+  height: 25vh;
+}
+
+#canon {
+  width: 100px;
+  height: 10%;
+  display: inline-block;
+  position: sticky;
+  top: 65%;
+  background-color: coral;
+}
+
+.bullet {
+  width: 12px;
+  height: 25px;
+  display: inline-block;
+  position: absolute;
+  background-image: url(./assets/bullet.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
