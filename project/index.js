@@ -20,8 +20,10 @@ let shot;
 let rubyList = [];
 let rubywidth = 80;
 let rubyheight = 80;
-let columbounce;
-let rowbounce;
+
+function randomInt(max, min) {
+  return parseInt(Math.random() * (max - min + 1)) + min;
+}
 
 function loadImage() {
   backgroundImage = new Image();
@@ -66,7 +68,7 @@ function render() {
 }
 
 function main() {
-  // 메인함수
+  // ↑ 메인함수
   render();
   for (let i = 0; i < bulletList.length; i++) {
     bulletList[i].update();
@@ -74,8 +76,10 @@ function main() {
   for (let i = 0; i < rubyList.length; i++) {
     rubyList[i].update();
   }
-  muddler = parseInt(Math.random() * 2);
   requestAnimationFrame(main);
+  if (rubyList.length < 3) {
+    createRuby();
+  }
 }
 
 function fire() {
@@ -85,6 +89,7 @@ function fire() {
 }
 
 function holdfire() {
+  // ↑ 발사 딜레이를 변경시, 인터벌을 멈추고 → 딜레이 변수값 변경 → 인터벌 시작 해야 하므로 만들어 놓음
   clearInterval(shot);
 }
 
@@ -115,45 +120,55 @@ function Ruby() {
   this.x = 0;
   this.y = 0;
   this.init = function () {
-    this.x = 50;
+    this.x = randomInt(0, canvas.width - rubywidth);
     this.y = 0;
     rubyList.push(this);
   };
+  let rowbounce;
+  let gravity = 0;
+  // ↑ 코드 구조상 각각의 인스턴스가 하나의 중력의 영향을 받으면 오류가 생기므로 지역변수로 선언하였음
+  const xmove = randomInt(10, 3);
+  // ↑ 각각의 인스턴스 마다 x축 이동 속도를 다르게 하기위해 랜덤값 정의
+  // 사용된 연산은 최솟값과 최댓값을 정의하는 공식을 사용했음 Math.random() * (MAX - MIN + 1) + MIN
   this.update = function () {
-    if (this.y > canvas.height - 180) {
-      columbounce = false;
-    } else if (this.y == 0) {
-      columbounce = true;
+    if (gravity >= 28) gravity = 28;
+    // ↑ 중력의 최대치 제한
+    this.y += ++gravity;
+    // ↑ 인스턴스는 중력의 영향으로 아래로 떨어진다 (점점 더 빨라지는 중력가속도 구현)
+    if (this.y >= canvas.height - 180) {
+      // ↑ 땅에 닿으면
+      gravity = -gravity;
+      // ↑ 중력의 역전(관성의 법칙 구현)
+      gravity--;
+      // ↑ 이 코드가 없으면 통통 튕길때마다 인스턴스가 도달하는 최대 높이가 점점 줄어든다
     }
-    if (this.x < 0) {
+    if (this.x <= 0) {
       rowbounce = true;
-    } else if (this.x > canvas.width - rubywidth) {
+    } else if (this.x >= canvas.width - rubywidth) {
       rowbounce = false;
     }
-    if (columbounce) {
-      this.y += 6;
-    } else {
-      this.y -= 6;
-    }
     if (rowbounce) {
-      this.x += 6;
+      this.x += xmove;
     } else {
-      this.x -= 6;
+      this.x -= xmove;
     }
   };
 }
 
 addEventListener("mousemove", function (e) {
   charactorImageX = e.clientX - 332;
-  // ↓ canvas 밖으로 나가지 못하도록 예외처리
+  // ↑ 캐릭터의 x축을 mousemove를 통해 움직인다
   if (charactorImageX <= 0) {
     charactorImageX = 0;
   } else if (charactorImageX >= canvas.width - charactorWidth) {
     charactorImageX = canvas.width - charactorWidth;
   }
+  // ↑ canvas 밖으로 나가지 못하도록 예외처리
 });
 
 loadImage();
 main();
 fire();
-createRuby();
+
+// 중력 구현까지 해놨음, 이제 떨어지는 속도 조절하고, 떨어지는 속도가
+// 줄어듬에 따라 튀어오르는 높이가 줄어드는데, 높이가 일정이상 올라가게 수정해야함
