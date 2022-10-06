@@ -5,6 +5,11 @@
 }
 
 body {
+  padding-left: 300px;
+  padding-top: 100px;
+}
+
+/* body {
   background-color: black;
 }
 
@@ -36,7 +41,7 @@ body {
   height: 10%;
   display: inline-block;
   position: sticky;
-  top: 65%;
+  top: 70%;
   background-color: coral;
 }
 
@@ -50,3 +55,4 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+ */
