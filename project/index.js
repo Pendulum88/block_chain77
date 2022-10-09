@@ -2,10 +2,10 @@ let canvas;
 let ctx;
 
 canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
 ctx = canvas.getContext("2d");
 canvas.width = 400;
 canvas.height = 700;
-document.body.appendChild(canvas);
 
 let backgroundImage, bulletImage, charactorImage;
 let charactorImageX = canvas.width / 2 - 32;
@@ -69,7 +69,12 @@ function render() {
       rubywidth,
       rubyheight
     );
-    // .rotate((rotate++ * Math.PI) / 180);
+    // ctx.translate(canvas.width / 2, canvas.height / 2);
+    // ctx.rotate((30 * Math.PI) / 180);
+    // ctx.translate(-canvas.width / 2, -canvas.height / 2);
+    // ctx.drawImage(rubyList[i].rubyImage, 120, 0);
+    // ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+    // rotate((rotate++ * Math.PI) / 180)
     ctx.fillText(rubyList[i].hp, rubyList[i].x + 20, rubyList[i].y + 50);
     ctx.font = "30px normal";
   }
@@ -88,6 +93,8 @@ function main() {
       rubyList.splice(i, 1);
     }
   }
+  level = 1 + parseInt(score / 300);
+
   requestAnimationFrame(main);
 }
 
@@ -157,7 +164,7 @@ function Ruby() {
 
   this.init = function () {
     this.x = randomInt(0, canvas.width - rubywidth);
-    this.y = 0;
+    this.y = -70;
     rubyList.push(this);
   };
   let rowbounce;

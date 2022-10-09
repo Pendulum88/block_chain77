@@ -1,24 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <title>캔바스 상의 오브젝트 회전</title>
+    <style type="text/css">
+      canvas {
+        border: 1px solid black;
+        background-color: rgb(220, 220, 255);
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript">
+      var canvas;
+      var ctx;
+      var rad = (270 * Math.PI) / 180; //로켓이 오른쪽을 향하고 있는 이미지이므로 270도 회전하여 위를 향하도록 한다
+      var rocket;
+      var timer;
+      var xSpeed, ySpeed;
+      var x = 0.0,
+        y = 0.0;
+
+      $(function () {
+        canvas = $("#gameCanvas").get(0);
+        ctx = canvas.getContext("2d");
+        //캔바스는 원래 키보드 이벤트를 발생하지 않지만 페이지 내에서 사용하지 않는 탭인덱스를 설정해주면 키보드 이벤트가 발생한다
+        canvas.tabIndex = 1000;
+
+        rocket = new Image();
+        rocket.src = "1.png";
+        x = canvas.width / 2;
+        y = canvas.height - 40;
+        $(rocket).load(function () {
+          ctx.save(); // context 현상태 저장
+          ctx.translate(x, y); //붓을 캔바스 중앙하단으로 이동
+          ctx.rotate(rad); //붓을 회전
+          ctx.drawImage(rocket, -33, -40); //이미지 그리기
+          ctx.restore(); // context 원상태 복귀
+        });
+        canvas.focus();
+
+        //A,D키를 눌러 로켓의 발사방향을 설정하고, SPACE키로 발사한다
+        $(canvas).on("keydown", function (evt) {
+          //alert(evt.which);
+          if (evt.which == 65) {
+            //A, 좌회전
+            rad -= 0.05;
+          } else if (evt.which == 68) {
+            //D, 우회전
+            rad += 0.05;
+          } else if (evt.which == 32) {
+            // SPACE, 발사
+            ySpeed = Math.sin(rad) * 3; //기울기 및 속도 설정
+            xSpeed = Math.cos(rad) * 3;
+            timer = setInterval(fire, 33); // 이동
+          }
+          //발사방향으로 로켓 회전
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.save();
+          ctx.translate(canvas.width / 2, canvas.height - 40);
+          ctx.rotate(rad);
+          ctx.drawImage(rocket, -33, -40);
+          ctx.restore();
+        });
+      });
+
+      //로켓 이동(setInterval()에 의해 주기적으로 호출됨)
+      function fire() {
+        x += xSpeed;
+        y += ySpeed;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rad);
+        ctx.drawImage(rocket, -33, -40);
+        ctx.restore();
+      }
+    </script>
   </head>
   <body>
-    <div>
-      <div>div1</div>
-      <div>div2</div>
-      <div>div3</div>
-      <div>div4</div>
-      <div>div5</div>
-    </div>
-    <script>
-      let Arr = new Array(123, "string", false);
-      console.log(Arr); // [123, 'string', false]
-      console.log(Arr.splice(1, 1, 456, 789));
-      console.log(Arr); // ['value', 123, 'string', false]
-    </script>
+    <p>
+      <canvas id="gameCanvas" width="400" height="300"></canvas>
+    </p>
   </body>
 </html>
