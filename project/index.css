@@ -8,3 +8,8 @@ body {
   padding-left: 300px;
   padding-top: 100px;
 }
+
+.info {
+  display: flex;
+  gap: 20px;
+}

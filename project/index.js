@@ -8,14 +8,14 @@ canvas.width = 400;
 canvas.height = 700;
 
 let backgroundImage, bulletImage, charactorImage;
-let charactorImageX = canvas.width / 2 - 32;
+let charactorWidth = 58;
+let charactorHeight = 58;
+let charactorImageX = canvas.width / 2 - charactorWidth / 2;
 let charactorImageY = canvas.height - 130;
-let charactorWidth = 64;
-let charactorHeight = 64;
 let bulletList = [];
 let bulletWidth = 14;
 let bulletHeight = 22;
-let delay = 20;
+let delay = 500;
 let shot;
 let rubyList = [];
 let rubywidth = 80;
@@ -25,6 +25,58 @@ let score = 0;
 let level = 1;
 let rotation = 2;
 let count = 0;
+let rotationValue = 0;
+let pause = false;
+let gameOver = false;
+let gameOverSwitch = false;
+let bulletPower = 1;
+
+function bulletPowerUp() {
+  bulletPower++;
+}
+
+function delayDown() {
+  if (delay == 30) return;
+  delay -= 10;
+  holdFire();
+  openFire();
+}
+
+function delayUp() {
+  delay += 10;
+  holdFire();
+  openFire();
+}
+
+addEventListener("keydown", function (e) {
+  if (e.keyCode == 32) pauseResume();
+});
+
+function gameOverSW() {
+  if (gameOverSwitch) {
+    gameOverSwitch = false;
+  } else if (!gameOverSwitch) {
+    gameOverSwitch = true;
+  }
+}
+
+function pauseResume() {
+  if (pause) {
+    openFire();
+    pause = false;
+  } else if (!pause) {
+    holdFire();
+    pause = true;
+  }
+}
+
+function levelup() {
+  level = level + 1;
+}
+
+function toRadian(rad) {
+  return (rad * Math.PI) / 180;
+}
 
 function randomInt(max, min) {
   return parseInt(Math.random() * (max - min + 1)) + min;
@@ -37,11 +89,13 @@ function loadImage() {
   bulletImage.src = "./assets/bullet.png";
   charactorImage = new Image();
   charactorImage.src = "./assets/canon.png";
+  gameOverImage = new Image();
+  gameOverImage.src = "./assets/gameOver.png";
 }
 
 function render() {
   ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-  ctx.fillText(`SCORE : ${score}`, 20, 50);
+  // ctx.fillText(`SCORE : ${score}`, 20, 50);
   ctx.drawImage(
     charactorImage,
     charactorImageX,
@@ -60,8 +114,14 @@ function render() {
     );
   }
 
+  document.getElementById("power").innerHTML = `power : ${bulletPower}`;
+  document.getElementById("score").innerHTML = `score : ${score}`;
+  document.getElementById("level").innerHTML = `level : ${level}`;
+  document.getElementById("delay").innerHTML = `delay : ${delay}`;
+}
+
+function rubyRender() {
   for (let i = 0; i < rubyList.length; i++) {
-    // ctx.rotate((30 * Math.PI) / 180);
     ctx.drawImage(
       rubyList[i].rubyImage,
       rubyList[i].x,
@@ -69,42 +129,54 @@ function render() {
       rubywidth,
       rubyheight
     );
-    // ctx.translate(canvas.width / 2, canvas.height / 2);
-    // ctx.rotate((30 * Math.PI) / 180);
-    // ctx.translate(-canvas.width / 2, -canvas.height / 2);
-    // ctx.drawImage(rubyList[i].rubyImage, 120, 0);
-    // ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
-    // rotate((rotate++ * Math.PI) / 180)
     ctx.fillText(rubyList[i].hp, rubyList[i].x + 20, rubyList[i].y + 50);
     ctx.font = "30px normal";
   }
+  // rotationValue += 0.01;
 }
+
+// context.save();
+// context.setTransform(1, 0, 0, 1, 0, 0);
+// context.translate(350, 350);
+// context.scale(scaleValue, scaleValue);
+// context.rotate(toRadian(rotationValue));
+// context.strokeRect(-50, -50, 100, 100);
+// context.restore();
+// scaleValue += 0.001;
+// rotationValue += 1;
+// requestAnimationFrame(draw);
 
 function main() {
   // ↑ 메인함수
-  render();
-  for (let i = 0; i < bulletList.length; i++) {
-    bulletList[i].update();
-    bulletList[i].checkHit();
+  if (gameOver) {
+    ctx.drawImage(gameOverImage, 0, canvas.height / 3, canvas.width, 80);
+    return;
   }
-  for (let i = 0; i < rubyList.length; i++) {
-    rubyList[i].update();
-    if (rubyList[i].hp < 1) {
-      rubyList.splice(i, 1);
+  if (!pause) {
+    render();
+    rubyRender();
+    for (let i = 0; i < bulletList.length; i++) {
+      bulletList[i].update();
+      bulletList[i].checkHit();
     }
+    for (let i = 0; i < rubyList.length; i++) {
+      rubyList[i].update();
+      if (rubyList[i].hp < 1) {
+        rubyList.splice(i, 1);
+      }
+    }
+    level = 1 + parseInt(score / 100);
   }
-  level = 1 + parseInt(score / 300);
-
   requestAnimationFrame(main);
 }
 
-function fire() {
+function openFire() {
   shot = setInterval(() => {
     createBullet();
   }, delay);
 }
 
-function holdfire() {
+function holdFire() {
   // ↑ 발사 딜레이를 변경시, 인터벌을 멈추고 → 딜레이 변수값 변경 → 인터벌 시작 해야 하므로 만들어 놓음
   clearInterval(shot);
 }
@@ -138,8 +210,8 @@ function Bullet() {
         // ↑ 충돌 판정
       ) {
         bulletList.splice(this, 1);
-        --rubyList[i].hp;
-        score++;
+        rubyList[i].hp = rubyList[i].hp - bulletPower;
+        score = score + bulletPower;
       }
     }
   };
@@ -196,6 +268,23 @@ function Ruby() {
     } else {
       this.x -= xmove;
     }
+
+    if (
+      this.x + 80 - 19 > charactorImageX + 19 &&
+      charactorImageX + charactorWidth - 19 > this.x + 19 &&
+      this.y + 75 > charactorImageY &&
+      gameOverSwitch
+    ) {
+      gameOver = true;
+    }
+
+    // 캐릭끝336 = 루비끝256
+    // 캐릭처음0 = 루비처음
+
+    // 캐릭Y570 = 루비 최저도달520 (+80)
+
+    // 캐릭 가로세로 64
+    // 루비 가로세로 80
   };
 }
 
@@ -212,7 +301,7 @@ addEventListener("mousemove", function (e) {
 
 loadImage();
 main();
-fire();
+openFire();
 createRuby();
 
 // 교수님 오더
@@ -222,12 +311,9 @@ createRuby();
 // 세로축 충돌시 입사각 반사각 해서 일정하게 튕기는데, 이거를 랜덤하게 바꿔보기
 
 // 이펙트 구현
-// 스코어추가
-// 스코어출력
 // 인스턴스 회전
 // 일시정지버튼
 // 분열
-// 루비 이미지 4개 다쓰기
 // 코인드랍
 // 코인출력
 // 특수아이템추가
@@ -241,4 +327,6 @@ createRuby();
 // 인스턴스HP위치조정(3자리,2자리,1자리 일때 정중앙 오게)
 // HP변할시 텍스트에 대한 효과 구현
 
-// 스코어 올라가면 level 올라가게 구현하기
+// 스코어 올라가면 level 올라가게 구현하기 (체계화)
+// 두번씩 딜 들어가는 버그 있음
+// 레벨업버튼 제대로 작동하게 로직 재구성

@@ -8,6 +8,27 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <div class="first-status">
+      <div class="info">
+        <div id="score"></div>
+        <div id="level"></div>
+      </div>
+      <div class="button">
+        <button onclick="levelup()">levelup</button>
+        <button onclick="delayDown()">delayDown</button>
+        <button onclick="delayUp()">delayUp</button>
+      </div>
+    <div class="second-status">
+      <div class="info">
+        <div id="power"></div>
+        <div id="delay"></div>
+      </div>
+      <div class="button">
+        <button onclick="pauseResume()">Pause / Resume (space)</button>
+        <button onclick="gameOverSW()">gameOver Disable / Enable</button>
+        <button onclick="bulletPowerUp()">bulletPowerUp</button>
+      </div>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
