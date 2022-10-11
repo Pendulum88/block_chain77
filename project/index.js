@@ -25,11 +25,20 @@ let score = 0;
 let level = 1;
 let rotation = 2;
 let count = 0;
-let rotationValue = 0;
+let rotationValue = 1;
 let pause = false;
 let gameOver = false;
 let gameOverSwitch = false;
 let bulletPower = 1;
+let fontSize = 30;
+let bulletNum = 1;
+
+function bulletNumberUp() {
+  bulletNum++;
+  if (bulletNum > 4) {
+    bulletNum = 4;
+  }
+}
 
 function bulletPowerUp() {
   bulletPower++;
@@ -70,10 +79,6 @@ function pauseResume() {
   }
 }
 
-function levelup() {
-  level = level + 1;
-}
-
 function toRadian(rad) {
   return (rad * Math.PI) / 180;
 }
@@ -112,39 +117,85 @@ function render() {
       bulletWidth,
       bulletHeight
     );
+
+    if (bulletList[i].y < -bulletHeight) {
+      // bullet의 y좌표가 캔버스를 넘어 bulletHeight만큼 가면 삭제
+      bulletList.splice(i, 1);
+    }
   }
 
   document.getElementById("power").innerHTML = `power : ${bulletPower}`;
   document.getElementById("score").innerHTML = `score : ${score}`;
   document.getElementById("level").innerHTML = `level : ${level}`;
   document.getElementById("delay").innerHTML = `delay : ${delay}`;
+  document.getElementById("number").innerHTML = `number : ${bulletNum}`;
 }
 
 function rubyRender() {
   for (let i = 0; i < rubyList.length; i++) {
-    ctx.drawImage(
-      rubyList[i].rubyImage,
-      rubyList[i].x,
-      rubyList[i].y,
-      rubywidth,
-      rubyheight
-    );
-    ctx.fillText(rubyList[i].hp, rubyList[i].x + 20, rubyList[i].y + 50);
+    ctx.save();
+    ctx.translate(rubyList[i].x, rubyList[i].y);
+    ctx.rotate(toRadian(rotationValue));
+    if (rubyList[i].size == 1) {
+      ctx.drawImage(
+        rubyList[i].rubyImage,
+        -rubyList[i].width / 2,
+        -rubyList[i].height / 2,
+        rubywidth,
+        rubyheight
+      );
+    } else if (rubyList[i].size == 2) {
+      ctx.drawImage(
+        rubyList[i].rubyImage,
+        -rubyList[i].width / 2 - 11,
+        -rubyList[i].height / 2 - 11,
+        rubywidth * 1.3,
+        rubyheight * 1.3
+      );
+      // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    ctx.restore();
+    if (rubyList[i].size == 2) {
+      if (0 < rubyList[i].hp && rubyList[i].hp < 10) {
+        ctx.fillText(rubyList[i].hp, rubyList[i].x - 9, rubyList[i].y + 12);
+      } else if (9 < rubyList[i].hp && rubyList[i].hp < 100) {
+        ctx.fillText(rubyList[i].hp, rubyList[i].x - 18, rubyList[i].y + 12);
+      } else if (99 < rubyList[i].hp && rubyList[i].hp < 1000) {
+        ctx.fillText(rubyList[i].hp, rubyList[i].x - 26, rubyList[i].y + 12);
+      } else if (999 < rubyList[i].hp && rubyList[i].hp < 10000) {
+        ctx.fillText(
+          (rubyList[i].hp / 1000).toFixed(2) + "k",
+          rubyList[i].x - 44,
+          rubyList[i].y + 12
+        );
+      } else if (9999 < rubyList[i].hp && rubyList[i].hp < 100000) {
+        ctx.fillText("?", rubyList[i].x - 8, rubyList[i].y + 12);
+      }
+      // else {
+      //   rubyList[i].hp = 9999;
+      // }
+    }
+    if (rubyList[i].size == 1) {
+      if (0 < rubyList[i].hp && rubyList[i].hp < 10) {
+        ctx.fillText(rubyList[i].hp, rubyList[i].x - 8, rubyList[i].y + 11);
+      } else if (9 < rubyList[i].hp && rubyList[i].hp < 100) {
+        ctx.fillText(rubyList[i].hp, rubyList[i].x - 18, rubyList[i].y + 11);
+      } else if (99 < rubyList[i].hp && rubyList[i].hp < 1000) {
+        ctx.fillText(rubyList[i].hp, rubyList[i].x - 24, rubyList[i].y + 11);
+      } else if (999 < rubyList[i].hp && rubyList[i].hp < 10000) {
+        ctx.fillText(
+          (rubyList[i].hp / 1000).toFixed(2) + "k",
+          rubyList[i].x - 35,
+          rubyList[i].y + 11
+        );
+      } else {
+        rubyList[i].hp = 9999;
+      }
+    }
     ctx.font = "30px normal";
+    rotationValue += 2;
   }
-  // rotationValue += 0.01;
 }
-
-// context.save();
-// context.setTransform(1, 0, 0, 1, 0, 0);
-// context.translate(350, 350);
-// context.scale(scaleValue, scaleValue);
-// context.rotate(toRadian(rotationValue));
-// context.strokeRect(-50, -50, 100, 100);
-// context.restore();
-// scaleValue += 0.001;
-// rotationValue += 1;
-// requestAnimationFrame(draw);
 
 function main() {
   // ↑ 메인함수
@@ -161,11 +212,19 @@ function main() {
     }
     for (let i = 0; i < rubyList.length; i++) {
       rubyList[i].update();
-      if (rubyList[i].hp < 1) {
+      if (rubyList[i].size == 2 && rubyList[i].hp < 1) {
+        rubyList[i].hp = parseInt((randomInt(10, 20) * level) / 2);
+        rubyList[i].size = 1;
+        const enemy = new Ruby(rubyList.length);
+        enemy.size = 1;
+        enemy.init();
+        enemy.x = rubyList[i].x + 30;
+        enemy.y = rubyList[i].y - 30;
+      } else if (rubyList[i].size == 1 && rubyList[i].hp < 1) {
         rubyList.splice(i, 1);
       }
     }
-    level = 1 + parseInt(score / 100);
+    level = 1 + parseInt(score / 300);
   }
   requestAnimationFrame(main);
 }
@@ -182,36 +241,127 @@ function holdFire() {
 }
 
 function createBullet() {
-  let magazine = new Bullet();
-  magazine.init();
+  if (bulletNum == 1) {
+    let magazine = new Bullet();
+    magazine.init();
+  } else if (bulletNum == 2) {
+    let magazine = new Bullet();
+    magazine.init2(1);
+    magazine = new Bullet();
+    magazine.init2(2);
+  } else if (bulletNum == 3) {
+    let magazine = new Bullet();
+    magazine.init3(1);
+    magazine = new Bullet();
+    magazine.init3(2);
+    magazine = new Bullet();
+    magazine.init3(3);
+  } else if (bulletNum == 4) {
+    let magazine = new Bullet();
+    magazine.init4(1);
+    magazine = new Bullet();
+    magazine.init4(2);
+    magazine = new Bullet();
+    magazine.init4(3);
+    magazine = new Bullet();
+    magazine.init4(4);
+  }
 }
 
 function Bullet() {
   this.x = 0;
   this.y = 0;
+
   this.init = function () {
     this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2;
     this.y = charactorImageY - bulletHeight;
     bulletList.push(this);
   };
+  this.init2 = function (num) {
+    if (num == 1) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 + 8;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    } else if (num == 2) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 - 8;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    }
+  };
+  this.init3 = function (num) {
+    if (num == 1) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 + 16;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    } else if (num == 2) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    } else if (num == 3) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 - 16;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    }
+  };
+  this.init4 = function (num) {
+    if (num == 1) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 + 24;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    } else if (num == 2) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 + 8;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    } else if (num == 3) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 - 8;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    } else if (num == 4) {
+      this.x = charactorImageX + charactorWidth / 2 - bulletWidth / 2 - 24;
+      this.y = charactorImageY - bulletHeight;
+      bulletList.push(this);
+    }
+  };
+
   this.update = function () {
-    this.y -= 16;
+    this.y -= 20;
   };
   this.checkHit = function () {
-    if (this.y < -bulletHeight) {
-      bulletList.splice(this, 1);
-    }
     for (let i = 0; i < rubyList.length; i++) {
-      if (
-        rubyList[i].x - bulletWidth / 2 < this.x &&
-        this.x < rubyList[i].x + rubywidth - bulletWidth / 2 &&
-        rubyList[i].y < this.y &&
-        this.y < rubyList[i].y + rubyheight
-        // ↑ 충돌 판정
-      ) {
-        bulletList.splice(this, 1);
-        rubyList[i].hp = rubyList[i].hp - bulletPower;
-        score = score + bulletPower;
+      if (rubyList[i].size == 2) {
+        if (
+          rubyList[i].x - rubyList[i].width / 2 - bulletWidth / 2 - 11 <
+            this.x &&
+          this.x <
+            rubyList[i].x -
+              rubyList[i].width / 2 +
+              rubywidth -
+              bulletWidth / 2 +
+              11 &&
+          rubyList[i].y < this.y &&
+          this.y < rubyList[i].y + rubyheight - rubyList[i].height / 2 + 11
+          // ↑ 충돌 판정
+        ) {
+          bulletList.splice(this, 1);
+          rubyList[i].hp = rubyList[i].hp - bulletPower;
+          score = score + bulletPower;
+        }
+      } else if (rubyList[i].size == 1) {
+        if (
+          rubyList[i].x - rubyList[i].width / 2 - bulletWidth / 2 < this.x &&
+          this.x <
+            rubyList[i].x -
+              rubyList[i].width / 2 +
+              rubywidth -
+              bulletWidth / 2 &&
+          rubyList[i].y < this.y &&
+          this.y < rubyList[i].y + rubyheight - rubyList[i].height / 2
+          // ↑ 충돌 판정
+        ) {
+          bulletList.splice(this, 1);
+          rubyList[i].hp = rubyList[i].hp - bulletPower;
+          score = score + bulletPower;
+        }
       }
     }
   };
@@ -220,7 +370,7 @@ function Bullet() {
 function createRuby() {
   setInterval(() => {
     if (rubyList.length < rubyNeed) {
-      let enemy = new Ruby(rubyList.length);
+      const enemy = new Ruby(rubyList.length);
       enemy.init();
     } else return;
   }, 200);
@@ -229,14 +379,18 @@ function createRuby() {
 function Ruby() {
   this.x = 0;
   this.y = 0;
-  this.hp = 10 * level;
+  this.width = 80;
+  this.height = 80;
+  this.size = 2;
+  this.hp = randomInt(10, 20) * level;
   count = (count + 1) % 4;
   this.rubyImage = new Image();
   this.rubyImage.src = `./assets/ruby${count + 1}.png`;
 
   this.init = function () {
     this.x = randomInt(0, canvas.width - rubywidth);
-    this.y = -70;
+    // this.x = 100;
+    this.y = -80;
     rubyList.push(this);
   };
   let rowbounce;
@@ -248,43 +402,68 @@ function Ruby() {
   this.update = function () {
     this.y = this.y + gravity;
     // ↑ 인스턴스는 중력의 영향으로 아래로 떨어진다
-    gravity = gravity + 0.12;
+    gravity = gravity + 0.09;
     //  ↑ 중력가속도 구현, 최초에는 gravity++ 로 하였으나, 계수 조정을 위해 변수 재정의 코드를 따로 빼놓았음
-    if (gravity >= 6) gravity = 6;
+    if (gravity >= 8) gravity = 8;
     // ↑ 중력의 최대치 제한
-    if (this.y >= canvas.height - 180) {
-      // ↑ 땅에 닿으면
-      gravity = -8;
-      // ↑ 중력의 역전(관성의 법칙 구현)
-      gravity--;
+    if (this.size == 2) {
+      if (this.y >= canvas.height - 180 + this.height / 2 - 11) {
+        // ↑ 땅에 닿으면
+        gravity *= -1;
+        // ↑ 중력의 역전(관성의 법칙 구현)
+        gravity--;
+      }
+    } else if (this.size == 1) {
+      if (this.y >= canvas.height - 180 + this.height / 2) {
+        // ↑ 땅에 닿으면
+        gravity *= -1;
+        // ↑ 중력의 역전(관성의 법칙 구현)
+        gravity--;
+      }
     }
-    if (this.x <= 0) {
-      rowbounce = true;
-    } else if (this.x >= canvas.width - rubywidth) {
-      rowbounce = false;
+    if (this.size == 2) {
+      if (this.x - this.width / 2 <= 0 + 11) {
+        rowbounce = true;
+      } else if (this.x >= canvas.width - rubywidth + this.width / 2 - 11) {
+        rowbounce = false;
+      }
+      if (rowbounce) {
+        this.x += xmove;
+      } else {
+        this.x -= xmove;
+      }
+    } else if (this.size == 1) {
+      if (this.x - this.width / 2 <= 0) {
+        rowbounce = true;
+      } else if (this.x >= canvas.width - rubywidth + this.width / 2) {
+        rowbounce = false;
+      }
+      if (rowbounce) {
+        this.x += xmove;
+      } else {
+        this.x -= xmove;
+      }
     }
-    if (rowbounce) {
-      this.x += xmove;
-    } else {
-      this.x -= xmove;
+    if (this.size == 2) {
+      if (
+        this.x + 80 - 19 > charactorImageX + 19 + this.width / 2 - 7 &&
+        charactorImageX + charactorWidth - 19 >
+          this.x + 19 - this.width / 2 - 7 &&
+        this.y + 75 - this.height / 2 > charactorImageY - 11 &&
+        gameOverSwitch
+      ) {
+        gameOver = true;
+      }
+    } else if (this.size == 1) {
+      if (
+        this.x + 80 - 19 > charactorImageX + 19 + this.width / 2 &&
+        charactorImageX + charactorWidth - 19 > this.x + 19 - this.width / 2 &&
+        this.y + 75 - this.height / 2 > charactorImageY &&
+        gameOverSwitch
+      ) {
+        gameOver = true;
+      }
     }
-
-    if (
-      this.x + 80 - 19 > charactorImageX + 19 &&
-      charactorImageX + charactorWidth - 19 > this.x + 19 &&
-      this.y + 75 > charactorImageY &&
-      gameOverSwitch
-    ) {
-      gameOver = true;
-    }
-
-    // 캐릭끝336 = 루비끝256
-    // 캐릭처음0 = 루비처음
-
-    // 캐릭Y570 = 루비 최저도달520 (+80)
-
-    // 캐릭 가로세로 64
-    // 루비 가로세로 80
   };
 }
 
@@ -311,22 +490,15 @@ createRuby();
 // 세로축 충돌시 입사각 반사각 해서 일정하게 튕기는데, 이거를 랜덤하게 바꿔보기
 
 // 이펙트 구현
-// 인스턴스 회전
-// 일시정지버튼
-// 분열
 // 코인드랍
 // 코인출력
 // 특수아이템추가
-// 인스턴스와캐릭터의충돌구현
-// 충돌시게임오버기능추가
-// 인스턴스HP구체화
 // 인스턴스생성구조조절
 // 인스턴스랜덤마찰계수추가
 // 딜레이 총알수 스테이지 등등 정보 표시 및 컨트롤
 // 인스턴스피격이펙트구현
-// 인스턴스HP위치조정(3자리,2자리,1자리 일때 정중앙 오게)
 // HP변할시 텍스트에 대한 효과 구현
 
 // 스코어 올라가면 level 올라가게 구현하기 (체계화)
-// 두번씩 딜 들어가는 버그 있음
+// 두번씩 딜 들어가는 버그 있음 >> 가까이 있을때 사거리 안으로 온 첫번째 총알에 적용되더라
 // 레벨업버튼 제대로 작동하게 로직 재구성
