@@ -32,16 +32,21 @@ let gameOverSwitch = false;
 let bulletPower = 1;
 let fontSize = 30;
 let bulletNum = 1;
+const temp = [];
+let tempTimeout;
+let effectFrame = 0;
 
 function bulletNumberUp() {
+  if (bulletNum == 4) return;
   bulletNum++;
-  if (bulletNum > 4) {
-    bulletNum = 4;
-  }
 }
 
 function bulletPowerUp() {
   bulletPower++;
+}
+
+function bulletPowerUpHundred() {
+  bulletPower += 100;
 }
 
 function delayDown() {
@@ -53,6 +58,12 @@ function delayDown() {
 
 function delayUp() {
   delay += 10;
+  holdFire();
+  openFire();
+}
+
+function delayMax() {
+  delay = 30;
   holdFire();
   openFire();
 }
@@ -168,7 +179,7 @@ function rubyRender() {
           rubyList[i].x - 44,
           rubyList[i].y + 12
         );
-      } else if (9999 < rubyList[i].hp && rubyList[i].hp < 100000) {
+      } else if (9999 < rubyList[i].hp) {
         ctx.fillText("?", rubyList[i].x - 8, rubyList[i].y + 12);
       }
       // else {
@@ -188,8 +199,8 @@ function rubyRender() {
           rubyList[i].x - 35,
           rubyList[i].y + 11
         );
-      } else {
-        rubyList[i].hp = 9999;
+      } else if (9999 < rubyList[i].hp) {
+        ctx.fillText("?", rubyList[i].x - 8, rubyList[i].y + 12);
       }
     }
     ctx.font = "30px normal";
@@ -199,6 +210,7 @@ function rubyRender() {
 
 function main() {
   // ↑ 메인함수
+  effectFrame--;
   if (gameOver) {
     ctx.drawImage(gameOverImage, 0, canvas.height / 3, canvas.width, 80);
     return;
@@ -211,13 +223,14 @@ function main() {
       bulletList[i].checkHit();
     }
     for (let i = 0; i < rubyList.length; i++) {
+      rubyList[i].isNonEffect();
       rubyList[i].update();
       if (rubyList[i].size == 2 && rubyList[i].hp < 1) {
         rubyList[i].hp = parseInt((randomInt(10, 20) * level) / 2);
         rubyList[i].size = 1;
         const enemy = new Ruby(rubyList.length);
         enemy.size = 1;
-        enemy.init();
+        rubyList.push(enemy);
         enemy.x = rubyList[i].x + 30;
         enemy.y = rubyList[i].y - 30;
       } else if (rubyList[i].size == 1 && rubyList[i].hp < 1) {
@@ -345,6 +358,8 @@ function Bullet() {
           bulletList.splice(this, 1);
           rubyList[i].hp = rubyList[i].hp - bulletPower;
           score = score + bulletPower;
+          effectFrame = 1;
+          rubyList[i].isEffect();
         }
       } else if (rubyList[i].size == 1) {
         if (
@@ -361,6 +376,8 @@ function Bullet() {
           bulletList.splice(this, 1);
           rubyList[i].hp = rubyList[i].hp - bulletPower;
           score = score + bulletPower;
+          effectFrame = 1;
+          rubyList[i].isEffect();
         }
       }
     }
@@ -386,6 +403,15 @@ function Ruby() {
   count = (count + 1) % 4;
   this.rubyImage = new Image();
   this.rubyImage.src = `./assets/ruby${count + 1}.png`;
+  this.color = this.rubyImage.src;
+
+  this.isEffect = function () {
+    if (effectFrame > 0) this.rubyImage.src = "./assets/ruby5.png";
+  };
+
+  this.isNonEffect = function () {
+    if (effectFrame <= 0) this.rubyImage.src = this.color;
+  };
 
   this.init = function () {
     this.x = randomInt(0, canvas.width - rubywidth);
@@ -489,16 +515,17 @@ createRuby();
 // 그리고 띄운 값들을 버튼을 클릭(마우스로 조종하니까 키보드 입력을 받던지)해서 주작할수 있게 하기
 // 세로축 충돌시 입사각 반사각 해서 일정하게 튕기는데, 이거를 랜덤하게 바꿔보기
 
-// 이펙트 구현
 // 코인드랍
 // 코인출력
 // 특수아이템추가
 // 인스턴스생성구조조절
 // 인스턴스랜덤마찰계수추가
 // 딜레이 총알수 스테이지 등등 정보 표시 및 컨트롤
-// 인스턴스피격이펙트구현
 // HP변할시 텍스트에 대한 효과 구현
 
 // 스코어 올라가면 level 올라가게 구현하기 (체계화)
 // 두번씩 딜 들어가는 버그 있음 >> 가까이 있을때 사거리 안으로 온 첫번째 총알에 적용되더라
 // 레벨업버튼 제대로 작동하게 로직 재구성
+// 총알 딜레이 맥시멈일때 이펙트 일시적으로 고정되는 현상 있음, 이거 해결하려면 이펙트 적용하는 구조 재조정 필요함
+// 분열될때 기존꺼 : 크기작아짐 신규 : 반대로 내려옴 <<<<< 여기서 기존꺼랑 신규가 위로 양옆으로 살짝 튕겨야함
+// 인스턴스 중력 및 중력가속도 조정필요
