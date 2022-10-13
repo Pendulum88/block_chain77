@@ -4,36 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Ball Blast(Beta)</title>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+    <div id="cts">
+      Click
+      <button
+        class="imgbtns"
+        onclick="startButton()"
+        style="
+          background-image: url('./assets/play.png');
+          width: 43px;
+          height: 43px;
+          background-size: cover;
+          border: none;
+          cursor: pointer;
+          background-color: transparent;
+        "
+      ></button>
+      to Start
+    </div>
     <div class="first-status">
-      <div class="info">
+      <div class="scorebar" style="padding: 10px">
         <div id="score"></div>
         <div id="level"></div>
-      </div>
-      <div class="button">
-        <button onclick="delayDown()">delayDown</button>
-        <button onclick="delayUp()">delayUp</button>
-        <button onclick="delayMax()">delayMax</button>
-        <button onclick="bulletPowerUp()">bulletPowerUp</button>
-        <button onclick="bulletPowerUpHundred()">bulletPowerUpHundred</button>
-        <button onclick="bulletNumberUp()">bulletNumberUp</button>
-        
-      </div>
-    <div class="second-status">
-      <div class="info">
-        <div id="power"></div>
-        <div id="delay"></div>
-        <div id="number"></div>
-      </div>
-      <div class="button">
-        <button onclick="pauseResume()">Pause / Resume (space)</button>
-        <button onclick="gameOverSW()">gameOver Disable / Enable</button>
+        <div id="coin"></div>
       </div>
     </div>
+    <canvas id="myCanvas" width="400" height="700"></canvas>
+    <div class="second-status">
+      <div class="bar"></div>
+      <div class="bar">
+        <div id="delay"></div>
+        <div id="power"></div>
+        <div id="number"></div>
+      </div>
+    </div>
+    <div id="fps"></div>
     <script src="index.js"></script>
-    
   </body>
 </html>

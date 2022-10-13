@@ -1,90 +1,100 @@
-let canvas;
-let ctx;
-
-canvas = document.createElement("canvas");
-document.body.appendChild(canvas);
-ctx = canvas.getContext("2d");
-canvas.width = 400;
-canvas.height = 700;
-
-let backgroundImage, bulletImage, charactorImage;
-let charactorWidth = 58;
-let charactorHeight = 58;
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+ctx.font = "30px normal";
+const backgroundImage = new Image();
+const bulletImage = new Image();
+const charactorImage = new Image();
+const gameOverImage = new Image();
+const coinImage = new Image();
+const charactorWidth = 58;
+const charactorHeight = 58;
 let charactorImageX = canvas.width / 2 - charactorWidth / 2;
-let charactorImageY = canvas.height - 130;
-let bulletList = [];
-let bulletWidth = 14;
-let bulletHeight = 22;
+const charactorImageY = canvas.height - 130;
+const bulletList = [];
+const bulletWidth = 14;
+const bulletHeight = 22;
 let delay = 500;
 let shot;
-let rubyList = [];
-let rubywidth = 80;
-let rubyheight = 80;
-let rubyNeed = 3;
+const rubyList = [];
+const rubywidth = 80;
+const rubyheight = 80;
+let rubyNeed = 2;
 let score = 0;
 let level = 1;
-let rotation = 2;
+const rotation = 2;
 let count = 0;
 let rotationValue = 1;
 let pause = false;
+let gameStart = false;
 let gameOver = false;
-let gameOverSwitch = false;
 let bulletPower = 1;
-let fontSize = 30;
-let bulletNum = 1;
-const temp = [];
-let tempTimeout;
+let bulletMulti = 1;
 let effectFrame = 0;
+let frame = 0;
+let fps = 0;
+let credit = 0;
+const coinWidth = 30;
+const coinHeight = 30;
+const wallet = [];
+const timer = setInterval(() => {
+  fps = frame;
+  frame = 0;
+}, 1000);
 
-function bulletNumberUp() {
-  if (bulletNum == 4) return;
-  bulletNum++;
+function randomSelector(a, b) {
+  let result = randomInt(a, b);
+  return result;
 }
 
-function bulletPowerUp() {
+function startButton() {
+  gameStart = true;
+  openFire();
+  createRuby();
+  document.getElementById("cts").remove();
+}
+
+function bulletMulUp() {
+  if (bulletMulti == 4 || credit < 100) return;
+  bulletMulti++;
+  credit -= 100;
+}
+
+function powerUp() {
+  if (credit < 1) return;
   bulletPower++;
-}
-
-function bulletPowerUpHundred() {
-  bulletPower += 100;
+  credit -= 1;
 }
 
 function delayDown() {
-  if (delay == 30) return;
+  if (delay == 80 || credit < 1) return;
   delay -= 10;
-  holdFire();
-  openFire();
-}
-
-function delayUp() {
-  delay += 10;
-  holdFire();
-  openFire();
-}
-
-function delayMax() {
-  delay = 30;
-  holdFire();
-  openFire();
+  credit -= 1;
+  if (gameStart) {
+    holdFire();
+    openFire();
+  }
 }
 
 addEventListener("keydown", function (e) {
   if (e.keyCode == 32) pauseResume();
+  else if (e.keyCode == 81) delayDown();
+  else if (e.keyCode == 87) powerUp();
+  else if (e.keyCode == 69) bulletMulUp();
 });
 
-function gameOverSW() {
-  if (gameOverSwitch) {
-    gameOverSwitch = false;
-  } else if (!gameOverSwitch) {
-    gameOverSwitch = true;
-  }
-}
-
 function pauseResume() {
+  if (!gameStart) {
+    gameStart = true;
+    openFire();
+    createRuby();
+    document.getElementById("cts").remove();
+    return;
+  }
+  if (gameOver) window.location.reload();
   if (pause) {
     openFire();
     pause = false;
-  } else if (!pause) {
+  } else {
     holdFire();
     pause = true;
   }
@@ -99,19 +109,15 @@ function randomInt(max, min) {
 }
 
 function loadImage() {
-  backgroundImage = new Image();
   backgroundImage.src = "./assets/bg.png";
-  bulletImage = new Image();
   bulletImage.src = "./assets/bullet.png";
-  charactorImage = new Image();
   charactorImage.src = "./assets/canon.png";
-  gameOverImage = new Image();
   gameOverImage.src = "./assets/gameOver.png";
+  coinImage.src = "./assets/coin.png";
 }
 
-function render() {
+function baseRender() {
   ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-  // ctx.fillText(`SCORE : ${score}`, 20, 50);
   ctx.drawImage(
     charactorImage,
     charactorImageX,
@@ -119,7 +125,18 @@ function render() {
     charactorWidth,
     charactorHeight
   );
+  for (let i = 0; i < rubyList.length; i++) {}
+  document.getElementById("power").innerHTML = `Power : ${bulletPower}`;
+  document.getElementById("score").innerHTML = `Score : ${score}`;
+  document.getElementById("level").innerHTML = `Level : ${level}`;
+  document.getElementById("coin").innerHTML = `coin : ${credit}`;
+  document.getElementById("delay").innerHTML = `Delay : ${delay}`;
+  document.getElementById("number").innerHTML = `Multishot : ${bulletMulti}`;
+  document.getElementById("fps").innerHTML = `fps : ${fps}`;
+  level = 1 + parseInt(score / 300);
+}
 
+function render() {
   for (let i = 0; i < bulletList.length; i++) {
     ctx.drawImage(
       bulletImage,
@@ -135,11 +152,28 @@ function render() {
     }
   }
 
-  document.getElementById("power").innerHTML = `power : ${bulletPower}`;
-  document.getElementById("score").innerHTML = `score : ${score}`;
-  document.getElementById("level").innerHTML = `level : ${level}`;
-  document.getElementById("delay").innerHTML = `delay : ${delay}`;
-  document.getElementById("number").innerHTML = `number : ${bulletNum}`;
+  for (let i = 0; i < wallet.length; i++) {
+    ctx.drawImage(coinImage, wallet[i].x, wallet[i].y, coinWidth, coinHeight);
+    wallet[i].update();
+    if (
+      (wallet[i].x + coinWidth > charactorImageX &&
+        charactorImageX + charactorWidth > wallet[i].x + coinWidth &&
+        wallet[i].y + coinHeight > charactorImageY + 20) ||
+      (wallet[i].x < charactorImageX + charactorWidth &&
+        charactorImageX < wallet[i].x &&
+        wallet[i].y + coinHeight > charactorImageY + 20)
+    ) {
+      credit += wallet[i].value;
+      wallet.splice(i, 1);
+    }
+  }
+}
+
+function bulletRender() {
+  for (let i = 0; i < bulletList.length; i++) {
+    bulletList[i].update();
+    bulletList[i].checkHit();
+  }
 }
 
 function rubyRender() {
@@ -163,7 +197,6 @@ function rubyRender() {
         rubywidth * 1.3,
         rubyheight * 1.3
       );
-      // ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
     ctx.restore();
     if (rubyList[i].size == 2) {
@@ -182,9 +215,6 @@ function rubyRender() {
       } else if (9999 < rubyList[i].hp) {
         ctx.fillText("?", rubyList[i].x - 8, rubyList[i].y + 12);
       }
-      // else {
-      //   rubyList[i].hp = 9999;
-      // }
     }
     if (rubyList[i].size == 1) {
       if (0 < rubyList[i].hp && rubyList[i].hp < 10) {
@@ -203,46 +233,12 @@ function rubyRender() {
         ctx.fillText("?", rubyList[i].x - 8, rubyList[i].y + 12);
       }
     }
-    ctx.font = "30px normal";
     rotationValue += 2;
   }
 }
 
-function main() {
-  // ↑ 메인함수
-  effectFrame--;
-  if (gameOver) {
-    ctx.drawImage(gameOverImage, 0, canvas.height / 3, canvas.width, 80);
-    return;
-  }
-  if (!pause) {
-    render();
-    rubyRender();
-    for (let i = 0; i < bulletList.length; i++) {
-      bulletList[i].update();
-      bulletList[i].checkHit();
-    }
-    for (let i = 0; i < rubyList.length; i++) {
-      rubyList[i].isNonEffect();
-      rubyList[i].update();
-      if (rubyList[i].size == 2 && rubyList[i].hp < 1) {
-        rubyList[i].hp = parseInt((randomInt(10, 20) * level) / 2);
-        rubyList[i].size = 1;
-        const enemy = new Ruby(rubyList.length);
-        enemy.size = 1;
-        rubyList.push(enemy);
-        enemy.x = rubyList[i].x + 30;
-        enemy.y = rubyList[i].y - 30;
-      } else if (rubyList[i].size == 1 && rubyList[i].hp < 1) {
-        rubyList.splice(i, 1);
-      }
-    }
-    level = 1 + parseInt(score / 300);
-  }
-  requestAnimationFrame(main);
-}
-
 function openFire() {
+  createBullet();
   shot = setInterval(() => {
     createBullet();
   }, delay);
@@ -253,23 +249,43 @@ function holdFire() {
   clearInterval(shot);
 }
 
+function Coins() {
+  this.value = 1;
+  this.x = 0;
+  this.y = 0;
+  this.gravity = -3;
+
+  this.init = function () {
+    wallet.push(this);
+  };
+
+  this.update = function () {
+    this.y = this.y + this.gravity;
+    this.gravity = this.gravity + 0.3;
+    if (this.gravity >= 15) this.gravity = 15;
+    if (this.y >= canvas.height - 100) {
+      this.gravity *= -0.6;
+    }
+  };
+}
+
 function createBullet() {
-  if (bulletNum == 1) {
+  if (bulletMulti == 1) {
     let magazine = new Bullet();
     magazine.init();
-  } else if (bulletNum == 2) {
+  } else if (bulletMulti == 2) {
     let magazine = new Bullet();
     magazine.init2(1);
     magazine = new Bullet();
     magazine.init2(2);
-  } else if (bulletNum == 3) {
+  } else if (bulletMulti == 3) {
     let magazine = new Bullet();
     magazine.init3(1);
     magazine = new Bullet();
     magazine.init3(2);
     magazine = new Bullet();
     magazine.init3(3);
-  } else if (bulletNum == 4) {
+  } else if (bulletMulti == 4) {
     let magazine = new Bullet();
     magazine.init4(1);
     magazine = new Bullet();
@@ -415,36 +431,36 @@ function Ruby() {
 
   this.init = function () {
     this.x = randomInt(0, canvas.width - rubywidth);
-    // this.x = 100;
-    this.y = -80;
+    this.y = -50;
     rubyList.push(this);
+    this.gravity = 0;
   };
   let rowbounce;
-  let gravity = 0;
-  // ↑ 코드 구조상 각각의 인스턴스가 하나의 중력의 영향을 받으면 오류가 생기므로 지역변수로 선언하였음
-  const xmove = randomInt(7, 3);
-  // ↑ 각각의 인스턴스 마다 x축 이동 속도를 다르게 하기위해 랜덤값 정의
-  // 사용된 연산은 최솟값과 최댓값을 정의하는 공식을 사용했음 Math.random() * (MAX - MIN + 1) + MIN
+  if (randomSelector(1, 0)) rowbounce = true;
+  else rowbounce = false;
+
+  this.xmove = randomSelector(6, 1);
+
   this.update = function () {
-    this.y = this.y + gravity;
+    this.y = this.y + this.gravity;
     // ↑ 인스턴스는 중력의 영향으로 아래로 떨어진다
-    gravity = gravity + 0.09;
+    this.gravity = this.gravity + 0.05;
     //  ↑ 중력가속도 구현, 최초에는 gravity++ 로 하였으나, 계수 조정을 위해 변수 재정의 코드를 따로 빼놓았음
-    if (gravity >= 8) gravity = 8;
+    if (this.gravity >= 5) this.gravity = 5;
     // ↑ 중력의 최대치 제한
     if (this.size == 2) {
       if (this.y >= canvas.height - 180 + this.height / 2 - 11) {
         // ↑ 땅에 닿으면
-        gravity *= -1;
-        // ↑ 중력의 역전(관성의 법칙 구현)
-        gravity--;
+        this.gravity *= -1;
+        // ↑ 중력의 역전
+        this.gravity--;
       }
     } else if (this.size == 1) {
       if (this.y >= canvas.height - 180 + this.height / 2) {
         // ↑ 땅에 닿으면
-        gravity *= -1;
-        // ↑ 중력의 역전(관성의 법칙 구현)
-        gravity--;
+        this.gravity *= -1;
+        // ↑ 중력의 역전
+        this.gravity--;
       }
     }
     if (this.size == 2) {
@@ -454,9 +470,9 @@ function Ruby() {
         rowbounce = false;
       }
       if (rowbounce) {
-        this.x += xmove;
+        this.x += this.xmove;
       } else {
-        this.x -= xmove;
+        this.x -= this.xmove;
       }
     } else if (this.size == 1) {
       if (this.x - this.width / 2 <= 0) {
@@ -465,9 +481,9 @@ function Ruby() {
         rowbounce = false;
       }
       if (rowbounce) {
-        this.x += xmove;
+        this.x += this.xmove;
       } else {
-        this.x -= xmove;
+        this.x -= this.xmove;
       }
     }
     if (this.size == 2) {
@@ -475,8 +491,7 @@ function Ruby() {
         this.x + 80 - 19 > charactorImageX + 19 + this.width / 2 - 7 &&
         charactorImageX + charactorWidth - 19 >
           this.x + 19 - this.width / 2 - 7 &&
-        this.y + 75 - this.height / 2 > charactorImageY - 11 &&
-        gameOverSwitch
+        this.y + 75 - this.height / 2 > charactorImageY - 11
       ) {
         gameOver = true;
       }
@@ -484,8 +499,7 @@ function Ruby() {
       if (
         this.x + 80 - 19 > charactorImageX + 19 + this.width / 2 &&
         charactorImageX + charactorWidth - 19 > this.x + 19 - this.width / 2 &&
-        this.y + 75 - this.height / 2 > charactorImageY &&
-        gameOverSwitch
+        this.y + 75 - this.height / 2 > charactorImageY
       ) {
         gameOver = true;
       }
@@ -493,21 +507,68 @@ function Ruby() {
   };
 }
 
-addEventListener("mousemove", function (e) {
-  charactorImageX = e.clientX - 332;
-  // ↑ 캐릭터의 x축을 mousemove를 통해 움직인다
-  if (charactorImageX <= 0) {
-    charactorImageX = 0;
-  } else if (charactorImageX >= canvas.width - charactorWidth) {
-    charactorImageX = canvas.width - charactorWidth;
+function main() {
+  // ↑ 메인함수
+  frame++;
+  if (!pause) {
+    baseRender();
+    if (gameStart && !pause) {
+      addEventListener("mousemove", function (e) {
+        charactorImageX = e.clientX - 332;
+        // ↑ 캐릭터의 x축을 mousemove를 통해 움직인다
+        if (charactorImageX <= 0) {
+          charactorImageX = 0;
+        } else if (charactorImageX >= canvas.width - charactorWidth) {
+          charactorImageX = canvas.width - charactorWidth;
+        }
+        // ↑ canvas 밖으로 나가지 못하도록 예외처리
+      });
+      effectFrame--;
+      render();
+      rubyRender();
+      bulletRender();
+      for (let i = 0; i < rubyList.length; i++) {
+        rubyList[i].isNonEffect();
+        rubyList[i].update();
+        if (rubyList[i].size == 2 && rubyList[i].hp < 1) {
+          let enemy = new Ruby();
+          rubyList.push(enemy);
+          enemy.hp = parseInt((randomInt(10, 20) * level) / 2);
+          enemy.size = 1;
+          enemy.x = rubyList[i].x + 20;
+          enemy.y = rubyList[i].y - 20;
+          enemy.gravity = -3;
+          enemy = new Ruby();
+          rubyList.push(enemy);
+          enemy.hp = parseInt((randomInt(10, 20) * level) / 2);
+          enemy.size = 1;
+          enemy.x = rubyList[i].x - 20;
+          enemy.y = rubyList[i].y - 20;
+          enemy.gravity = -3;
+          const coin = new Coins();
+          wallet.push(coin);
+          coin.x = rubyList[i].x;
+          coin.y = rubyList[i].y;
+          rubyList.splice(i, 1);
+        } else if (rubyList[i].size == 1 && rubyList[i].hp < 1) {
+          const coin = new Coins();
+          wallet.push(coin);
+          coin.x = rubyList[i].x;
+          coin.y = rubyList[i].y;
+          rubyList.splice(i, 1);
+        }
+      }
+    }
+    if (gameOver) {
+      ctx.drawImage(gameOverImage, 0, canvas.height / 3, canvas.width, 80);
+      return;
+    }
   }
-  // ↑ canvas 밖으로 나가지 못하도록 예외처리
-});
+  requestAnimationFrame(main);
+}
 
 loadImage();
 main();
-openFire();
-createRuby();
 
 // 교수님 오더
 // UI는 HTML과 CSS를 이용하여 구현하기

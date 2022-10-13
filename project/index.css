@@ -6,10 +6,70 @@
 
 body {
   padding-left: 300px;
-  padding-top: 100px;
+  position: relative;
+  display: inline-block;
 }
 
-.info {
+.bar {
   display: flex;
+  justify-content: space-around;
+  width: 400px;
   gap: 20px;
+  font-size: 20px;
+  padding: 2px;
+  color: lime;
+}
+
+.scorebar {
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+  gap: 20px;
+  font-size: 26px;
+  padding: 2px;
+  color: black;
+}
+
+#cts {
+  position: absolute;
+  top: 300px;
+  left: 320px;
+  font-size: 50px;
+}
+
+#fps {
+  position: absolute;
+  font-size: 25px;
+  bottom: 40px;
+  right: 10px;
+  color: lightgreen;
+}
+
+.plus {
+  background-image: url("./assets/plus.png");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.minus {
+  background-image: url("./assets/minus.png");
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.first-status {
+  position: absolute;
+}
+
+.second-status {
+  position: absolute;
+  bottom: 3px;
 }
