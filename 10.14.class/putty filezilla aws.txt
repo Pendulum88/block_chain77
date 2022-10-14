@@ -1,0 +1,64 @@
+git add .
+git commit -m 'asdasd'
+git push origin master
+git 프로그램
+add / commit / push / fatch / pull 명령어
+
+
+관리자 권한으로 apt-get이라는 프로그램을 사용해서 update 명령어를 실행하겠다
+sudo apt-get update
+sudo 관리자 권한으로 실행한다
+apt-get 우분투에서 사용하는 프로그램 관리자
+(윈도우에서는 프로그램 추가제거)
+apt-get update 설치되어있는 프로그램들의 최신버전 정보를 가져온다
+
+sudo apt-get upgrade
+upgrade 최신정보 받아온 것을 기준으로 설치를 시작한다
+
+sudo apt-get install apache2
+아파치2 설치 : 웹서버 프로그램, 웹서버를 연다
+설치하면 아파치2가 자동실행된다
+윈도우 IIS / 리눅스,우분투 NginX 이런것도 있다
+
+apache2 -v 버전확인
+
+sudo service apache2 status
+service 서비스는 실행중인 프로그램 관리자
+status 서비스 프로그램을 사용해 다른 프로그램의 상태를 확인한다
+sudo service apache2 status/stop/start/restart
+이런 명령어들도 있다
+
+^C :  컨트롤C, 실행중인것 중단한다
+
+cd /var/www
+cd 경로이동
+/ 슬래시 root폴더 기준
+./ 점슬래시 현재 경로 기준
+../ 점점슬래시 이전 경로 기준
+../../ 이전의 이전 경로
+
+ls 경로내의 파일, 폴더 보기
+ls -a 모든 파일, 폴더 보기
+ls -al 경로내의 모든 파일, 폴더의 자세한 정보 보기
+
+drwxr-xr-x (입력한거 아니고 ls하니까 뜬거)
+d 파일 타입
+rwx / r-x / r-x 소유자의 권한 / 소유 그룹의 권한 / 이외 권한
+r read 읽기 권한
+w write 쓰기 권한
+x execute 실행 실행 권한
+- 권한 없음
+
+apache2의 기본 폴더 위치 : /var/www/html
+
+sudo chmod 777 html
+chmod 권한 설정하는 프로그램
+7 -> 이진법으로 0111 -> 111 -> r,w,x
+4, 2, 1 -> 다더하면 -> 7 -> r이 참이냐 w가 참이냐 x가 참이냐 순서가 된다
+2진법 000 이면 다 거짓
+
+ex 666 입력 -> 이진법 변환하면 6은 110 -> rwx에 대입하면 rw는 ok x는 불가
+즉, 읽기 쓰기는 가능, 실행은 불가능 하게 만든다 (소유자의 권한 / 소유 그룹의 권한 / 이외 권한)
+ㄴ 출력 : drw-rw-rw-
+
+cd html html폴더로 이동 (아파치2가 설치되면서 알아서 html폴더를 만들어줬다)
