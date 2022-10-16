@@ -147,7 +147,6 @@ function render() {
     );
 
     if (bulletList[i].y < -bulletHeight) {
-      // bullet의 y좌표가 캔버스를 넘어 bulletHeight만큼 가면 삭제
       bulletList.splice(i, 1);
     }
   }
@@ -245,7 +244,6 @@ function openFire() {
 }
 
 function holdFire() {
-  // ↑ 발사 딜레이를 변경시, 인터벌을 멈추고 → 딜레이 변수값 변경 → 인터벌 시작 해야 하므로 만들어 놓음
   clearInterval(shot);
 }
 
@@ -369,7 +367,6 @@ function Bullet() {
               11 &&
           rubyList[i].y < this.y &&
           this.y < rubyList[i].y + rubyheight - rubyList[i].height / 2 + 11
-          // ↑ 충돌 판정
         ) {
           bulletList.splice(this, 1);
           rubyList[i].hp = rubyList[i].hp - bulletPower;
@@ -387,7 +384,6 @@ function Bullet() {
               bulletWidth / 2 &&
           rubyList[i].y < this.y &&
           this.y < rubyList[i].y + rubyheight - rubyList[i].height / 2
-          // ↑ 충돌 판정
         ) {
           bulletList.splice(this, 1);
           rubyList[i].hp = rubyList[i].hp - bulletPower;
@@ -443,23 +439,16 @@ function Ruby() {
 
   this.update = function () {
     this.y = this.y + this.gravity;
-    // ↑ 인스턴스는 중력의 영향으로 아래로 떨어진다
     this.gravity = this.gravity + 0.05;
-    //  ↑ 중력가속도 구현, 최초에는 gravity++ 로 하였으나, 계수 조정을 위해 변수 재정의 코드를 따로 빼놓았음
     if (this.gravity >= 5) this.gravity = 5;
-    // ↑ 중력의 최대치 제한
     if (this.size == 2) {
       if (this.y >= canvas.height - 180 + this.height / 2 - 11) {
-        // ↑ 땅에 닿으면
         this.gravity *= -1;
-        // ↑ 중력의 역전
         this.gravity--;
       }
     } else if (this.size == 1) {
       if (this.y >= canvas.height - 180 + this.height / 2) {
-        // ↑ 땅에 닿으면
         this.gravity *= -1;
-        // ↑ 중력의 역전
         this.gravity--;
       }
     }
@@ -508,20 +497,17 @@ function Ruby() {
 }
 
 function main() {
-  // ↑ 메인함수
   frame++;
   if (!pause) {
     baseRender();
     if (gameStart && !pause) {
       addEventListener("mousemove", function (e) {
         charactorImageX = e.clientX - 332;
-        // ↑ 캐릭터의 x축을 mousemove를 통해 움직인다
         if (charactorImageX <= 0) {
           charactorImageX = 0;
         } else if (charactorImageX >= canvas.width - charactorWidth) {
           charactorImageX = canvas.width - charactorWidth;
         }
-        // ↑ canvas 밖으로 나가지 못하도록 예외처리
       });
       effectFrame--;
       render();
@@ -569,22 +555,3 @@ function main() {
 
 loadImage();
 main();
-
-// 교수님 오더
-// UI는 HTML과 CSS를 이용하여 구현하기
-// 캔버스 하단에 캐릭터정보(딜레이, 총알 수, 파워,)와 여러 정보(스테이지, 적 HP 최대값 등) 띄우기
-// 그리고 띄운 값들을 버튼을 클릭(마우스로 조종하니까 키보드 입력을 받던지)해서 주작할수 있게 하기
-// 세로축 충돌시 입사각 반사각 해서 일정하게 튕기는데, 이거를 랜덤하게 바꿔보기
-
-// 특수아이템추가
-// 인스턴스생성구조조절
-// 인스턴스랜덤마찰계수추가
-// 딜레이 총알수 스테이지 등등 정보 표시 및 컨트롤
-// HP변할시 텍스트에 대한 효과 구현
-
-// 스코어 올라가면 level 올라가게 구현하기 (체계화)
-// 두번씩 딜 들어가는 버그 있음 >> 가까이 있을때 사거리 안으로 온 첫번째 총알에 적용되더라
-// 레벨업버튼 제대로 작동하게 로직 재구성
-// 총알 딜레이 맥시멈일때 이펙트 일시적으로 고정되는 현상 있음, 이거 해결하려면 이펙트 적용하는 구조 재조정 필요함
-// 분열될때 기존꺼 : 크기작아짐 신규 : 반대로 내려옴 <<<<< 여기서 기존꺼랑 신규가 위로 양옆으로 살짝 튕겨야함
-// 인스턴스 중력 및 중력가속도 조정필요
