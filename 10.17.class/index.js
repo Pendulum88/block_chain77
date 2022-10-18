@@ -7,6 +7,8 @@ console.log("테스트중");
 // SSH : 22 포트 사용
 // FTP : 21 포트 사용
 // DB(maria) : 3306 포트 사용
+// 0~1023 사이포트 : 웰노운포트(왠만해선 잘 안쓴다)
+// 포트 : 65535까지, 16진수 FFFF
 
 // 서버는 보통 3가지로 나뉜다(종류가 아닌 구분)
 // Web Server, Application Server, DataBase Server
