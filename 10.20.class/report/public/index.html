@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <form id="todo-form">
+      <label for="do-name"
+        >asd
+        <input type="text" id="do-name" autocomplete="off" />
+      </label>
+      <select id="listFilter" onchange="filtering()">
+        <option value="all">모두</option>
+        <option value="stanby">진행대기</option>
+        <option value="ing">진행중</option>
+        <option value="complete">완료</option>
+        <option value="fail">포기</option>
+      </select>
+    </form>
+    <ol id="list"></ol>
+    <script src="index.js"></script>
+  </body>
+</html>

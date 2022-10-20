@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding-left: 200px;
+  padding-top: 100px;
+}
+
+div {
+  margin: 0 auto;
+}
+
+ol {
+}
