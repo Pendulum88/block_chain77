@@ -38,12 +38,12 @@ app.post("/list", (req, res) => {
   console.log(backList);
 });
 
-app.post("/list/delete", (req, res) => {
-  backList.push(req.body.names);
-  res.send(backList[backList.length - 1]);
-  res.end();
-  console.log(backList);
-});
+// app.post("/list/delete", (req, res) => {
+//   backList.push(req.body.names);
+//   res.send(backList[backList.length - 1]);
+//   res.end();
+//   console.log(backList);
+// });
 
 app.listen(app.get("port"), () => {
   console.log("망할서버열음");
