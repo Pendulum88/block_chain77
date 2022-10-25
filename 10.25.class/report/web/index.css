@@ -1,0 +1,20 @@
+#posting {
+}
+
+#title-area {
+  display: block;
+  margin: 30px 50px;
+  width: 300px;
+}
+
+#text-area {
+  resize: none;
+  margin: 30px 50px;
+  width: 300px;
+}
+
+.div-post {
+  margin: 20px 50px;
+  background-color: lightblue;
+  width: 300px;
+}
