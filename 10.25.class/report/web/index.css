@@ -1,4 +1,7 @@
-#posting {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #title-area {
@@ -17,4 +20,32 @@
   margin: 20px 50px;
   background-color: lightblue;
   width: 300px;
+}
+
+.hidden {
+  display: none;
+}
+
+form {
+  margin: 10px;
+}
+
+input {
+  width: 150px;
+}
+
+button {
+  width: 70px;
+  border: none;
+  cursor: pointer;
+  background-color: darksalmon;
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: coral;
+}
+
+input:disabled {
+  background: white;
 }

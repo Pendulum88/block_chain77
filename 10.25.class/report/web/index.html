@@ -9,16 +9,59 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <form id="login">
-      <label for="id-area">
-        <input id="id-area" type="text" />
+    <form id="create">
+      <label for="create-id-area"
+        >ID
+        <input id="create-id-area" type="text" />
       </label>
-      <label for="pw-area">
-        <input id="pw-area" type="password" />
+      <label for="create-pw-area"
+        >PW
+        <input id="create-pw-area" type="password" />
       </label>
-      <button>만들기</button>
+      <button>계정생성</button>
     </form>
-    <form id="posting">
+    <form id="login">
+      <label for="login-id-area"
+        >ID
+        <input id="login-id-area" type="text" />
+      </label>
+      <label for="login-pw-area"
+        >PW
+        <input id="login-pw-area" type="password" />
+      </label>
+      <button>로그인</button>
+    </form>
+    <form id="logout">
+      <label for="logined-id-area"
+        >ID
+        <input id="logined-id-area-input" type="text" disabled />
+      </label>
+      <label for="logined-pw-area"
+        >PW
+        <input id="logined-pw-area-input" type="password" disabled />
+      </label>
+      <button type="button" id="edit-btns" onclick="userEdit()">
+        정보수정
+      </button>
+      <button id="logout-btns">로그아웃</button>
+      <button
+        type="button"
+        id="confirm-btns"
+        class="hidden"
+        onclick="userEditConfirm()"
+      >
+        확 인
+      </button>
+      <button
+        type="button"
+        id="cancel-btns"
+        class="hidden"
+        onclick="userEditCancel()"
+      >
+        취 소
+      </button>
+    </form>
+    <form id="post">
       <label for="title-area">
         <input id="title-area" type="text" />
       </label>
