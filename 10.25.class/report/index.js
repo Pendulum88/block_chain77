@@ -79,7 +79,6 @@ app.post("/board/user/login", (req, res) => {
   });
   if (iscorrect) {
     console.log("로그인 승인");
-    // res.send(true);
     res.send({
       status: 200,
       onlineId: tempUserId,
