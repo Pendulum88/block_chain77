@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <style>
+    #chatWindow {
+      padding: 10px;
+      width: 700px;
+      height: 300px;
+      resize: none;
+      background: none;
+      border: 1px solid red;
+      overflow: auto;
+    }
+    #login-form {
+      margin-top: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+    #sayhello {
+      margin-top: 20px;
+    }
+    button {
+      margin-left: 10px;
+    }
+    .info {
+      background-color: lightgray;
+      text-align: center;
+    }
+    .send {
+      text-align: right;
+    }
+    .receive {
+      text-align: left;
+    }
+    .msg-span-left {
+      background-color: yellow;
+      margin-left: 30px;
+    }
+    .msg-span-right {
+      background-color: yellow;
+      margin-right: 30px;
+    }
+  </style>
+  <body style="padding: 50px">
+    <div id="chatWindow"></div>
+    <form id="textInput">
+      <input
+        type="text"
+        name=""
+        id="textWindow"
+        style="width: 300px; margin-top: 50px"
+        autocomplete="off"
+      />
+      <button>보내기</button>
+    </form>
+    <form id="login-form">
+      <input
+        type="text"
+        name=""
+        id="loginInput"
+        style="width: 300px"
+        autocomplete="off"
+      />
+      <button>로그인</button>
+    </form>
+    <div id="sayhello" class="hidden">
+      <span id="userName"></span>님 환영합니다<button id="logoutBtn">
+        로그아웃
+      </button>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
