@@ -120,8 +120,8 @@
       socketFunc();
 
       function testFunc() {
-        const socket = io("/test");
-        // 네임스페이스를 추가했다
+        const socket = io("http://127.0.0.1:8080/test");
+        // 네임스페이스를 추가했다.
 
         // document.getElementById("test").onclick = () => {
         //   socket.emit("test", { text: "test 테스트중" });

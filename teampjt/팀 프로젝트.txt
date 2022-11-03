@@ -1,0 +1,24 @@
+로그인정보
+아이디 비번 지역 이름
+
+판매게시글
+제목 내용 사진 게시자정보 판매완료여부 카테고리(ex 전자기기)
+
+댓글
+작성자정보 / 위치 / 내용
+
+채팅
+채팅기록
+
+// npm init
+// npm i -D nodemon sequelize-cli
+// npm i express express-session morgan dotenv cookie-parser mysql2 sequelize
+// npx sequelize init
+// .env
+// package.json
+// config.json
+// models/index.js
+// routes
+
+
+socket.io 11. 1. report

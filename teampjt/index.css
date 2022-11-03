@@ -1,0 +1,27 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main {
+  width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin: 10px;
+}
+
+#id-input,
+#pw-input {
+  display: block;
+}
+
+.id-pw-con {
+  display: flex;
+  flex-direction: column;
+}
