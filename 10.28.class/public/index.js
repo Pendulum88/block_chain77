@@ -1,5 +1,7 @@
 // 암호화 npm i crypto-js jsonwebtoken
 
+// const { Cookie } = require("express-session");
+
 document.forms["sign-up"].onsubmit = async function (e) {
   e.preventDefault();
   if (
@@ -7,8 +9,10 @@ document.forms["sign-up"].onsubmit = async function (e) {
     !e.target["user-pw"].value ||
     !e.target["user-name"].value ||
     !e.target["user-class"].value
-  )
+  ) {
+    alert("올바르게 입력하세요");
     return;
+  }
   try {
     await axios.post("/api/user/regist", {
       id: e.target["user-id"].value,
@@ -16,23 +20,33 @@ document.forms["sign-up"].onsubmit = async function (e) {
       name: e.target["user-name"].value,
       className: e.target["user-class"].value,
     });
+    e.target["user-id"].value = "";
+    e.target["user-pw"].value = "";
+    e.target["user-name"].value = "";
+    e.target["user-class"].value = "";
+    alert("회원가입 완료");
   } catch (error) {
-    console.error(error.response.data.message);
+    alert(error.response.data.message);
   }
 };
 
 document.forms["sign-in"].onsubmit = async function (e) {
   e.preventDefault();
-  if (!e.target["user-id"].value || !e.target["user-pw"].value) return;
+  if (!e.target["user-id"].value || !e.target["user-pw"].value) {
+    alert("올바르게 입력하세요");
+    return;
+  }
 
   try {
     const result = await axios.post("/api/user/login", {
       id: e.target["user-id"].value,
       pw: e.target["user-pw"].value,
     });
-    console.log(result.data);
+    e.target["user-id"].value = "";
+    e.target["user-pw"].value = "";
+    alert("로그인 완료");
   } catch (error) {
-    console.error(error.response.data.message);
+    alert(error.response.data.message);
   }
 };
 
@@ -87,17 +101,23 @@ async function getList() {
 }
 // getList();
 
-document.forms["board-add"].onsubmit = async function (e) {
-  e.preventDefault();
-  if (!e.target["board-title"].value || !e.target["board-text"].value) return;
+// document.forms["board-add"].onsubmit = async function (e) {
+//   e.preventDefault();
+//   if (!e.target["board-title"].value || !e.target["board-text"].value) {
+//     alert("올바르게 입력하세요");
+//     return;
+//   }
 
-  try {
-    const result = await axios.post("/api/board/add", {
-      title: e.target["board-title"].value,
-      text: e.target["board-text"].value,
-    });
-    console.log(result.data);
-  } catch (error) {
-    console.error(error.response.data.message);
-  }
+//   try {
+//     const result = await axios.post("/api/board/add", {
+//       title: e.target["board-title"].value,
+//       text: e.target["board-text"].value,
+//     });
+//   } catch (error) {
+//     console.error(error.response.data.message);
+//   }
+// };
+
+document.getElementById("qwe").onclick = () => {
+  console.log(document.cookie);
 };
