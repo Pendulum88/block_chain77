@@ -32,19 +32,19 @@ document.getElementById("board-add").onsubmit = async function (e) {
 // form 안에 있는 button은 기본적으로 form의 submit을 실행
 
 const tempData = [
-  [
-    { title: "arvserv1", text: "9baresrsearvstb" },
-    { title: "arvserv2", text: "8baresrsearvstb" },
-    { title: "arvserv3", text: "7baresrsearvstb" },
-    { title: "arvserv4", text: "6baresrsearvstb" },
-    { title: "arvserv5", text: "5baresrsearvstb" },
-  ],
-  [
-    { title: "arvserv6", text: "4baresrsearvstb" },
-    { title: "arvserv7", text: "3baresrsearvstb" },
-    { title: "arvserv8", text: "2baresrsearvstb" },
-    { title: "arvserv9", text: "1baresrsearvstb" },
-  ],
+  // [
+  //   { title: "arvserv1", text: "9baresrsearvstb" },
+  //   { title: "arvserv2", text: "8baresrsearvstb" },
+  //   { title: "arvserv3", text: "7baresrsearvstb" },
+  //   { title: "arvserv4", text: "6baresrsearvstb" },
+  //   { title: "arvserv5", text: "5baresrsearvstb" },
+  // ],
+  // [
+  //   { title: "arvserv6", text: "4baresrsearvstb" },
+  //   { title: "arvserv7", text: "3baresrsearvstb" },
+  //   { title: "arvserv8", text: "2baresrsearvstb" },
+  //   { title: "arvserv9", text: "1baresrsearvstb" },
+  // ],
 ];
 
 let maxCount = 2; // 총 페이지 수
@@ -56,9 +56,6 @@ const listElem = document.getElementById("list");
 async function getList() {
   try {
     const data = await axios.get("/api/board?count=" + count);
-    // count = 0 => /api/board?count=0
-    // console.log(data.data.maxCount);
-
     pageElem.innerHTML = "";
     maxCount = data.data.maxCount;
     for (let i = 0; i < maxCount; ++i) {
@@ -78,7 +75,6 @@ async function getList() {
 
     listElem.innerHTML = "";
     data.data.list.forEach((data, index) => {
-      // tempData[count].forEach((data) => {
       const tempLi = document.createElement("li");
       const tempTitle = document.createElement("div");
       const tempH3 = document.createElement("h3");
@@ -167,7 +163,3 @@ async function getList() {
   }
 }
 getList();
-
-// axios.post("/api/board/add").then((data) => {
-//   console.log(data);
-// });

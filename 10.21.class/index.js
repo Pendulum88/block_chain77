@@ -10,15 +10,15 @@ const path = require("path");
 // const routes = require("./routes/index.js");
 
 const boardList = [
-  { title: "arvserv1", text: "9baresrsearvstb" },
-  { title: "arvserv2", text: "8baresrsearvstb" },
-  { title: "arvserv3", text: "7baresrsearvstb" },
-  { title: "arvserv4", text: "6baresrsearvstb" },
-  { title: "arvserv5", text: "5baresrsearvstb" },
-  { title: "arvserv6", text: "4baresrsearvstb" },
-  { title: "arvserv7", text: "3baresrsearvstb" },
-  { title: "arvserv8", text: "2baresrsearvstb" },
-  { title: "arvserv9", text: "1baresrsearvstb" },
+  // { title: "arvserv1", text: "9baresrsearvstb" },
+  // { title: "arvserv2", text: "8baresrsearvstb" },
+  // { title: "arvserv3", text: "7baresrsearvstb" },
+  // { title: "arvserv4", text: "6baresrsearvstb" },
+  // { title: "arvserv5", text: "5baresrsearvstb" },
+  // { title: "arvserv6", text: "4baresrsearvstb" },
+  // { title: "arvserv7", text: "3baresrsearvstb" },
+  // { title: "arvserv8", text: "2baresrsearvstb" },
+  // { title: "arvserv9", text: "1baresrsearvstb" },
 ];
 
 const app = express();
