@@ -1,4 +1,5 @@
 // 코드 리펙토링 해야함, 한번에 하려면 꼬일수 있으니 미리 해놓자
+
 // 빈 입력값 예외처리 -> 알럿 말고 온포커스로 변경
 
 // oninput 컨트롤 + 백스페이스 지울때, 컨트롤 + C 로 입력할때 등 예외처리 구현 필요
@@ -119,7 +120,8 @@ let itemCondition;
 let itemTuning;
 let itemDealing;
 let itemImage;
-const imgArr = [];
+const imageArr = [];
+
 function getValue() {
   const categoriesList = document.getElementsByName("categories");
   categoriesList.forEach((elem) => {
@@ -147,7 +149,9 @@ function getValue() {
   });
 }
 //
-document.getElementById("submit-form").onsubmit = (e) => {
+
+let formData = new FormData();
+document.getElementById("submit-form").onsubmit = async function (e) {
   e.preventDefault();
   //
   getValue();
@@ -164,57 +168,55 @@ document.getElementById("submit-form").onsubmit = (e) => {
     alert("모든 입력을 완료해주세요");
     return;
   }
-  //
   const itemTitle = titleInput.value;
   const itemPrice = Number(priceInput.value.replace(/,/g, ""));
   const itemSubtitle = subtitleTextarea.value;
-  //
-  const result = {
-    itemTitle,
-    itemPrice,
-    itemSubtitle,
-    itemCategories,
-    itemCondition,
-    itemTuning,
-    itemDealing,
-    itemImage,
-  };
-  console.log(result);
+  formData.append("itemTitle", itemTitle);
+  formData.append("itemPrice", itemPrice);
+  formData.append("itemSubtitle", itemSubtitle);
+  formData.append("itemCategories", itemCategories);
+  formData.append("itemCondition", itemCondition);
+  formData.append("itemTuning", itemTuning);
+  formData.append("itemDealing", itemDealing);
+
+  try {
+    const result = await axios.post("/api/item/add", {
+      // itemTitle: itemTitle,
+      // itemPrice: itemPrice,
+      // itemSubtitle: itemSubtitle,
+      // itemCategories: itemCategories,
+      // itemCondition: itemCondition,
+      // itemTuning: itemTuning,
+      // itemDealing: itemDealing,
+      // itemImage: ,
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 //
 //
-// function createElement(e, file) {
-//   const div = document.createElement("div");
-//   const img = document.createElement("img");
-//   div.classList.add("img-block");
-//   img.setAttribute("src", e.target.result);
-//   img.setAttribute("data-file", file.name);
-//   div.appendChild(img);
-
-//   return div;
-// }
 
 function getImageFiles(e) {
-  itemImage = e.currentTarget.files;
-  console.log(itemImage);
-  // if ([...itemImage].length > 4 || [...itemImage].length == 0) {
-  //   alert("이미지를 1개부터 4개까지 업로드 해주세요");
+  itemImage = e.currentTarget.files[0];
+  formData.append("img", itemImage);
+  for (let value of formData.values()) {
+    console.log(value);
+  }
+
+  // if (!itemImage.type.match("image/")) {
+  //   alert("이미지 파일만 업로드 가능합니다");
   //   return;
   // }
-
-  // [...itemImage].forEach((file) => {
-  //   if (!file.type.match("image/.*")) {
-  //     alert("이미지 파일만 업로드 가능합니다");
-  //     return;
-  //   }
-  //   imgArr.push(file);
-  //   const reader = new FileReader();
-  //   reader.onload = (e) => {
-  //     const preview = createElement(e, file);
-  //     document.getElementById("img-box").appendChild(preview);
-  //   };
-  //   reader.readAsDataURL(file);
-  // });
+  // const reader = new FileReader();
+  // reader.onload = (e) => {
+  //   const preview = createElement(e, itemImage);
+  //   document.getElementById("img-box").appendChild(preview);
+  // };
+  // reader.readAsDataURL(itemImage);
+  // imageArr.push(itemImage.name);
+  console.log(itemImage);
+  console.log(imageArr);
 }
 
 document
