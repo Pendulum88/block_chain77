@@ -21,28 +21,8 @@ const checkUserID = checkuserId.test(userId.value);
 // 비밀번호 : 소문자, 숫자, 특수문자 조합의 8~20자
 const checkpassword = /(?=.*[0-9])(?=.*[a-z])(?=.*\W)(?=\S+$).{8,20}/;
 
-const checklocal = [
-  "서울특별시",
-  "부산광역시",
-  "대구광역시",
-  "인천광역시",
-  "광주광역시",
-  "대전광역시",
-  "울산광역시",
-  "세종특별자치시",
-  "경기도",
-  "강원도",
-  "충청북도",
-  "충청남도",
-  "전라북도",
-  "전라남도",
-  "경상북도",
-  "경상남도",
-  "제주특별자치도",
-];
-
 function registecheck() {
-  if (userId.value == "") {
+  if (!userId.value) {
     alert("아이디를 입력하지 않았습니다.");
     userId.focus();
     return false;
@@ -196,14 +176,15 @@ function start() {
   console.log(elm.registerForm.getElementsByTagName("form")[0]);
   elm.registerForm.getElementsByTagName("form")[0].onsubmit = (e) => {
     e.preventDefault();
-    console.log(e.target["login--id"]);
-    console.log(e.target["signup-username"]);
+    // console.log(e.target["login--id"]);
+    // console.log(e.target["signup-username"]);
   };
   document.getElementById("backBtn1").onclick = function () {
     location.href = goPage;
   };
 
-  signUp.onclick = async function () {
+  signUp.onclick = async function (e) {
+    e.preventDefault();
     const checkUserName = checkusername.test(userName.value);
     const checkUserID = checkuserId.test(userId.value);
     const checkPassWord = checkpassword.test(userPassword.value);
@@ -214,26 +195,19 @@ function start() {
         return false;
       }
     };
-    const checkchecklocal = function () {
-      if (checklocal.includes(userLocal.value)) {
-        return true;
-      } else {
-        return false;
-      }
-    };
+
     try {
       if (
         (checkUserName &&
           checkUserID &&
           checkPassWord &&
-          checkCheckPassWord() &&
-          checkchecklocal()) == true
+          checkCheckPassWord()) == true
       ) {
         console.log(checkUserName);
         console.log(checkUserID);
         console.log(checkPassWord);
         console.log(checkCheckPassWord());
-        alert = "회원가입에 성공하셨습니다.";
+        alert("회원가입에 성공하셨습니다.");
 
         const user = await axios.post("/api/user/regist", {
           id: userId.value,

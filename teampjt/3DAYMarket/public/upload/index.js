@@ -120,31 +120,69 @@ let itemCondition;
 let itemTuning;
 let itemDealing;
 let itemImage;
+let itemLocal;
 const imageArr = [];
 
 function getValue() {
   const categoriesList = document.getElementsByName("categories");
   categoriesList.forEach((elem) => {
     if (elem.checked) {
-      itemCategories = elem.id;
+      if (elem.id == "fassion") itemCategories = "의류, 패션";
+      else if (elem.id == "electric") itemCategories = "전자기기";
+      else if (elem.id == "vehicle") itemCategories = "차량";
+      else if (elem.id == "furniture") itemCategories = "가구";
+      else if (elem.id == "living") itemCategories = "생활";
+      else if (elem.id == "music") itemCategories = "음반, 악기";
+      else if (elem.id == "sports") itemCategories = "스포츠";
+      else if (elem.id == "beauty") itemCategories = "화장품";
+      else if (elem.id == "book") itemCategories = "도서";
+      else if (elem.id == "etc") itemCategories = "기타";
     }
   });
   const conditionList = document.getElementsByName("condition");
   conditionList.forEach((elem) => {
     if (elem.checked) {
-      itemCondition = elem.id;
+      if (elem.id == "used-item") itemCondition = "중고상품";
+      else if (elem.id == "new-item") itemCondition = "새상품";
     }
   });
   const tuningList = document.getElementsByName("tuning");
   tuningList.forEach((elem) => {
     if (elem.checked) {
-      itemTuning = elem.id;
+      if (elem.id == "non-tuning") itemTuning = "불가능";
+      else if (elem.id == "tuning") itemTuning = "가능";
     }
   });
   const dealingList = document.getElementsByName("dealing");
   dealingList.forEach((elem) => {
     if (elem.checked) {
-      itemDealing = elem.id;
+      // itemDealing = elem.id;
+      if (elem.id == "meet") itemDealing = "직거래";
+      else if (elem.id == "delivery") itemDealing = "택배거래";
+      else if (elem.id == "delivery-safe") itemDealing = "택배거래(안전결제)";
+      else if (elem.id == "anything") itemDealing = "무관";
+    }
+  });
+  const localList = document.getElementsByName("local");
+  localList.forEach((elem) => {
+    if (elem.checked) {
+      if (elem.id == "local-seoul") itemLocal = "서울특별시";
+      else if (elem.id == "local-busan") itemLocal = "부산광역시";
+      else if (elem.id == "local-daegu") itemLocal = "대구광역시";
+      else if (elem.id == "local-incheon") itemLocal = "인천광역시";
+      else if (elem.id == "local-gwangju") itemLocal = "광주광역시";
+      else if (elem.id == "local-daejeon") itemLocal = "대전광역시";
+      else if (elem.id == "local-ulssan") itemLocal = "울산광역시";
+      else if (elem.id == "local-sejong") itemLocal = "세종특별자치시";
+      else if (elem.id == "local-gyungki") itemLocal = "경기도";
+      else if (elem.id == "local-gangwon") itemLocal = "강원도";
+      else if (elem.id == "local-chungbuk") itemLocal = "충청북도";
+      else if (elem.id == "local-chungnam") itemLocal = "충청남도";
+      else if (elem.id == "local-jeonbuk") itemLocal = "전라북도";
+      else if (elem.id == "local-jeonnam") itemLocal = "전라남도";
+      else if (elem.id == "local-gyungbuk") itemLocal = "경상북도";
+      else if (elem.id == "local-gyungnam") itemLocal = "경상남도";
+      else if (elem.id == "local-jeju") itemLocal = "제주특별자치도";
     }
   });
 }
@@ -163,6 +201,7 @@ document.getElementById("submit-form").onsubmit = async function (e) {
     !isTitleTrue ||
     !isPriceTrue ||
     !isSubtitleTrue ||
+    !itemLocal ||
     !itemImage
   ) {
     alert("모든 입력을 완료해주세요");
@@ -178,45 +217,100 @@ document.getElementById("submit-form").onsubmit = async function (e) {
   formData.append("itemCondition", itemCondition);
   formData.append("itemTuning", itemTuning);
   formData.append("itemDealing", itemDealing);
-
-  try {
-    const result = await axios.post("/api/item/add", {
-      // itemTitle: itemTitle,
-      // itemPrice: itemPrice,
-      // itemSubtitle: itemSubtitle,
-      // itemCategories: itemCategories,
-      // itemCondition: itemCondition,
-      // itemTuning: itemTuning,
-      // itemDealing: itemDealing,
-      // itemImage: ,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
-//
-//
-
-function getImageFiles(e) {
-  itemImage = e.currentTarget.files[0];
-  formData.append("img", itemImage);
+  formData.append("itemLocal", itemLocal);
   for (let value of formData.values()) {
     console.log(value);
   }
 
-  // if (!itemImage.type.match("image/")) {
-  //   alert("이미지 파일만 업로드 가능합니다");
-  //   return;
+  // try {
+  //   const result = await axios.post("/api/item/add", {
+  //     itemTitle: itemTitle,
+  //     itemPrice: itemPrice,
+  //     itemSubtitle: itemSubtitle,
+  //     itemCategories: itemCategories,
+  //     itemCondition: itemCondition,
+  //     itemTuning: itemTuning,
+  //     itemDealing: itemDealing,
+  //     itemImage: ,
+  //   });
+  // } catch (err) {
+  //   console.error(err);
   // }
-  // const reader = new FileReader();
-  // reader.onload = (e) => {
-  //   const preview = createElement(e, itemImage);
-  //   document.getElementById("img-box").appendChild(preview);
-  // };
-  // reader.readAsDataURL(itemImage);
-  // imageArr.push(itemImage.name);
-  console.log(itemImage);
-  console.log(imageArr);
+};
+//
+//
+// 1개의 이미지올림 >> 어펜드추가, 배열추가, 프리뷰하나추가
+// 1개의 이미지삭제 >> 어펜드리셋, 배열내 아이템 1개 삭제, 배열forEach해서 모든 배열의값을 어펜드, 프리뷰하나삭제
+function createElement(e, file) {
+  const div = document.createElement("div");
+  const img = document.createElement("img");
+  div.classList.add("img-block");
+  img.setAttribute("src", e.target.result);
+  img.setAttribute("data-file", file.name);
+  div.appendChild(img);
+  div.onclick = () => {
+    deleteImageFiles(file.name);
+    div.classList.add("display-none");
+  };
+
+  return div;
+}
+
+let stopper = false;
+function getImageFiles(e) {
+  for (let i = 0; i < imageArr.length; i++) {
+    if (imageArr[i].name == e.currentTarget.files[0].name) {
+      stopper = true;
+    }
+  }
+  if (!e.currentTarget.files[0].type.match("image/")) {
+    alert("이미지 파일만 업로드 가능합니다");
+    e.target.value = "";
+    return;
+  } else if (imageArr.length > 3) {
+    alert("4개 까지만 업로드가 가능합니다");
+    e.target.value = "";
+    return;
+  } else if (stopper) {
+    alert("중복된 파일은 업로드가 불가능합니다");
+    e.target.value = "";
+    stopper = false;
+    return;
+  }
+  itemImage = e.currentTarget.files[0];
+  formData.append("img", itemImage);
+  imageArr.push(itemImage);
+  // for (let value of formData.values()) {
+  //   console.log(value);
+  // }
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const preview = createElement(e, itemImage);
+    document.getElementById("img-box").appendChild(preview);
+  };
+  reader.readAsDataURL(itemImage);
+  // console.log(imageArr);
+  e.target.value = "";
+}
+
+function deleteImageFiles(e) {
+  formData.delete("img");
+  for (let i = 0; i < imageArr.length; i++) {
+    if (imageArr[i].name == e) {
+      imageArr.splice(imageArr[i], 1);
+      imageArr.forEach((elem) => {
+        formData.append("img", elem);
+      });
+      // for (let value of formData.values()) {
+      //   console.log(value);
+      // }
+    }
+  }
+  // for (let value of formData.values()) {
+  //   console.log(value);
+  // }
+  // console.log(imageArr);
 }
 
 document
