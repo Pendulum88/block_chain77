@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./font/font.css" />
 
     <link rel="stylesheet" href="index.css" />
   </head>
@@ -23,8 +24,8 @@
         <div class="satan">3DAYMarket</div>
       </a>
       <div class="category-box">
-        <a id="new-trade" href="./newtrade">신품거래</a>
-        <a id="user-trade" href="./usedtrade">중고거래</a>
+        <a id="new-trade" href="../newtrade">신품거래</a>
+        <a id="user-trade" href="../usedtrade">중고거래</a>
       </div>
 
       <div class="user-box">
@@ -59,6 +60,7 @@
               <label id="img-uploader-label" for="img-uploader"
                 >이미지 등록</label
               >
+
               <input id="img-uploader" type="file" accept="image/*" />
             </div>
           </div>
@@ -342,6 +344,16 @@
               <label id="jelly-label" for="anything">
                 <span class="text">무관</span>
                 <input type="radio" name="dealing" id="anything" />
+                <span class="icon"></span>
+              </label>
+            </div>
+          </div>
+          <div class="black-div main-colum-items extra-div display-none">
+            <div class="main-colum-left">추가기능</div>
+            <div class="main-colum-right">
+              <label id="jelly-label" for="black-upload">
+                <span class="text">블랙마켓 업로드</span>
+                <input type="checkbox" name="extra" id="black-upload" />
                 <span class="icon"></span>
               </label>
             </div>

@@ -9,104 +9,17 @@
 // 공백 예외처리 필요
 
 // 백엔드 관련
-// 카테고리 설정을 해주세요 (빈 내용 예외처리)
-// 라우터이름 upload
-// 등록하기 >>>> 서버전송
-// [이미지 등록시 페이지에 보이기, 최소한에 표시라도]
 
 //
 let isTitleTrue;
 let isPriceTrue;
 let isSubtitleTrue;
-
-const signInBtn = document.getElementById("sign-in");
-const signOutBtn = document.getElementById("sign-out");
-// const signUpBtn =document.getElementById("sign-up");
-const chattingBtn = document.getElementById("chatting");
-const itemUpload = document.getElementById("item-upload");
-const userInfo = document.getElementById("user-info");
-const reverseBtn = document.getElementById("reverse");
-const reverseImg = [...document.getElementsByClassName("reverse")];
-const reverseBgc = [...document.getElementsByClassName("bgc")];
-const loginDisplay = document.getElementById("loginDisplay");
-let date = new Date();
-const address = "http://localhost:8080/items/";
-
-signOutBtn.onclick = async function () {
-  try {
-    const result = await axios.post("/api/user/logout");
-
-    loginDisplay.removeChild(loginDisplay.firstChild);
-    signOutBtn.classList.remove("on");
-    chattingBtn.classList.remove("on");
-    itemUpload.classList.remove("on");
-    userInfo.classList.remove("on");
-    loginDisplay.style.display = "none";
-
-    signInBtn.classList.remove("off");
-    // signUpBtn.classList.remove("off");
-  } catch (err) {
-    console.error(err);
-  }
-};
-let cookieReverse;
-
-let getCookie = function (name) {
-  let value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
-  // console.log(value);
-  return value ? value[2] : null;
-};
-let setCookie = function (name, value, exp) {
-  let date = new Date();
-  date.setTime(date.getTime() + exp * 1000 * 60 * 60 * 9 + 1000 * 60);
-  document.cookie =
-    name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
-  console.log(document.cookie);
-  // console.log(cookie);
-};
-let cookieArray = document.cookie.split("; ");
-let CC = getCookie("carrot");
-let CR = getCookie("reverse");
-let cookieR = document.cookie.split("; ").includes("reverse=123");
-let cookieC = document.cookie.split("; ").includes(`carrot=${CC}`);
-
-let cookieCIndex = cookieArray.findIndex((e) => e == `carrot=${CC}`);
-
-let deleteCookie = function (name) {
-  document.cookie = name + "=; expires=Thu, 01 Jan 1999 00:00:10 GMT;";
-};
-
-const login = async function () {
-  console.log("asd");
-  console.log(cookieArray[cookieCIndex]);
-  if (cookieArray[cookieCIndex]) {
-    try {
-      const result = await axios.post("/api/user/cookie", {
-        cookie: cookieArray[cookieCIndex],
-      });
-      signOutBtn.classList.add("on");
-      chattingBtn.classList.add("on");
-      itemUpload.classList.add("on");
-      userInfo.classList.add("on");
-      console.log(result.data.name);
-      const login = document.createElement("div");
-      login.innerText = `${result.data.name}님 어서오세요!`;
-      loginDisplay.style.display = "block";
-      document.getElementById("loginDisplay").append(login);
-      signInBtn.classList.add("off");
-      signUpBtn.classList.add("off");
-      console.log("123");
-    } catch (error) {
-      // console.error(error)
-    }
-  }
-};
-login();
-
 //
 //
+const itemBlack = document.getElementById("black-upload");
 const titleInput = document.getElementById("title-input");
 const titleGuide = document.getElementById("title-guide");
+titleInput.value = "";
 titleInput.oninput = function () {
   isTitleTrue = false;
   if (titleInput.value.length < 1) {
@@ -160,12 +73,11 @@ priceInput.oninput = () => {
 };
 priceInput.onblur = () => {
   if (priceInput.value == "") return;
-  if (priceInput.value % 1 || isNaN(priceInput.value)) {
+  else if (priceInput.value % 1 || isNaN(priceInput.value)) {
     priceInput.value = "";
     priceGuide.classList.add("display-none");
     priceInput.classList.remove("red-border");
-  }
-  if (priceInput.value != "")
+  } else if (priceInput.value != "")
     priceInput.value = Number(priceInput.value).toLocaleString();
 };
 //
@@ -200,37 +112,133 @@ subtitleTextarea.onblur = () => {
 };
 //
 //
+
+const signInBtn = document.getElementById("sign-in");
+const signOutBtn = document.getElementById("sign-out");
+// const signUpBtn =document.getElementById("sign-up");
+const chattingBtn = document.getElementById("chatting");
+const itemUpload = document.getElementById("item-upload");
+const userInfo = document.getElementById("user-info");
+const reverseBtn = document.getElementById("reverse");
+const reverseImg = [...document.getElementsByClassName("reverse")];
+const reverseBgc = [...document.getElementsByClassName("bgc")];
+const loginDisplay = document.getElementById("loginDisplay");
+let date = new Date();
+const address = "http://localhost:8080/items/";
+
+signOutBtn.onclick = async function () {
+  try {
+    const result = await axios.post("/api/user/logout");
+
+    loginDisplay.removeChild(loginDisplay.firstChild);
+    signOutBtn.classList.remove("on");
+    chattingBtn.classList.remove("on");
+    itemUpload.classList.remove("on");
+    userInfo.classList.remove("on");
+    loginDisplay.style.display = "none";
+
+    signInBtn.classList.remove("off");
+    // signUpBtn.classList.remove("off");
+    location.href = "http://localhost:8080/";
+  } catch (err) {
+    console.error(err);
+  }
+};
+let cookieReverse;
+
+let getCookie = function (name) {
+  let value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+  // console.log(value);
+  return value ? value[2] : null;
+};
+let setCookie = function (name, value, exp) {
+  let date = new Date();
+  date.setTime(date.getTime() + exp * 1000 * 60 * 60 * 9 + 1000 * 60);
+  document.cookie =
+    name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+  // console.log(document.cookie);
+  // console.log(cookie);
+};
+let cookieArray = document.cookie.split("; ");
+let CC = getCookie("carrot");
+let CR = getCookie("reverse");
+let cookieR = document.cookie.split("; ").includes("reverse=123");
+let cookieC = document.cookie.split("; ").includes(`carrot=${CC}`);
+
+let cookieCIndex = cookieArray.findIndex((e) => e == `carrot=${CC}`);
+
+let deleteCookie = function (name) {
+  document.cookie = name + "=; expires=Thu, 01 Jan 1999 00:00:10 GMT;";
+};
+
+const login = async function () {
+  if (cookieArray[cookieCIndex]) {
+    try {
+      const result = await axios.post("/api/user/cookie", {
+        cookie: cookieArray[cookieCIndex],
+      });
+      signOutBtn.classList.add("on");
+      chattingBtn.classList.add("on");
+      itemUpload.classList.add("on");
+      userInfo.classList.add("on");
+      const login = document.createElement("div");
+      login.innerText = `${result.data.name}님 어서오세요!`;
+      loginDisplay.style.display = "block";
+      document.getElementById("loginDisplay").append(login);
+      signInBtn.classList.add("off");
+      signUpBtn.classList.add("off");
+    } catch (error) {
+      // console.error(error);
+    }
+  }
+};
+login();
+
 let itemCategories;
 let itemCondition;
 let itemTuning;
 let itemDealing;
 let itemImage;
 let itemLocal;
-const imageArr = [];
 
 function getValue() {
   const categoriesList = document.getElementsByName("categories");
   categoriesList.forEach((elem) => {
     if (elem.checked) {
-      itemCategories = elem.id;
+      if (elem.id == "fassion") itemCategories = "의류, 패션";
+      else if (elem.id == "electric") itemCategories = "전자기기";
+      else if (elem.id == "vehicle") itemCategories = "차량";
+      else if (elem.id == "furniture") itemCategories = "가구";
+      else if (elem.id == "living") itemCategories = "생활";
+      else if (elem.id == "music") itemCategories = "음반, 악기";
+      else if (elem.id == "sports") itemCategories = "스포츠";
+      else if (elem.id == "beauty") itemCategories = "화장품";
+      else if (elem.id == "book") itemCategories = "도서";
+      else if (elem.id == "etc") itemCategories = "기타";
     }
   });
   const conditionList = document.getElementsByName("condition");
   conditionList.forEach((elem) => {
     if (elem.checked) {
-      itemCondition = elem.id;
+      if (elem.id == "used-item") itemCondition = "중고상품";
+      else if (elem.id == "new-item") itemCondition = "새상품";
     }
   });
   const tuningList = document.getElementsByName("tuning");
   tuningList.forEach((elem) => {
     if (elem.checked) {
-      itemTuning = elem.id;
+      if (elem.id == "non-tuning") itemTuning = "불가능";
+      else if (elem.id == "tuning") itemTuning = "가능";
     }
   });
   const dealingList = document.getElementsByName("dealing");
   dealingList.forEach((elem) => {
     if (elem.checked) {
-      itemDealing = elem.id;
+      // itemDealing = elem.id;
+      if (elem.id == "meet") itemDealing = "직거래";
+      else if (elem.id == "delivery") itemDealing = "택배거래";
+      else if (elem.id == "delivery-safe") itemDealing = "택배거래(안전결제)";
+      else if (elem.id == "anything") itemDealing = "무관";
     }
   });
   const localList = document.getElementsByName("local");
@@ -259,30 +267,45 @@ function getValue() {
 //
 
 let formData = new FormData();
+
 document.getElementById("submit-form").onsubmit = async function (e) {
   e.preventDefault();
   //
   getValue();
-  if (
-    !itemCategories ||
-    !itemCondition ||
-    !itemTuning ||
-    !itemDealing ||
-    !isTitleTrue ||
-    !isPriceTrue ||
-    !isSubtitleTrue ||
-    !itemLocal ||
-    !itemImage
-  ) {
-    alert("모든 입력을 완료해주세요");
+  if (!imageArr.length) {
+    alert("이미지 입력이 안되었습니다");
+    return;
+  } else if (!isTitleTrue) {
+    alert("제목 입력이 올바르지 않습니다");
+    return;
+  } else if (!itemLocal) {
+    alert("지역 입력이 안되었습니다");
+    return;
+  } else if (!itemCategories) {
+    alert("카테고리 입력이 안되었습니다");
+    return;
+  } else if (!itemCondition) {
+    alert("상태 입력이 안되었습니다");
+    return;
+  } else if (!itemTuning) {
+    alert("가격절충 입력이 안되었습니다");
+    return;
+  } else if (!itemDealing) {
+    alert("거래방법 입력이 안되었습니다");
+    return;
+  } else if (!isPriceTrue) {
+    alert("가격 입력이 올바르지 않습니다");
+    return;
+  } else if (!isSubtitleTrue) {
+    alert("설명 입력이 올바르지 않습니다");
     return;
   }
-
 
   try {
     const itemTitle = titleInput.value;
     const itemPrice = Number(priceInput.value.replace(/,/g, ""));
     const itemSubtitle = subtitleTextarea.value;
+
     const uploadImgS = document.getElementById("img-uploader-label");
     formData.append("itemTitle", itemTitle);
     formData.append("itemLocal", itemLocal);
@@ -292,16 +315,11 @@ document.getElementById("submit-form").onsubmit = async function (e) {
     formData.append("itemCondition", itemCondition);
     formData.append("itemTuning", itemTuning);
     formData.append("itemDealing", itemDealing);
-    // const result = await axios.post("/api/item/add", {
-    //   itemImage: itemImage,
-    //   itemTitle: itemTitle,
-    //   itemPrice: itemPrice,
-    //   itemSubtitle: itemSubtitle,
-    //   itemCategories: itemCategories,
-    //   itemCondition: itemCondition,
-    //   itemTuning: itemTuning,
-    //   itemDealing: itemDealing,
-    // });
+    formData.append("itemBlack", itemBlack.checked);
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // }
+
     const img = await axios.post("/api/item/uploadFiles", formData);
     if (img) {
       alert("성공적으로 상품이 등록되었습니다.");
@@ -309,28 +327,13 @@ document.getElementById("submit-form").onsubmit = async function (e) {
     }
   } catch (err) {
     console.error(err);
-
   }
-
-  // try {
-  //   const result = await axios.post("/api/item/add", {
-  //     itemTitle: itemTitle,
-  //     itemPrice: itemPrice,
-  //     itemSubtitle: itemSubtitle,
-  //     itemCategories: itemCategories,
-  //     itemCondition: itemCondition,
-  //     itemTuning: itemTuning,
-  //     itemDealing: itemDealing,
-  //     itemImage: ,
-  //   });
-  // } catch (err) {
-  //   console.error(err);
-  // }
 };
 //
 //
 // 1개의 이미지올림 >> 어펜드추가, 배열추가, 프리뷰하나추가
 // 1개의 이미지삭제 >> 어펜드리셋, 배열내 아이템 1개 삭제, 배열forEach해서 모든 배열의값을 어펜드, 프리뷰하나삭제
+
 function createElement(e, file) {
   const div = document.createElement("div");
   const img = document.createElement("img");
@@ -339,13 +342,14 @@ function createElement(e, file) {
   img.setAttribute("data-file", file.name);
   div.appendChild(img);
   div.onclick = () => {
-    deleteImageFiles(file.name);
     div.classList.add("display-none");
+    deleteImageFiles(file.name);
   };
 
   return div;
 }
 
+const imageArr = [];
 let stopper = false;
 function getImageFiles(e) {
   for (let i = 0; i < imageArr.length; i++) {
@@ -370,9 +374,6 @@ function getImageFiles(e) {
   itemImage = e.currentTarget.files[0];
   formData.append("img", itemImage);
   imageArr.push(itemImage);
-  // for (let value of formData.values()) {
-  //   console.log(value);
-  // }
 
   const reader = new FileReader();
   reader.onload = (e) => {
@@ -388,13 +389,10 @@ function deleteImageFiles(e) {
   formData.delete("img");
   for (let i = 0; i < imageArr.length; i++) {
     if (imageArr[i].name == e) {
-      imageArr.splice(imageArr[i], 1);
+      imageArr.splice(i, 1);
       imageArr.forEach((elem) => {
         formData.append("img", elem);
       });
-      // for (let value of formData.values()) {
-      //   console.log(value);
-      // }
     }
   }
   // for (let value of formData.values()) {
@@ -406,3 +404,25 @@ function deleteImageFiles(e) {
 document
   .getElementById("img-uploader")
   .addEventListener("change", getImageFiles);
+
+const reverse = function () {
+  if (cookieR) {
+    document.body.classList.add("start");
+    for (let i = 0; i < reverseImg.length; i++) {
+      reverseImg[i].classList.add("start");
+    }
+    for (let i = 0; i < reverseBgc.length; i++) {
+      reverseBgc[i].classList.add("start");
+    }
+  } else {
+    document.body.classList.remove("start");
+    for (let i = 0; i < reverseImg.length; i++) {
+      reverseImg[i].classList.remove("start");
+    }
+    for (let i = 0; i < reverseBgc.length; i++) {
+      reverseBgc[i].classList.remove("start");
+    }
+  }
+};
+
+reverse();

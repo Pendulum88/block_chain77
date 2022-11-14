@@ -165,6 +165,28 @@ router.get("/", async (req, res) => {
   res.send(tempItem);
 });
 
+router.post("/used", async (req, res) => {
+  const tempItem = await Item.findAll({
+    where: {
+      itemCondition: "중고상품",
+    },
+    order: [["id", "DESC"]],
+    include: { model: User },
+  });
+  res.send(tempItem);
+});
+
+router.post("/new", async (req, res) => {
+  const tempItem = await Item.findAll({
+    where: {
+      itemCondition: "새상품",
+    },
+    order: [["id", "DESC"]],
+    include: { model: User },
+  });
+  res.send(tempItem);
+});
+
 router.get("/selectkind", async (req, res) => {
   const kind = req.query.kind;
   console.log("셀렉트카인드");
@@ -205,6 +227,78 @@ router.get("/selecttrade", async (req, res) => {
   res.send({ tempItem });
 });
 
+router.post("/selectall", async (req, res) => {
+  const kind = req.body.kind;
+  const local = req.body.local;
+  const trade = req.body.trade;
+  console.log("셀렉트올");
+  console.log(kind, local, trade);
+  console.log("셀렉트올");
+  const tempItem = await Item.findAll({
+    where: {
+      itemDealing: trade,
+      itemLocal: local,
+      itemCategories: kind,
+    },
+    order: [["id", "DESC"]],
+    include: { model: User },
+  });
+  console.log(tempItem);
+  res.send(tempItem);
+});
+
+router.post("/selectkindlocal", async (req, res) => {
+  const kind = req.body.kind;
+  const local = req.body.local;
+  console.log(kind);
+  console.log(local);
+  const tempItem = await Item.findAll({
+    where: {
+      itemLocal: local,
+      itemCategories: kind,
+    },
+    order: [["id", "DESC"]],
+    include: { model: User },
+  });
+  res.send(tempItem);
+});
+
+router.post("/selectkindtrade", async (req, res) => {
+  const kind = req.body.kind;
+  const trade = req.body.trade;
+  console.log(kind);
+  console.log(trade);
+
+  const tempItem = await Item.findAll({
+    where: {
+      itemDealing: trade,
+      itemCategories: kind,
+    },
+    order: [["id", "DESC"]],
+    include: { model: User },
+  });
+  console.log(tempItem);
+  res.send(tempItem);
+});
+
+router.post("/selectlocaltrade", async (req, res) => {
+  const local = req.body.local;
+  const trade = req.body.trade;
+  console.log(local);
+  console.log(trade);
+
+  const tempItem = await Item.findAll({
+    where: {
+      itemLocal: local,
+      itemDealing: trade,
+    },
+    order: [["id", "DESC"]],
+    include: { model: User },
+  });
+  console.log(tempItem);
+  res.send(tempItem);
+});
+
 router.get("/detail", async (req, res) => {
   const itemIndex = req.query.itemIndex;
   console.log("detail");
@@ -216,6 +310,19 @@ router.get("/detail", async (req, res) => {
   });
   res.send({ tempItem });
   // const tempItem = await Item.findOne;
+});
+
+router.post("/mypageitem", async (req, res) => {
+  const name = jwt.verify(req.cookies.carrot, process.env.JWT_KEY).name;
+  console.log(name);
+  const tempItem = await Item.findAll({
+    where: {
+      seller_id: name,
+    },
+    order: [["id", "DESC"]],
+    include: { model: User },
+  });
+  res.send({ tempItem });
 });
 
 module.exports = router;
