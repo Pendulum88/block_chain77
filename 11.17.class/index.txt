@@ -30,3 +30,6 @@ npx create-react-app testing
  - testing\src\index.js
  - App.js
  - testing으로 경로 이동 후 npm start
+
+
+ npm i styled-components : 스타일

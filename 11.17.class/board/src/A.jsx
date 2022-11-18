@@ -1,6 +1,10 @@
 import B from "./B";
 
 export default function () {
+  function btnClick() {
+    return React.createElement("div");
+  }
+
   return (
     <div>
       <div style={{ display: "block", margin: "20px" }}>
@@ -23,8 +27,4 @@ export default function () {
       </div>
     </div>
   );
-
-  function btnClick() {
-    console.log(2342);
-  }
 }
