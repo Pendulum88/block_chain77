@@ -5,20 +5,13 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  // const [textA, methodA] = useState("남자 코트 추천");
-  // const [textB, methodB] = useState("강남 우동 맛집");
-  // const [textC, methodC] = useState("역삼 파스타 맛집");
-  const [text, method] = useState([
+  const [text, changeText] = useState([
     "남자 코트 추천",
     "강남 우동 맛집",
     "역삼 파스타 맛집",
   ]);
 
   const [likeNum, likeAdd] = useState(0);
-
-  // function likeAdd() {
-  //   console.log(1);
-  // }
 
   return (
     <div className="App">
@@ -39,7 +32,7 @@ function App() {
           onClick={() => {
             const temp = [...text];
             temp[0] = "여자 코트 추천";
-            method(temp);
+            changeText(temp);
           }}
         >
           바꾸기

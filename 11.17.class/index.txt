@@ -33,3 +33,7 @@ npx create-react-app testing
 
 
  npm i styled-components : 스타일
+
+
+yarn create react-app testing
+yarn add styled-components
