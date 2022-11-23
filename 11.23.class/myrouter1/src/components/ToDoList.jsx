@@ -1,11 +1,21 @@
+import { useState } from "react";
+
 export default function ToDoList({ isOnline }) {
+  const [temp, setTemp] = useState("");
+  const [list, setList] = useState([]);
+
   const addTodoList = () => {
-    console.log();
+    if (!temp) return;
+    setList((prev) => {
+      return [...prev, temp];
+    });
   };
 
-  const todoInput = () => {
-    console.log();
+  const todoInput = (e) => {
+    setTemp(e.target.value);
   };
+
+  const removeTodoList = () => {};
 
   return (
     <div>
@@ -16,6 +26,7 @@ export default function ToDoList({ isOnline }) {
           onSubmit={(e) => {
             e.preventDefault();
             addTodoList();
+            setTemp("");
           }}
         >
           <input
@@ -23,9 +34,20 @@ export default function ToDoList({ isOnline }) {
             spellCheck={false}
             autoComplete="off"
             onInput={todoInput}
+            value={temp}
           />
           <button>ADD</button>
         </form>
+        <div>
+          {list.map((item, index) => {
+            return (
+              <div className="listItem" key={index}>
+                {item}
+                <button onClick={removeTodoList}>Delete</button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

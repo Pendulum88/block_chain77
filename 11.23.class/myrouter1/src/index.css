@@ -53,3 +53,23 @@ h2 {
   font-size: 16px;
   cursor: pointer;
 }
+
+.listItem {
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: lightpink;
+  border-radius: 5px;
+  width: 400px;
+  position: relative;
+}
+
+.listItem button {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  background-color: gray;
+  border-radius: 5px;
+  height: 100%;
+  cursor: pointer;
+}
