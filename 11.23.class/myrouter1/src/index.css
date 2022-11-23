@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1 {
+  background-color: lightgrey;
+}
+
+h2 {
+  background-color: powderblue;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.menu {
+  margin: 10px;
+  background-color: lightpink;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+  padding: 0px 10px;
+}
+
+.todoForm {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.todoForm input {
+  width: 300px;
+  font-size: 20px;
+}
+
+.todoForm button {
+  background: none;
+  background-color: lightpink;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
