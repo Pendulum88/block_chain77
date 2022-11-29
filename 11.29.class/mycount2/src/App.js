@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
-import "./App.css";
 import { useState } from "react";
+import "./App.css";
 
 import store from "./store";
 import { actions as count1Act } from "./action/count1";

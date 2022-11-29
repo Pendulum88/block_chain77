@@ -1,9 +1,10 @@
 import logo from "./logo.svg";
+
 import "./App.css";
 import store from "./store";
 import { useState } from "react";
-import { COUNT1, actions as count1Actions } from "./action/count1";
-import { COUNT2, actions as count2Actions } from "./action/count2";
+import { actions as count1Actions } from "./action/count1";
+import { actions as count2Actions } from "./action/count2";
 import { ARR } from "./action/arr";
 
 function App() {
