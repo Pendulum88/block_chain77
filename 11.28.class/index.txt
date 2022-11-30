@@ -26,8 +26,7 @@ Redux란
             - 조금더 자세히 이야기하자면 : 함수 외부의 변수를 변경하지 않고, 외부 변수에 의존하지 않으며, 매개변수 또한 변경하지 않는 함수
 
 
-라이브러리 설치
 yarn add redux react-redux (2개)
-yarn add redux-devtools-extension
+yarn add --dev redux-devtools-extension
 
 크롬 웹스토어 이동 >> Redux Dev Tools 설치
