@@ -1,1 +1,4 @@
-redux-devtools-extension
+1. yarn create react-app 파일명
+2. yarn add redux react-redux
+3. yarn add --dev redux-devtools-extension
+4. 
