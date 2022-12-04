@@ -6,4 +6,4 @@
 6. in App.js, delete restrict mode, create Provider
 7. Provder store={store} -> ERR
 8. in store.js, createStore
-9. 
+9. const store = createStore()
