@@ -3,8 +3,8 @@
 3. yarn add --dev redux-devtools-extension
 4. create components, modules folder
 5. create store.js at modules
-6. in App.js, delete restrict mode, create Provider
+6. in index.js, delete restrict mode, create Provider
 7. Provder store={store} -> ERR
 8. in store.js, createStore
 9. const store = createStore(state=>state, {}, composeWithDevtools)
-10. 
+10. in App.js, delete header tag
