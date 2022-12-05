@@ -8,3 +8,26 @@
 8. in store.js, createStore
 9. const store = createStore(state=>state, {}, composeWithDevtools)
 10. in App.js, delete header tag
+
+
+(modules)
+const TYPE = {
+LOGIN: "user/login",
+LOGOUT: "user/logout",
+REGIST: "user/regist",
+}
+
+const login = TYPE.LOGIN
+const logout = TYPE.LOGOUT
+const regist = TYPE.REGIST
+
+export const action = {login, logout, regist}
+
+export const initialize = {
+id: "",
+pw: "";
+}
+
+export const reducer = (state, action) => {
+
+}
