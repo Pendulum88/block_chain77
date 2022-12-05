@@ -17,9 +17,18 @@ LOGOUT: "user/logout",
 REGIST: "user/regist",
 }
 
-const login = TYPE.LOGIN
-const logout = TYPE.LOGOUT
-const regist = TYPE.REGIST
+const login = (aug) => {
+type: TYPE.LOGIN,
+payload: {aug}
+}
+const logout = (aug)=> {
+type: TYPE.LOGOUT
+payload: {aug}
+}
+const regist = (aug) => {
+type: TYPE.REGIST
+payload: {aug}
+}
 
 export const action = {login, logout, regist}
 
@@ -28,6 +37,6 @@ id: "",
 pw: "";
 }
 
-export const reducer = (state, action) => {
+export const reducer = (state = initialize, action) => {
 
 }
