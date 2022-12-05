@@ -17,18 +17,18 @@ LOGOUT: "user/logout",
 REGIST: "user/regist",
 }
 
-const login = (aug) => {
+const login = (aug) => ({
 type: TYPE.LOGIN,
 payload: {aug}
-}
-const logout = (aug)=> {
+})
+const logout = (aug)=> ({
 type: TYPE.LOGOUT
 payload: {aug}
-}
-const regist = (aug) => {
+})
+const regist = (aug) => ({
 type: TYPE.REGIST
 payload: {aug}
-}
+})
 
 export const action = {login, logout, regist}
 
@@ -40,14 +40,14 @@ pw: "";
 export const reducer = (state = initialize, action) => {
 const {type, payload} = action
 
-switch() {
-case: TYPE.LOGIN:
+switch(type) {
+case TYPE.LOGIN:
 return state
 
-case: TYPE.LOGOUT:
+case TYPE.LOGOUT:
 return state
 
-case: TYPE.REGIST:
+case TYPE.REGIST:
 return state
 
 default:
