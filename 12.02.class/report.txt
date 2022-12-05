@@ -38,5 +38,19 @@ pw: "";
 }
 
 export const reducer = (state = initialize, action) => {
+const {type, payload} = action
 
+switch() {
+case: TYPE.LOGIN:
+return state
+
+case: TYPE.LOGOUT:
+return state
+
+case: TYPE.REGIST:
+return state
+
+default:
+return state
+}
 }
